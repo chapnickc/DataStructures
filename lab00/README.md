@@ -1,9 +1,22 @@
+# Lab 00
+# Chad Chapnick
+# Date:  Januare 23 2017
 
+# Notes:
+[use sizeof(array)/sizeof(array[0]) to find the length of an array](http://stackoverflow.com/questions/4108313/how-do-i-find-the-length-of-an-array)
+
+[Great article on const](http://duramecho.com/ComputerInformation/WhyHowCppConst.html)
+
+cv-qualifiers (constant/volatile)
+
+
+# Prompt
 You'll see files Vector3D.h and Vector3D.cpp in this folder.
 
 (1) Verify that this compiles correctly to an object file, as follows:
-
-$ g++ -c Vector3D.cpp
+```bash
+   g++ -c Vector3D.cpp
+```
 
 This should run with no errors and produce a file Vector3D.o.
 
@@ -43,4 +56,4 @@ Then modify the main to simply call the normalize method.
 a general Vector3D class?  Decide on their names, return types,
 argument types, and whether they are const methods or not, and 
 add them to the Vector3D.h file.  Implement them in Vector3D.cpp
-if you have time.
+i
