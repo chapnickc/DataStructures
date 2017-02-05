@@ -1,13 +1,11 @@
-
-
 The starting point for this lab is the same code from last week's lab,
 Vector3D.h and Vector3D.cpp in the folder ../lab00.
 
 (1) Write a VectorND class that can be of any dimension, using Vector3D
 as a model.  You can copy those files here as follows:
 
-$ cp ../lab00/Vector3D.h ./VectorND.h
-$ cp ../lab00/Vector3D.cpp ./VectorND.cpp
+    cp ../lab00/Vector3D.h ./VectorND.h
+    cp ../lab00/Vector3D.cpp ./VectorND.cpp
 
 and then globally search/replace "Vector3D" with "VectorND".
 

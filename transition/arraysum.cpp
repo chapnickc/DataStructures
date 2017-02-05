@@ -2,21 +2,21 @@
 using namespace std;
 
 int main() {
-  int myarray[4];
+   int myarray[4];
 
-  cout << myarray << endl;
+   cout << myarray << endl;
 
-  for (int i = 0; i < 4; i++) {
-    cout << "Enter value #" << i << ": ";
-    cin >> myarray[i];
-  }
+   for (int i = 0; i < 4; i++) {
+      cout << "Enter value #" << i << ": ";
+      cin >> myarray[i];
+   }
 
-  int sum = 0;
-  for (int i = 0; i < 4; i++) {
-    sum += myarray[i];
-  }
- 
-  cout << "Sum is " << sum << endl;
+   int sum = 0;
+   for (int i = 0; i < 4; i++) {
+      sum += myarray[i];
+   }
 
-  return 0;
+   cout << "Sum is " << sum << endl;
+
+   return 0;
 }

@@ -2,13 +2,49 @@
 #include <iostream>
 using namespace std;
 
+/* Call by value and call by reference
+ * stricktly speaking we are still making a copy
+ * to the reference
+ *
+
+ *
+ */
+
 // void printScaled(RichPoint* p) {
 // void printScaled(const RichPoint& p) {
 // void printScaled(RichPoint& p) {
+//
+// ask yourself, if p will be modified. The answer is no
+
+// References are "like a number"
+
+/* The big problem here is that copying 
+ * is inefficient if the objects are big
+ */
 void printScaled(RichPoint p) {
   p.scale(1.0/p.distance(RichPoint(0,0)));
   cout << p << endl;
 }
+
+/* We don't want the original object to change */
+// this will noot compile as is since we need a 
+// copy
+/*
+void printScaled(const RichPoint& p) {
+  p.scale(1.0/p.distance(RichPoint(0,0)));
+  cout << p << endl;
+}
+*/
+
+
+/*
+void printScaled(RichPoint* p) {
+  (*p).scale(1.0/p->distance(RichPoint(0,0)));
+  cout << *p << endl;
+}
+*/
+
+
 
 int main() {
 
