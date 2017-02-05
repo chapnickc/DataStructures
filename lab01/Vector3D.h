@@ -13,8 +13,7 @@ class Vector3D : public VectorND {
     Vector3D(float* v); 
 };
 
-/*
+
 ostream& operator<<(ostream& out, const Vector3D& v3D);
-*/
 
 #endif

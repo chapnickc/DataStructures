@@ -124,6 +124,12 @@ float VectorND::operator*(const VectorND& other) const {
 }
 
 ostream& operator<<(ostream& out, const VectorND& v) {
-    out << "magnitude: " << v.magnitude() << "| length: " << v.getLength();
+    out << "magnitude: " << v.magnitude() << " | length: " << v.getLength() << endl;
+    out << "data: {";
+    for (int i=0;i < v.getLength() ; i++){
+        out << v.getCoordinate(i) << " ";
+    }
+    out << "}" << endl;
+
     return out;
 }
