@@ -8,36 +8,48 @@
 
 #include "book.h"
 
-#include "alist.h"
+//#include "alist.h"
+#include "link.h"
+#include "llist.h"
+#include <iostream>
+using namespace std;
 
-void doSomething(int elem) {}
+void doSomething(int elem) {
+    cout << elem << endl;
+}
 
 int main() {
-  AList<int> L1;
-  AList<int> L2;
-  int it;
-  AList<int> L;
-  int a = 1, b = 100;
-  
+    LList<int> L1;
+    LList<int> L2;
+    int it;
+    LList<int> L;
+    int a = 1, b = 100;
 
-a = a + b;
-b = a - b; // Now b contains original value of a
-a = a - b; // Now a contains original value of b
 
-L1.append(10);
-L1.append(20);
-L1.append(15);
+    a = a + b;
+    b = a - b; // Now b contains original value of a
+    a = a - b; // Now a contains original value of b
 
-L2.append(10);
-L2.append(20);
-L2.append(15);
-L2.moveToStart();
-L2.insert(39);
-L2.next();
-L2.insert(12);
+    L1.append(10);
+    // this is a test, a unit test
+    if (L1.length() != 1 || L1.getValue() != 10){
+        cout << "oh no" << endl;
+    }
+    L1.append(20);
+    L1.append(15);
 
-for (L2.moveToStart(); L2.currPos()<L2.length(); L2.next()) {
-  it = L2.getValue();
-  doSomething(it);
-}
+    L2.append(10);
+    L2.append(20);
+    L2.append(15);
+    L2.moveToStart();
+    L2.insert(39);
+    L2.next();
+    L2.insert(12);
+
+    for (L2.moveToStart(); L2.currPos()<L2.length(); L2.next()) {
+        it = L2.getValue();
+        //doSomething(it);
+    }
+
+
 }

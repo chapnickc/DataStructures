@@ -77,7 +77,6 @@ template <typename E> class List { // List ADT
             else {
                 return;
             }
-            
         };
         */
 

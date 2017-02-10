@@ -18,7 +18,6 @@ class mystring {
     ~mystring();
     // this will find the terminator (ASCII) value in the 
     //A null terminatedd list has the ascii 
-    //
     int length() const;
     void operator+=(const mystring& other);
 

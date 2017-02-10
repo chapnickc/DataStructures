@@ -1,5 +1,3 @@
-
-
 Some of the lab exercises this week will involve making changes 
 to the book's code in the shaffer/ directory.  A convenient way
 to do this without messing up the original code is to work on 
@@ -8,23 +6,23 @@ control systems that lets you maintain multiple versions of
 a repository in parallel.  To do this for today's lab, enter this
 command:
 
-$ git checkout -b lab02
+    git checkout -b lab02
 
 Then you can freely change the files, save the changes, test, and
 so on.  When you have a version you're happy with, you can commit
 it to the repository.  If you changed, for example, the files
 list.h and alist.h, then do this:
 
-$ git add list.h alist.h
-$ git commit -m "put a message here to remember what you did"
+    git add list.h alist.h
+    git commit -m "put a message here to remember what you did"
 
 Then, to revert to the original files:
 
-$ git checkout master
+    git checkout master
 
 To return to the modified files:
 
-$ git checkout lab02
+    git checkout lab02
 
 
 (1) In lecture I noted that some of the virtual methods of List
