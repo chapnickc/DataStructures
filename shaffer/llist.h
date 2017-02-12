@@ -14,12 +14,22 @@
 // Linked list implementation
 template <typename E> class LList: public List<E> {
 private:
-  Link<E>* head;       // Pointer to list header
+  Link<E>* head;       // Pointer to list header, this is a design choice
+                        // the way this is designed, there is a header pointer
+                        // for all these linked lists
+                        
   Link<E>* tail;       // Pointer to last element
   Link<E>* curr;       // Access to current element
+                        // this always points to the 
+                        // thing to the left of the current element
+
+
   int cnt;    	       // Size of list
 
   void init() {        // Intialization helper method
+      //since your job in a constructor is 
+      //to set the attributes 
+      //new always returns a pointer
     curr = tail = head = new Link<E>;
     cnt = 0;
   }
