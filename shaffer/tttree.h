@@ -1,3 +1,5 @@
+#ifndef TTTREE_H
+#define TTTREE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -58,3 +60,4 @@ public:
     else printhelp(root, 0);
   }
 };
+#endif

@@ -1,3 +1,5 @@
+#ifndef ALIST_H
+#define ALIST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -87,3 +89,4 @@ class AList : public List<E> {
       //curr = pos;
     /*}*/
 
+#endif

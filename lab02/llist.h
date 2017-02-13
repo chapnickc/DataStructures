@@ -1,3 +1,5 @@
+#ifndef LLIST_H
+#define LLIST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -8,6 +10,8 @@
 
 // First, get the declaration for the base list class
 #include "list.h"
+#include <iostream>
+using namespace std;
 
 // This is the declaration for LList. It is split into two parts
 // because it is too big to fit on one book page
@@ -20,7 +24,7 @@ private:
   int cnt;    	       // Size of list
 
   void init() {        // Intialization helper method
-    curr = tail = head = new Link<E>;
+    curr = tail = head = new Link<E>; // new always returns a pointer
     cnt = 0;
   }
 
@@ -88,6 +92,29 @@ public:
   void print() const;                // Print list contents
   void clear() { removeall(); init(); }       // Clear list
 
+
+  void reverse(){
+    moveToStart();
+    curr = head->next;
+    tail = curr;
+    Link<E>* nextLink = new Link<E>;
+    Link<E>* prevLink = NULL; 
+
+
+    while(nextLink != NULL){
+      nextLink = curr->next;
+      curr->next = prevLink;
+      prevLink = curr;
+      curr = nextLink;
+    }
+    head->next= prevLink;
+
+    //cout << "New head: " << head<< endl;
+    //cout << "New tail: " << tail << endl;
+  }
+ 
+};
+#endif
 /*  // Move down list to "pos" position*/
   //void moveToPos(int pos) {
     //Assert ((pos>=0)&&(pos<=cnt), "Position out of range");
@@ -98,5 +125,4 @@ public:
     //tail = tail->next = new Link<E>(it, NULL);
     //cnt++;
   //}
-  
-};
+ 

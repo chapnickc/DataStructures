@@ -1,3 +1,5 @@
+#ifndef MEMMAN_H
+#define MEMMAN_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -17,3 +19,4 @@ public:
   // Release the space associated with a record
   virtual void release(MemHandle h) =0;
 };
+#endif

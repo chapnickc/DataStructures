@@ -1,3 +1,5 @@
+#ifndef TTPRINT_H
+#define TTPRINT_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -18,3 +20,4 @@ printhelp(TTNode<Key,E>* rt, int level) const {
   if (rt->rkey != EMPTYKEY)
     printhelp(rt->right, level+1);
 }
+#endif

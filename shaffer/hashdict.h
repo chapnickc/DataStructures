@@ -1,3 +1,5 @@
+#ifndef HASHDICT_H
+#define HASHDICT_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -100,3 +102,4 @@ hashSearch(const Key& k) const {
     return (HT[pos]).value();
   else return NULL;            // k not in hash table
 }
+#endif

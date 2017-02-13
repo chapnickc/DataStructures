@@ -48,4 +48,11 @@ int main() {
         print(it);
     }
 
+  cout << "reversing..." << endl;
+  L2.reverse();
+
+  for (L2.moveToStart(); L2.currPos()<L2.length(); L2.next()) {
+        it = L2.getValue();
+        print(it);
+    }
 }

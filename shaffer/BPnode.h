@@ -1,3 +1,5 @@
+#ifndef BPNODE_H
+#define BPNODE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -59,3 +61,4 @@ public:
   BPInternal<Key,E>* add(Key k, BPInternal<Key,E>* ptr) { return NULL; }
   bool underflow(int which) { return false; }
 };
+#endif

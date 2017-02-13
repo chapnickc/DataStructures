@@ -1,3 +1,5 @@
+#ifndef DICTTEST_H
+#define DICTTEST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -56,3 +58,4 @@ void dicttest(Dictionary<int, Int*> &dict) {
     cout << "Got element " << e << endl;
   }
 }
+#endif

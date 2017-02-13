@@ -1,3 +1,5 @@
+#ifndef BSTNODE_H
+#define BSTNODE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -39,3 +41,4 @@ public:
   // Return true if it is a leaf, false otherwise
   bool isLeaf() { return (lc == NULL) && (rc == NULL); }
 };
+#endif

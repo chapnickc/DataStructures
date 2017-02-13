@@ -1,3 +1,5 @@
+#ifndef LISTTEST_H
+#define LISTTEST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -221,3 +223,4 @@ void ListTest(List<E1>& L1, List<E1>& L2, List<E2>& L3) {
 
   cout << "That is all.\n";
 }
+#endif

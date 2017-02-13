@@ -12,3 +12,4 @@ go: $(OBJ)
 
 clean:
 	rm *.o
+	rm go

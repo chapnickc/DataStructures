@@ -1,3 +1,5 @@
+#ifndef SALIST_H
+#define SALIST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -38,3 +40,4 @@ public:
   AList<KVpair<Key,E> >::moveToPos;
   AList<KVpair<Key,E> >::getValue;
 };
+#endif

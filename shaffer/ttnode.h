@@ -1,3 +1,5 @@
+#ifndef TTNODE_H
+#define TTNODE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -27,3 +29,4 @@ public:
   bool isLeaf() { return left == NULL; }
   TTNode<Key,E>* add(TTNode<Key,E>* it);
 };
+#endif

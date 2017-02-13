@@ -1,3 +1,5 @@
+#ifndef BOOK_H
+#define BOOK_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -99,3 +101,4 @@ ostream& operator<<(ostream& s, const Int& i)
   { return s << i.key(); }
 ostream& operator<<(ostream& s, const Int* i)
   { return s << i->key(); }
+#endif

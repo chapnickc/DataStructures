@@ -1,3 +1,5 @@
+#ifndef SKIPLIST_H
+#define SKIPLIST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -119,3 +121,4 @@ void insert(const Key& k, const E& it) {
   }
 };
 
+#endif

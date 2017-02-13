@@ -1,3 +1,5 @@
+#ifndef TT_H
+#define TT_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -101,3 +103,4 @@ findhelp(TTNode<Key,E>* root, Key k) const {
     return findhelp(root->center, k);       // Go center
   else return findhelp(root->right, k);     // Go right
 }
+#endif

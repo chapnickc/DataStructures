@@ -1,3 +1,5 @@
+#ifndef BINNODE_H
+#define BINNODE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -29,3 +31,4 @@ public:
   // Return true if the node is a leaf, false otherwise
   virtual bool isLeaf() = 0;
 };
+#endif

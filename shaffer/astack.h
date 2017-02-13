@@ -1,3 +1,5 @@
+#ifndef ASTACK_H
+#define ASTACK_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -42,3 +44,4 @@ public:
 
   int length() const { return top; }  // Return length
 };
+#endif

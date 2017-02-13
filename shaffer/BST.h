@@ -1,3 +1,5 @@
+#ifndef BST_H
+#define BST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -177,3 +179,4 @@ printhelp(BSTNode<Key, E>* root, int level) const {
   cout << root->key() << "\n";        // Print node value
   printhelp(root->right(), level+1);  // Do right subtree
 }
+#endif

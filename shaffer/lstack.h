@@ -1,3 +1,5 @@
+#ifndef LSTACK_H
+#define LSTACK_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -56,3 +58,4 @@ public:
 
   int length() const { return size; } // Return length
 };
+#endif

@@ -1,3 +1,5 @@
+#ifndef COMPARE_H
+#define COMPARE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -100,3 +102,4 @@ class getCKey {
 public:
   static char* key(char* x) { return x; }
 };
+#endif

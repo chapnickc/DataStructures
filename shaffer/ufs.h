@@ -1,3 +1,5 @@
+#ifndef UFS_H
+#define UFS_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -37,3 +39,4 @@ int ParPtrTree::FIND(int curr) const { // Find root
   while (array[curr] != ROOT) curr = array[curr];
   return curr;  // At root
 }
+#endif

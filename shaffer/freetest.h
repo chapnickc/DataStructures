@@ -1,3 +1,5 @@
+#ifndef FREETEST_H
+#define FREETEST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -159,3 +161,4 @@ void freetest(long count) {
 
   cout << "Time for Int: " << time << endl;
 }
+#endif

@@ -1,3 +1,5 @@
+#ifndef KVPAIR_H
+#define KVPAIR_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -25,3 +27,4 @@ public:
   void setKey(Key ink) { k = ink; }
   E value() { return e; }
 };
+#endif

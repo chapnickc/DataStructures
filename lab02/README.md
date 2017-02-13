@@ -60,3 +60,5 @@ space and time efficient is to double the current size of the array
 when there is an overflow.  Re-implement the code in alist.h to support
 this array-doubling rule in place of the Assert statements in 
 methods insert and append.
+
+

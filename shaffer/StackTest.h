@@ -1,3 +1,5 @@
+#ifndef STACKTEST_H
+#define STACKTEST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -37,3 +39,4 @@ template <typename E> void StackTest(Stack<E>& St) {
   cout << "Size is " << St.length() << endl;
   cout << "That is all.\n\n";
 }
+#endif

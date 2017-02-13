@@ -1,3 +1,5 @@
+#ifndef UALDICT_H
+#define UALDICT_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -52,3 +54,4 @@ public:
   int size() // Return list size
     { return list->length(); }
 };
+#endif

@@ -1,3 +1,5 @@
+#ifndef LIST_H
+#define LIST_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -103,3 +105,4 @@ template <typename E> class List { // List ADT
         // we could write an index() function herre
         // in terms of these virtual functions
 };
+#endif

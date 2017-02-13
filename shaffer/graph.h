@@ -1,3 +1,5 @@
+#ifndef GRAPH_H
+#define GRAPH_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -52,3 +54,4 @@ public:
   virtual int getMark(int v) =0;
   virtual void setMark(int v, int val) =0;
 };
+#endif

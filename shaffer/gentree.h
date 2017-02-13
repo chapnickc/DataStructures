@@ -1,3 +1,5 @@
+#ifndef GENTREE_H
+#define GENTREE_H
 // This is from Figure 6.2 of the book, p.205
 // Not actually distributed with the book source code...
 // see genmain.cpp and the comments therein
@@ -26,3 +28,4 @@ public:
   void newroot(E&, GTNode<E>*, GTNode<E>*);
   void print();            // Print a tree
 };
+#endif

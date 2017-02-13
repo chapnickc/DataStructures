@@ -1,3 +1,5 @@
+#ifndef DLINKFL_H
+#define DLINKFL_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -41,3 +43,4 @@ public:
 // The freelist head pointer is actually created here
 template <typename E>
 Link<E>* Link<E>::freelist = NULL;
+#endif

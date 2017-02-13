@@ -1,3 +1,5 @@
+#ifndef HUFFTREE_H
+#define HUFFTREE_H
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -19,3 +21,4 @@ public:
   HuffNode<E>* root() { return Root; }    // Get root
   int weight() { return Root->weight(); } // Root weight
 };
+#endif
