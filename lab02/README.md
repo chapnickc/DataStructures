@@ -49,7 +49,9 @@ as const (even though in a sense it ought to be) since an implementation
 will require looping over the list, which is non-const since we 
 maintain the current position as state.
 
-(3) [Shaffer exercise 4.6] Add to the LList class a method to reverse the order of the elements in the list.  Your algorithm should run in linear time in the number of elements in the list.
+(3) [Shaffer exercise 4.6] Add to the LList class a method to reverse 
+the order of the elements in the list.
+Your algorithm should run in linear time in the number of elements in the list.
 
 (4) [Shaffer project 4.2] One solution to the problem of running out of
 space for an array-based list is to replace the array with a larger

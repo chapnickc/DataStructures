@@ -29,76 +29,81 @@
 // methods are not const. Even the find and/or 
 // index() func from python . Sine we have to 
 // call movePos() and stuff for many methods
+
 template <typename E> class List { // List ADT
 
-    private:
-        // don't worry about why these are private rn
-        void operator =(const List&) {}       // Protect assignment
-        List(const List&) {}                  // Protect copy constructor
+  private:
+    void operator =(const List&) {}       // Protect assignment
+    List(const List&) {}                  // Protect copy constructor
 
-    public:
-        List() {}                             // Default constructor
-        virtual ~List() {}                    // Base destructor
+  public:
+    List() {}                               // Default constructor
+    virtual ~List() {}                      // Base destructor
 
-        // Clear contents from the list, to make it empty.
-        virtual void clear() = 0;
+    virtual const E& getValue() const = 0;  // return: the current element
+    virtual int currPos() const = 0;        // return: position of the current element
+    virtual int length() const = 0;         // return: number of elements in the list
 
-        // Insert an element at the current location.
-        // item: The element to be inserted
-        virtual void insert(const E& item) = 0;       // we have to define the implicit 'currrent location'
+    virtual void moveToStart() = 0;
+    virtual void moveToEnd() = 0;
 
-        // Append an element at the end of the list.
-        // item: The element to be appended.
-        virtual void append(const E& item) = 0;
+    // Move current position one step right. 
+    // No change if already at end.
+    virtual void next() = 0;
 
-        // Remove and return the current element.
-        // Return: the element that was removed.
-        virtual E remove() = 0;
+    // Move the current position one step left. No change
+    // if already at beginning.
+    virtual void prev() = 0;
 
-        // Set the current position to the start of the list
-        virtual void moveToStart() = 0;
+    // Insert an element at the current location.
+    // item: The element to be inserted
+    // we have to define the implicit 'currrent location'
+    virtual void insert(const E& item) = 0;       
 
-        // Set the current position to the end of the list
-        virtual void moveToEnd() = 0;
+    // Remove and return the current element.
+    virtual E remove() = 0;     
 
-        // Move the current position one step left. No change
-        // if already at beginning.
-        virtual void prev() = 0;
+  // Clear contents from the list, to make it empty.
+    virtual void clear() = 0;
+  
+    // Append an element at the end of the list.
+    void append(const E& item){
+      moveToEnd();
+      insert(item);
+    }
 
-        // Move the current position one step right. No change
-        // if already at end.
-        virtual void next() = 0;
-        /*void next() {
-            // probably not a good idea
-            // to virtualize currPos() and moveToPos()
-            if (curr < length()){
-                moveToPos(currPos() + 1);
-            }
-            else {
-                return;
-            }
-        };
-        */
+        // pos: the position to go to in the list
+    void moveToPos(int pos){
+      moveToStart();
+      for(int i = 0; i < pos; i++){
+        next();
+      }
+    }
 
-        // Return: The number of elements in the list.
-        virtual int length() const = 0;
-
-        // Return: The position of the current element.
-        virtual int currPos() const = 0;
-
-        // Set current position.
-        // pos: The position to make current.
-        //virtual void moveToPos(int pos) = 0;
-        void moveToPos(int pos){
-            moveToStart();
-            for(int i = 0; i < pos; i++){
-                next();
-            }
+    bool find(const E& item){
+      moveToStart();
+      while(currPos() < length()){
+        if (item == getValue()){
+          return true;
         }
-
-        // Return: The current element.
-        virtual const E& getValue() const = 0;
-
-        // we could write an index() function herre
-        // in terms of these virtual functions
+        next();
+      }
+      return false;
+    }
 };
+
+
+/*void next() {
+// probably not a good idea
+// to virtualize currPos() and moveToPos()
+if (curr < length()){
+moveToPos(currPos() + 1);
+}
+else {
+return;
+}
+};
+*/
+
+
+

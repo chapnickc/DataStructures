@@ -23,7 +23,7 @@ class AList : public List<E> {
     E* listArray;     // Array holding list elements
 
   public:
-    AList(int size=defaultSize) { // Constructor
+    AList(int size=defaultSize) { 
       maxSize = size;
       listSize = curr = 0;
       listArray = new E[maxSize];
@@ -33,12 +33,19 @@ class AList : public List<E> {
     // whereas "delete" can delete built in types
     ~AList() { delete [] listArray; } // Destructor
 
-    void clear() {                    // Reinitialize the list
-      delete [] listArray;            // Remove the array
-      listSize = curr = 0;            // Reset the size
-      listArray = new E[maxSize];  // Recreate array
+    const E& getValue() const { // Return current element
+      Assert((curr>=0)&&(curr<listSize),"No current element");
+      return listArray[curr];
     }
-
+   
+    int currPos() const { return curr; }  // Return current position
+    int length() const  { return listSize; }      // Return list size
+    void moveToStart() { curr = 0; }              // Reset position
+    void moveToEnd() { curr = listSize; }         // Set at end
+    void next() { if (curr < listSize) curr++; }  // Next
+    void prev() { if (curr != 0) curr--; }        // Back up
+    
+    
     // Insert "it" at current position
     void insert(const E& it) {
       Assert(listSize < maxSize, "List capacity exceeded");
@@ -47,13 +54,6 @@ class AList : public List<E> {
       }
       listArray[curr] = it;
       listSize++;                       // Increment list size
-    }
-
-    void append(const E& it) {       // Append "it"
-      // this is defined elsewhere
-      Assert(listSize < maxSize, "List capacity exceeded");
-      listArray[listSize] = it;
-      listSize++;
     }
 
     // Remove and return the current element.
@@ -66,25 +66,24 @@ class AList : public List<E> {
       listSize--;                          // Decrement size
       return it;
     }
-    void moveToStart() { curr = 0; }        // Reset position
-    void moveToEnd() { curr = listSize; }     // Set at end
-    void prev() { if (curr != 0) curr--; }       // Back up
-    void next() { if (curr < listSize) curr++; } // Next
 
-    // Return list size
-    int length() const  { return listSize; }
-
-    // Return current position
-    int currPos() const { return curr; }
-
-    // Set current list position to "pos"
-    void moveToPos(int pos) {
-      Assert ((pos>=0)&&(pos<=listSize), "Pos out of range");
-      curr = pos;
+    void clear() {                    // Reinitialize the list
+      delete [] listArray;            // Remove the array
+      listSize = curr = 0;            // Reset the size
+      listArray = new E[maxSize];  // Recreate array
     }
 
-    const E& getValue() const { // Return current element
-      Assert((curr>=0)&&(curr<listSize),"No current element");
-      return listArray[curr];
-    }
 };
+
+/*    void append(const E& it) {       // Append "it"*/
+      //// this is defined elsewhere
+      //Assert(listSize < maxSize, "List capacity exceeded");
+      //listArray[listSize] = it;
+      //listSize++;
+    /*}*/
+/*    // Set current list position to "pos"*/
+    //void moveToPos(int pos) {
+      //Assert ((pos>=0)&&(pos<=listSize), "Pos out of range");
+      //curr = pos;
+    /*}*/
+
