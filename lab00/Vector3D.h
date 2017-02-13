@@ -1,3 +1,5 @@
+#ifndef VECTOR3D_H
+#define VECTOR3D_H
 class Vector3D {
 
   private:
@@ -17,3 +19,4 @@ class Vector3D {
     Vector3D operator+(const Vector3D& other) const; // vector sum
     float operator*(const Vector3D& other) const; // dot product
 };
+#endif
