@@ -5,41 +5,80 @@
 
 using namespace std;
 
+LStack<int> parenStack;
 
-LStack<char> parenStack;
 char test0[] = "((())())()";
 char test1[] = ")()(";
+char test2[] = "((((((((";
+
 
 bool checkParens(const char* parenstr){
   /* Checks for balanced parentheses */
-  int matches = 0;
   for (int i = 0; i < strlen(parenstr); i++){
-    // use ' ' instead of " " since  looking at single char
     if (parenstr[i] == '('){ 
-      parenStack.push(parenstr[i]); 
+      parenStack.push(i); 
     } 
     else if (parenstr[i] == ')' && parenStack.length() > 0) {
       parenStack.pop();
-      matches++;
     }
-    else {
-      cout << "\tParentheses not balanced!" << endl;
+    else if (parenstr[i] == ')' && parenStack.length() == 0) {
+      // extra right paren
       return false;
     }
   }
-  cout << "\tFound " << matches << " balanced parentheses."<< endl;
+
+  // if we didn't empty the stack, get the position 
+  // of the offending left parent
+  if (parenStack.length() > 0) {
+    return false;
+  }
   return true;
 }
 
 
-int main(){
+int checkParenPos(const char* parenstr){
+  /* Checks for balanced parentheses */
+  for (int i = 0; i < strlen(parenstr); i++){
+    if (parenstr[i] == '('){ 
+      parenStack.push(i); 
+    } 
+    else if (parenstr[i] == ')' && parenStack.length() > 0) {
+      parenStack.pop();
+    }
+    else if (parenstr[i] == ')' && parenStack.length() == 0) {
+      // extra right paren
+      return i;
+    }
+  }
+
+  // if we didn't empty the stack, get the position 
+  // of the offending left parent
+  if (parenStack.length() > 0) {
+    return parenStack.pop();
+  }
+
+  return -1;
+}
+
+void testfunc(const char* teststr){
   bool balanced;
+  int pos;
+  cout << "\nTesting string: \"" << teststr <<"\""<< endl;
+  balanced = checkParens(teststr);
+  pos = checkParenPos(teststr);
+  if (pos == -1){
+    cout << "\tNo offending parentheses!" << endl;
+  }
+  else {
+    cout << "\tOffending parenthesis at position: "<< pos << endl;
+  }
+}
 
-  cout << "Testing string 0" << endl;
-  balanced = checkParens(test0);
 
-  cout << "\nTesting string 1" << endl;
-  balanced = checkParens(test1);
+int main(){
+  testfunc(test0);
+  testfunc(test1);
+  testfunc(test2);
 
   cout << "\nExiting..." << endl;
   return 0;
