@@ -8,7 +8,6 @@ mystring::mystring() {
     char temp2[128];
     char* temp3 = new char[128];
     */
-
     allocated = 32;
     data = new char[allocated];
     data[0] = '\0'; // or = 0

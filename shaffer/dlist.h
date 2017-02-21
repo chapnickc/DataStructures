@@ -77,7 +77,7 @@ public:
 // Insert "it" at current position
 void insert(const E& it) {
   curr->next = curr->next->prev =
-    new Link<E>(it, curr, curr->next);  
+    new Link<E>(it, curr, curr->next);  // this is the dlinkfl new operator
   cnt++;
 }
 

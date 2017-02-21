@@ -19,6 +19,7 @@ public:
   Link(Link* nextval =NULL) { next = nextval; }
 
   void* operator new(size_t) {  // Overloaded new operator
+    // take off of the the head of the freelist
     if (freelist == NULL) return ::new Link; // Create space
     Link<E>* temp = freelist; // Can take from freelist
     freelist = freelist->next;
@@ -27,6 +28,7 @@ public:
 
   // Overloaded delete operator
   void operator delete(void* ptr) {
+    // add to the head
     ((Link<E>*)ptr)->next = freelist; // Put on freelist
     freelist = (Link<E>*)ptr;
   }
