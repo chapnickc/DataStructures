@@ -21,7 +21,7 @@ base classes in the files astack.h, aqueue.h, lstack.h, and lqueue.h.
 
 A common problem for compilers and text editors is to determine if the
 parentheses (or other brackets) in a string are balanced and properly nested.
-For example, the string “((())())()” contains properly nested pairs of
+For example, the string "((())())()" contains properly nested pairs of
 parentheses, but the string ")()(" does not, and the string “())” does not
 contain properly matching parentheses.
 

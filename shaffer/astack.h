@@ -10,6 +10,7 @@
 
 // First, get the declaration for the base stack class
 #include "stack.h"
+#include "book.h"
 
 // This is the declaration for AStack.
 // Array-based stack implementation
@@ -20,12 +21,19 @@ private:
   E *listArray;          // Array holding stack elements
 
 public:
-  AStack(int size =defaultSize)   // Constructor
-    { maxSize = size; top = 0; listArray = new E[size]; }
+  AStack(int size =defaultSize){ 
+    maxSize = size; 
+    top = 0; 
+    listArray = new E[size]; 
+  }
 
-  ~AStack() { delete [] listArray; }  // Destructor
+  ~AStack() { 
+    delete[] listArray; 
+  }  // Destructor
 
-  void clear() { top = 0; }           // Reinitialize
+  void clear(){ 
+    top = 0; 
+  }           // Reinitialize
 
   void push(const E& it) {         // Put "it" on stack
     Assert(top != maxSize, "Stack is full");
