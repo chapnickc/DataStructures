@@ -3,8 +3,8 @@
 
 #include "dlinkFL.h"
 #include <stdexcept>
-#include <iostream>
-using namespace std;
+//#include <iostream>
+//using namespace std;
 
 
 template <typename T> 
@@ -30,7 +30,6 @@ public:
   }
 
   void clear(){
-    cout << "clearing..." << endl; 
     Link<T>* prevLink;
     while (rear->prev != front){
       prevLink = rear->prev;
@@ -41,19 +40,16 @@ public:
   }
 
   void enqueue(const T& item, bool top=false){
-    if (top){
-      cout << "adding to top" << endl;
+    if (top && length() > 0){
       // add an item to the top/beginning of deque
-      //front->next = newLink = new Link<T>(item, front->next);
       front->next = new Link<T>(item, front, front->next);
-      if (rear == front){rear = front->next;}
+      //if (rear == front){rear = front->next;}
     }
     else {
-      cout << "adding to rear" << endl;
       // add an item to the bottom/end of deque
-      if (rear->prev == NULL){ rear->prev = front; };
-      rear->next = new Link<T>(item, rear->prev, NULL);     // point to a new link
+      rear->next = new Link<T>(item, rear, NULL);     // point to a new link
       rear = rear->next;                        // make the rear the new link
+      //if (rear->prev == NULL){ rear->prev = front; };
     }
     size++;
   }
@@ -64,13 +60,11 @@ public:
     Link<T>* dequeued;   
 
     if ( not (length() > 0) ) {
-      cout << "throwing length error" << endl;
       throw std::length_error("Deque is empty");
     }
 
     // if the user wants to dequeue from the top (default behavior)
     if (top){
-      cout << "dequeueing from top" << endl;
       item = frontValue();      // take item off top of deque
       dequeued = front->next;     // store the dequeued element
       front->next= dequeued->next; // point the header to the next item to be dequeued
@@ -78,10 +72,9 @@ public:
       delete dequeued;
     }
     else { // take item off bottom of deque
-      cout << "dequeueing from bottom" << endl;
       item = rearValue();
       dequeued = rear;
-      rear = rear->prev;
+      rear = dequeued->prev;
       rear->next = NULL;
       delete dequeued;
     }
