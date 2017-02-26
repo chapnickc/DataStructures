@@ -5,6 +5,7 @@ There are abstract base classes for these in the shaffer/ directory,
 in the files stack.h and queue.h.
 
 While in the 2100 directory:
+
 ```bash
 files=($(ls ./shaffer/| grep -E '(queue|stack)'))
 for f in "${files[@]}"; 

@@ -16,14 +16,17 @@
 
 // This is the declaration for LStack.
 // Linked stack implementation
+// no header pointer
 template <typename E> class LStack: public Stack<E> {
 private:
   Link<E>* top;            // Pointer to first element
   int size;                   // Number of elements
 
 public:
-  LStack(int sz =defaultSize) // Constructor
-    { top = NULL; size = 0; }
+  LStack(int sz = defaultSize){  // Constructor
+      top = NULL; 
+      size = 0; 
+  } 
 
   ~LStack() { clear(); }          // Destructor
 
@@ -44,7 +47,7 @@ public:
   E pop() {                // Remove "it" from stack
     Assert(top != NULL, "Stack is empty");
     E it = top->element;
-    Link<E>* ltemp = top->next;
+    Link<E>* ltemp = top->next;  // clearly at head only way to get \Theta(1)
     delete top;
     top = ltemp;
     size--;
@@ -58,4 +61,5 @@ public:
 
   int length() const { return size; } // Return length
 };
+
 #endif

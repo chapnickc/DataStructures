@@ -1,30 +1,21 @@
 #ifndef LQUEUE_H
 #define LQUEUE_H
-// From the software distribution accompanying the textbook
-// "A Practical Introduction to Data Structures and Algorithm Analysis,
-// Third Edition (C++)" by Clifford A. Shaffer.
-// Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
-// This is the file to include in your code if you want access to the
-// complete LQueue template class
-
-// Include the link class
-#include "link.h"
-
-// First, get the declaration for the base stack class
+#include "book.h"
+#include "linkFL.h"
 #include "queue.h"
 
-// Implementations for linked queue function members
-// Linked queue implementation
 template <typename E> class LQueue: public Queue<E> {
 private:
-  Link<E>* front;       // Pointer to front queue node
-  Link<E>* rear;        // Pointer to rear queue node
+  Link<E>* front;         // Pointer to front queue node
+  Link<E>* rear;          // Pointer to rear queue node
   int size;                // Number of elements in queue
 
 public:
-  LQueue(int sz =defaultSize) // Constructor 
-    { front = rear = new Link<E>(); size = 0; }
+  LQueue(int sz = defaultSize){ 
+    front = rear = new Link<E>(); 
+    size = 0; 
+  }
 
   ~LQueue() { clear(); delete front; }      // Destructor
 
@@ -59,6 +50,6 @@ public:
     return front->next->element;
   }
 
-  virtual int length() const { return size; }
+  int length() const { return size; }
 };
 #endif

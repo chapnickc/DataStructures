@@ -1,14 +1,7 @@
 #ifndef LQUEUE_H
 #define LQUEUE_H
-// From the software distribution accompanying the textbook
-// "A Practical Introduction to Data Structures and Algorithm Analysis,
-// Third Edition (C++)" by Clifford A. Shaffer.
-// Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
-// This is the file to include in your code if you want access to the
-// complete LQueue template class
 
-// Include the link class
 #include "link.h"
 
 // First, get the declaration for the base stack class
@@ -20,11 +13,11 @@ template <typename E> class LQueue: public Queue<E> {
 private:
   Link<E>* front;       // Pointer to front queue node
   Link<E>* rear;        // Pointer to rear queue node
-  int size;                // Number of elements in queue
+  int size;             // Number of elements in queue
 
 public:
   LQueue(int sz =defaultSize) // Constructor 
-    { front = rear = new Link<E>(); size = 0; }
+    { front = rear = new Link<E>(); size = 0; } // this is a clue that there is a header
 
   ~LQueue() { clear(); delete front; }      // Destructor
 
@@ -37,17 +30,21 @@ public:
     size = 0;
   }
 
+  // be able to draw on miderm
   void enqueue(const E& it) { // Put element on rear
     rear->next = new Link<E>(it, NULL);
     rear = rear->next;
     size++;
   }
 
-  E dequeue() {              // Remove element from front
+  E dequeue() {                       // Remove element from front
     Assert(size != 0, "Queue is empty");
-    E it = front->next->element;  // Store dequeued value
-    Link<E>* ltemp = front->next; // Hold dequeued link
+    E it = front->next->element;      // Store dequeued value
+
+    Link<E>* ltemp = front->next;     // Hold dequeued link
+
     front->next = ltemp->next;       // Advance front
+
     if (rear == ltemp) rear = front; // Dequeue last element
     delete ltemp;                    // Delete link
     size --;

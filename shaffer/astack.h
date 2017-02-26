@@ -31,9 +31,7 @@ public:
     delete[] listArray; 
   }  // Destructor
 
-  void clear(){ 
-    top = 0; 
-  }           // Reinitialize
+  void clear(){ top = 0; } // Reinitialize
 
   void push(const E& it) {         // Put "it" on stack
     Assert(top != maxSize, "Stack is full");

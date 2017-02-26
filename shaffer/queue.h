@@ -1,5 +1,6 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -33,4 +34,5 @@ public:
   // Return: The number of elements in the queue.
   virtual int length() const = 0;
 };
+
 #endif
