@@ -31,4 +31,5 @@ public:
   // Return true if the node is a leaf, false otherwise
   virtual bool isLeaf() = 0;
 };
+
 #endif

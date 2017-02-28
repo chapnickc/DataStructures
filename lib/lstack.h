@@ -62,5 +62,14 @@ public:
     /* Return number of items in stack*/
     return size; 
   } 
+
+  bool isEmpty() const {
+    if (size > 0){
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 };
 #endif

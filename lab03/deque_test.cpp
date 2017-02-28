@@ -27,12 +27,18 @@ int main(){
   for (int i=0;i<25;i++){
     deck.enqueue(i);
   }
-
   checkDeque(deck);
 
   deck.dequeue(false);
   checkDeque(deck);
 
+  deck.enqueue(8000);
+  deck.enqueue(9000);
+  deck.enqueue(10000);
+  deck.dequeue(false);
+  checkDeque(deck);
+
+  deck.dequeue();
   deck.dequeue();
   checkDeque(deck);
 
