@@ -4,7 +4,7 @@ INCLUDE=-I../lib/  -I./
 OBJ = lab04.o 
 
 CXX= g++ 
-CXXFLAGS= -std=c++11  -Wall -Wno-unused-variable
+CXXFLAGS= -std=c++0x  -Wall -Wno-unused-variable
 
 
 %.o: %.cpp $(DEPS)

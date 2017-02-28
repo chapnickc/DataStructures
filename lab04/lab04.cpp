@@ -1,29 +1,35 @@
 #include "lstack.h"
 #include <iostream>
 #include <string>
+#include <vector>
 #include <cctype>
-
 using namespace std;
 
-int Nstrings = 4;
-string expressions[] = {"43", "(5+3)","(9*(2+3))","((11+3)*(4+3))"};
+LStack<char> exprStack;   // stack to help evaluate expression
 
-LStack<char> exprStack;
+string expressions[] = {
+  "43", "(5+3)","(9*(2+3))","((11+3)*(4+3))", 
+  ")4=8","525600", "((((2))))","(9000)",
+  "(4*8)+(3*4)","((4*8)+(3*4))","abcd", "(E1+E2)",
+  "(1400*(1+2+3+4+5+6+7+8+9+10)*100))",
+  "(1+2)+(3+4)",
+  "((1+2)+(3+4))"};
 
+size_t N = sizeof(expressions)/sizeof(expressions[0]);
 
 
 bool isValidExpr(const string& expr){
 
-  //exprStack.clear();
+  exprStack.clear();
   exprStack.push('E');
  
-  
   char c, s;
   int i = 0;
   while (i < expr.length()){
-    cout << c << endl;
-
     c = expr[i]; 
+    if (not (exprStack.length() > 0)){
+      return false;
+    }
     s = exprStack.topValue();
 
     if ( c == ')' && s == ')')
@@ -56,26 +62,25 @@ bool isValidExpr(const string& expr){
     return true; 
   }
   else { 
+    exprStack.clear();
     return false; 
   }
 }
 
+
 void testfunc(){
   bool valid;
-  string expr;
-  for (int k = 0; k < Nstrings; k++){
-    cout << "\nEvaluating expression " << k <<  endl;
-    expr = expressions[k];
-    valid = isValidExpr(expr);
 
-    if (valid){
-      cout << "Expression " << k << " is valid" << endl;
-    }
-    else{
-      cout << "Expression " << k << " is invalid!" << endl;
-    }
+  for (int k=0; k < N;k++){
+    cout << "\nEvaluating " << expressions[k] <<  " ..." << endl;
+
+    valid = isValidExpr(expressions[k]);
+
+    if (valid){ cout << "\t\tLooks good!" << endl; } 
+    else { cout << "\t\tInvalid!" << endl; }
   }
 }
+
 
 
 int main(){
