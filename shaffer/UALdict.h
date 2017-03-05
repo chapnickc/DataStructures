@@ -13,7 +13,7 @@
 template <typename Key, typename E>
 class UALdict : public Dictionary<Key, E> {
 private:
-  AList<KVpair<Key,E> >* list;
+  AList<KVpair<Key,E> >* list;    // this is a helpful data abstaction
 public:
   UALdict(int size=defaultSize)   // Constructor
     { list = new AList<KVpair<Key,E> >(size); }
@@ -43,15 +43,14 @@ public:
 
   // Find "k" using sequential search
   E find(const Key& k) const {
-    for(list->moveToStart();
-        list->currPos() < list->length(); list->next()) {
+    for(list->moveToStart(); list->currPos() < list->length(); list->next()) {
       KVpair<Key,E> temp = list->getValue();
       if (k == temp.key())
         return temp.value();
     }
     return NULL; // "k" does not appear in dictionary
   }
-  int size() // Return list size
-    { return list->length(); }
+
+  int size(){ return list->length(); }
 };
 #endif

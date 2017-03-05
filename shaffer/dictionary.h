@@ -5,6 +5,11 @@
 // Third Edition (C++)" by Clifford A. Shaffer.
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
+
+
+
+// This is "doubly templated" 
+// scanell uses dictionaries for word frequency
 // The Dictionary abstract class.
 template <typename Key, typename E>
 class  Dictionary {
@@ -31,6 +36,7 @@ public:
   // with key "k" exists.
   virtual E remove(const Key& k) = 0;
 
+  // This allows you to iterate through it...
   // Remove and return an arbitrary record from dictionary.
   // Return: The record removed, or NULL if none exists.
   virtual E removeAny() = 0;
@@ -39,8 +45,14 @@ public:
   // If multiple records match, return an arbitrary one.
   // k: The key of the record to find
   virtual E find(const Key& k) const = 0;
+  // we need to have a way to deal with a key not
+  // being present
+  // The fact that we have to return this types mean
+  // He is implicitly stating that we store pointers to ints, 
+  // since NULL
 
   // Return the number of records in the dictionary.
   virtual int size() = 0;
 };
+
 #endif

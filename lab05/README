@@ -2,6 +2,7 @@
 In this lab you'll write some generic functions on
 binary trees using only the interface defined in Shaffer's
 abstract base class BinNode (see ../shaffer/BinNode.h). 
+
 Which is to say, the functions will all take an argument of
 type BinNode<E>*, and more or less all you can do with such a 
 thing is call one or more of the methods defined in BinNode.h.
@@ -64,3 +65,6 @@ then the nodes at level 1 from left to right, then the nodes at
 level 2 from left to right, etc.  (Almost surely this isn't what
 your print_tree function did!)  Hint: a Queue might be very
 helpful for this.
+
+
+
