@@ -52,7 +52,11 @@ void print_tree(BinNode<E>* root) {
 
 template <typename E>
 void print_tree_by_level(BinNode<E>* root) {
-  LQueue<BinNode<E>* > nodeQueue; 
+    // adaptation of level printing based on the implementation from:
+    // https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
+    // 
+    // Note: this is based on preorder 
+  LQueue<BinNode<E>* > nodeQueue;
   nodeQueue.enqueue(root);
 
   int nodesCurrentLevel = 1;
@@ -61,22 +65,58 @@ void print_tree_by_level(BinNode<E>* root) {
   do {
     currNode = nodeQueue.dequeue();
     nodesCurrentLevel--;
-    
+
     if ( currNode != NULL ){
       cout << currNode->element() << endl;
       if (currNode->left())
         { nodeQueue.enqueue(currNode->left()); nodesCurrentLevel++; }
+      
       if (currNode->right())
         { nodeQueue.enqueue(currNode->right()); nodesCurrentLevel++; }
     }
 
-    // will not run until children are printed 
+    // will not run until the children of a given level are printed
     if (nodesCurrentLevel == 0){          
       nodesCurrentLevel = nodesNextLevel;
       nodesNextLevel = 0; 
     }
 
   } while (nodeQueue.length() > 0);
+
+
+}
+
+/*
+template <typename E>
+E getMaxValue(BinNode<E>* root){
+  if (root->isLeaf()) { return root->element(); }
+  
+  else if (getMaxValue(root->left()) > getMaxValue(root->right()) && getMaxValue(root->left()) > root->element()){
+    return getMaxValue(root->left());
+  }
+
+  else if (getMaxValue(root->right()) > getMaxValue(root->left()) && getMaxValue(root->right()) > root->element()){
+    return getMaxValue(root->right());
+  }
+  else {
+    return root->element();
+  }
+}
+*/
+
+template <typename E>
+E getMaxValue(BinNode<E>* root){
+  if (root->isLeaf()) { return root->element(); }
+
+  E maxval = root->element(); 
+  if (root->left() != NULL){
+    maxval = max(maxval, getMaxValue(root->left())); 
+  }
+
+  if (root->right() != NULL){
+    maxval = max(maxval, getMaxValue(root->right()));
+  }
+  return maxval;
 
 }
 
@@ -86,8 +126,11 @@ int main()
   BSTNode<int,int>* root = new BSTNode<int,int>(1,1);
   BSTNode<int,int>* left = new BSTNode<int,int>(2,2);
   BSTNode<int,int>* right = new BSTNode<int,int>(3,3);
+  right->setLeft(new BSTNode<int,int>(10,10));
+  right->setRight(new BSTNode<int,int>(20,20));
   left->setLeft(new BSTNode<int,int>(4,4));
   left->setRight(new BSTNode<int,int>(5,5));
+  left->setRight(new BSTNode<int,int>(6,6));
   root->setLeft(left);
   root->setRight(right);
 
@@ -110,5 +153,8 @@ int main()
 
   cout << "\nCalling print_tree_by_level()..." << endl;
   print_tree_by_level(root);
+
+  int maxval = getMaxValue(root);
+  cout << "Max value is: " <<maxval << endl;
 
 }

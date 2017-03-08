@@ -6,24 +6,26 @@
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
 #include "dictionary.h"
-
 #include "KVpair.h"
-
 #include "salist.h"
 
 // Dictionary implemented with a sorted array-based list
 template <typename Key, typename E>
 class SALdict : public Dictionary<Key, E> {
+
 private:
   SAList<Key,E>* list;
+
 public:
-  SALdict(int size=defaultSize)   // Constructor
+  SALdict(int size=defaultSize)   
     { list = new SAList<Key,E>(size); }
-  ~SALdict() { delete list; }         // Destructor
-  void clear() { list->clear(); }     // Reinitialize
+
+  ~SALdict() { delete list; }    
+
+  void clear() { list->clear(); }
 
   // Insert an element: Keep elements sorted
-  void insert(const Key&k, const E& e) {
+  void insert(const Key& k, const E& e) {
     KVpair<Key,E> temp(k, e);
     list->insert(temp);
   }
@@ -56,8 +58,11 @@ public:
       if (k > temp.key()) l = i;        // In right
     }
     return NULL; // "k" does not appear in dictionary
+    // again this forces us to store pointers since NULL is a pointer
   }
-  int size() // Return list size
-    { return list->length(); }
+
+  int size() { return list->length(); }
 };
+
 #endif
+

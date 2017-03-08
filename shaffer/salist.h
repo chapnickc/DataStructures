@@ -7,15 +7,21 @@
 
 // Sorted array-based list
 // Inherit from AList as a protected base class
+// "protected lies somewhere between public and private"
+// so here SAList does inherit all the attributes and 
+// methods of AList
 template <typename Key, typename E>
 class SAList: protected AList<KVpair<Key,E> > {
 public:
-  SAList(int size=defaultSize) :
+  SAList(int size = defaultSize) :
     AList<KVpair<Key,E> >(size) {}
 
   ~SAList() {}                    // Destructor
 
-  // Redefine insert function to keep values sorted
+  // Redefine insert function to keep values sorted.
+  //
+  // The Abstract base class should define the 
+  // semantics of .
   void insert(KVpair<Key,E>& it) { // Insert at right
     KVpair<Key,E> curr;
     for (moveToStart(); currPos() < length(); next()) {
@@ -40,4 +46,5 @@ public:
   AList<KVpair<Key,E> >::moveToPos;
   AList<KVpair<Key,E> >::getValue;
 };
+
 #endif
