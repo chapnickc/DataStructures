@@ -28,6 +28,7 @@ int leaf_count(BinNode<E>* root) {
   return leaf_count(root->left()) + leaf_count(root->right());
 }
 
+
 template <typename E>
 int sum_nodes(BinNode<E>* root) {
   if (root == NULL) return 0;
@@ -49,7 +50,7 @@ void print_tree(BinNode<E>* root) {
   print_tree(root->left());
   print_tree(root->right());
 }
-
+/*
 template <typename E>
 void print_tree_by_level(BinNode<E>* root) {
     // adaptation of level printing based on the implementation from:
@@ -85,6 +86,23 @@ void print_tree_by_level(BinNode<E>* root) {
 
 
 }
+*/
+
+template <typename E>
+void print_tree_by_level(BinNode<E>* root) {
+  LQueue<BinNode<E>* > nodeQueue;
+  nodeQueue.enqueue(root);
+  BinNode<E>* current;
+  do {
+    current = nodeQueue.dequeue();
+    if (current != NULL){
+      cout << current->element() << endl;
+      nodeQueue.enqueue(current->left());
+      nodeQueue.enqueue(current->right());
+    }
+  } while(nodeQueue.length() > 0);
+}
+
 
 /*
 template <typename E>
@@ -104,6 +122,7 @@ E getMaxValue(BinNode<E>* root){
 }
 */
 
+/*
 template <typename E>
 E getMaxValue(BinNode<E>* root){
   if (root->isLeaf()) { return root->element(); }
@@ -119,11 +138,20 @@ E getMaxValue(BinNode<E>* root){
   return maxval;
 
 }
+*/
+
+template <typename E>
+E getMaxValue(BinNode<E>* root){
+  if (root->isLeaf()) { return root->element(); }
+  E maxval = getMaxValue(root->left()) > getMaxValue(root->right()) ? getMaxValue(root->left()) : getMaxValue(root->right());
+  return root->element() > maxval ? root->element() : maxval;
+}
+
 
 
 int main()
 {
-  BSTNode<int,int>* root = new BSTNode<int,int>(1,1);
+  BSTNode<int,int>* root = new BSTNode<int,int>(100,100);
   BSTNode<int,int>* left = new BSTNode<int,int>(2,2);
   BSTNode<int,int>* right = new BSTNode<int,int>(3,3);
   right->setLeft(new BSTNode<int,int>(10,10));
