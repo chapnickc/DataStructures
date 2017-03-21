@@ -1,9 +1,7 @@
 #include "book.h"
 #include "BSTNode.h"
-
 #include "lqueue.h"
 #include <algorithm>
-
 using std::max;
 
 // Count the number of nodes in a binary tree
@@ -31,7 +29,8 @@ int leaf_count(BinNode<E>* root) {
 
 template <typename E>
 int sum_nodes(BinNode<E>* root) {
-  if (root == NULL) return 0;
+  //if (root == NULL) return 0;
+  if (root->isLeaf()) { return root->element(); }
   return root->element() + sum_nodes(root->left()) +  sum_nodes(root->right());
 }
 
@@ -50,43 +49,6 @@ void print_tree(BinNode<E>* root) {
   print_tree(root->left());
   print_tree(root->right());
 }
-/*
-template <typename E>
-void print_tree_by_level(BinNode<E>* root) {
-    // adaptation of level printing based on the implementation from:
-    // https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
-    // 
-    // Note: this is based on preorder 
-  LQueue<BinNode<E>* > nodeQueue;
-  nodeQueue.enqueue(root);
-
-  int nodesCurrentLevel = 1;
-  int nodesNextLevel = 0;       
-  BinNode<E>* currNode; 
-  do {
-    currNode = nodeQueue.dequeue();
-    nodesCurrentLevel--;
-
-    if ( currNode != NULL ){
-      cout << currNode->element() << endl;
-      if (currNode->left())
-        { nodeQueue.enqueue(currNode->left()); nodesCurrentLevel++; }
-      
-      if (currNode->right())
-        { nodeQueue.enqueue(currNode->right()); nodesCurrentLevel++; }
-    }
-
-    // will not run until the children of a given level are printed
-    if (nodesCurrentLevel == 0){          
-      nodesCurrentLevel = nodesNextLevel;
-      nodesNextLevel = 0; 
-    }
-
-  } while (nodeQueue.length() > 0);
-
-
-}
-*/
 
 template <typename E>
 void print_tree_by_level(BinNode<E>* root) {
@@ -103,42 +65,6 @@ void print_tree_by_level(BinNode<E>* root) {
   } while(nodeQueue.length() > 0);
 }
 
-
-/*
-template <typename E>
-E getMaxValue(BinNode<E>* root){
-  if (root->isLeaf()) { return root->element(); }
-  
-  else if (getMaxValue(root->left()) > getMaxValue(root->right()) && getMaxValue(root->left()) > root->element()){
-    return getMaxValue(root->left());
-  }
-
-  else if (getMaxValue(root->right()) > getMaxValue(root->left()) && getMaxValue(root->right()) > root->element()){
-    return getMaxValue(root->right());
-  }
-  else {
-    return root->element();
-  }
-}
-*/
-
-/*
-template <typename E>
-E getMaxValue(BinNode<E>* root){
-  if (root->isLeaf()) { return root->element(); }
-
-  E maxval = root->element(); 
-  if (root->left() != NULL){
-    maxval = max(maxval, getMaxValue(root->left())); 
-  }
-
-  if (root->right() != NULL){
-    maxval = max(maxval, getMaxValue(root->right()));
-  }
-  return maxval;
-
-}
-*/
 
 template <typename E>
 E getMaxValue(BinNode<E>* root){
@@ -186,3 +112,80 @@ int main()
   cout << "Max value is: " <<maxval << endl;
 
 }
+
+
+
+/*
+template <typename E>
+E getMaxValue(BinNode<E>* root){
+  if (root->isLeaf()) { return root->element(); }
+  
+  else if (getMaxValue(root->left()) > getMaxValue(root->right()) && getMaxValue(root->left()) > root->element()){
+    return getMaxValue(root->left());
+  }
+
+  else if (getMaxValue(root->right()) > getMaxValue(root->left()) && getMaxValue(root->right()) > root->element()){
+    return getMaxValue(root->right());
+  }
+  else {
+    return root->element();
+  }
+}
+*/
+
+/*
+template <typename E>
+E getMaxValue(BinNode<E>* root){
+  if (root->isLeaf()) { return root->element(); }
+
+  E maxval = root->element(); 
+  if (root->left() != NULL){
+    maxval = max(maxval, getMaxValue(root->left())); 
+  }
+
+  if (root->right() != NULL){
+    maxval = max(maxval, getMaxValue(root->right()));
+  }
+  return maxval;
+
+}
+*/
+
+/*
+template <typename E>
+void print_tree_by_level(BinNode<E>* root) {
+    // adaptation of level printing based on the implementation from:
+    // https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/trees.html
+    // 
+    // Note: this is based on preorder 
+  LQueue<BinNode<E>* > nodeQueue;
+  nodeQueue.enqueue(root);
+
+  int nodesCurrentLevel = 1;
+  int nodesNextLevel = 0;       
+  BinNode<E>* currNode; 
+  do {
+    currNode = nodeQueue.dequeue();
+    nodesCurrentLevel--;
+
+    if ( currNode != NULL ){
+      cout << currNode->element() << endl;
+      if (currNode->left())
+        { nodeQueue.enqueue(currNode->left()); nodesCurrentLevel++; }
+      
+      if (currNode->right())
+        { nodeQueue.enqueue(currNode->right()); nodesCurrentLevel++; }
+    }
+
+    // will not run until the children of a given level are printed
+    if (nodesCurrentLevel == 0){          
+      nodesCurrentLevel = nodesNextLevel;
+      nodesNextLevel = 0; 
+    }
+
+  } while (nodeQueue.length() > 0);
+
+
+}
+*/
+

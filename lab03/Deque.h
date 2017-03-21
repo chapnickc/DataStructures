@@ -91,7 +91,6 @@ public:
     }
   }
 
-
   const T& rearValue() const{
     if (not (length() > 0)){
       throw std::length_error("deque is empty");

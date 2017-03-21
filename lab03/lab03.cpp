@@ -38,6 +38,7 @@ bool checkParens(const char* parenstr){
 
 int checkParenPos(const char* parenstr){
   /* Checks for balanced parentheses */
+  //parenStack.clear();
   for (int i = 0; i < strlen(parenstr); i++){
     if (parenstr[i] == '('){ 
       parenStack.push(i); 

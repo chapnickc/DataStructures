@@ -8,12 +8,4 @@ except IndexError as e:
     print(e)
 
 path = os.path.abspath('./shaffer')
-
-
-
-
 glob.glob(f'{path}/*.h')
-
-
-
-
