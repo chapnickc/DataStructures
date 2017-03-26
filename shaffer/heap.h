@@ -25,19 +25,14 @@ private:
   }
 
 public:
-  heap(E* h, int num, int max)     // Constructor
-    { Heap = h;  n = num;  maxsize = max;  buildHeap(); }
-  int size() const       // Return current heap size
-    { return n; }
-  bool isLeaf(int pos) const // True if pos is a leaf
-    { return (pos >= n/2) && (pos < n); }
-  int leftchild(int pos) const
-    { return 2*pos + 1; }    // Return leftchild position
-  int rightchild(int pos) const
-    { return 2*pos + 2; }    // Return rightchild position
-  int parent(int pos) const  // Return parent position
-    { return (pos-1)/2; }
-  void buildHeap()           // Heapify contents of Heap
+  heap(E* h, int num, int max){ Heap = h;  n = num;  maxsize = max;  buildHeap(); }
+  int size() const { return n; }
+  bool isLeaf(int pos) const { return (pos >= n/2) && (pos < n); } 
+  int leftchild(int pos) const { return 2*pos + 1; }
+  int rightchild(int pos) const { return 2*pos + 2; } 
+  int parent(int pos) const  { return (pos-1)/2; }
+
+  void buildHeap()  // Heapify contents of Heap
     { for (int i=n/2-1; i>=0; i--) siftdown(i); }
 
   // Insert "it" into the heap
