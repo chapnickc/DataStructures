@@ -62,15 +62,18 @@ is there in the results?
 (3) The HuffTree, HuffNode, and CodeTable classes are nicely templated.
 In huffman.cpp, we store instances of type char at each node, 
 representing the letters A-Z.  This is limiting in a couple of
-ways; first, for some languages we might want to treat multiple
+ways; 
+
+first, for some languages we might want to treat multiple
 characters as a single "letter" of the alphabet (e.g. Dutch "ij");
+
 second, as noted in class we get a better approximation of
 the entropy of a language (and better compression) by considering
 frequencies of strings of characters of some fixed length n
 (so-called "n-grams").
 
 Modify huffman.cpp so that it will work with strings in place
-of characters.   You'll want to read up a bit on the standard
+of characters. You'll want to read up a bit on the standard
 C++ string class if you haven't used it to this point; it
 will be much easier on you than using, say, character arrays
 to represent the strings.
@@ -86,3 +89,4 @@ What entropy and bits/symbol values do you get for typical
 English texts when using 3-grams?  Note that "symbols"
 here are 3-grams, so to get an actual bits/symbol value
 you can divide everything by 3.
+

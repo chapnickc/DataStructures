@@ -26,12 +26,11 @@
 #include "hufftree.h"
 #include <cstdio>
 #include <cstring>
-#include <string>
 #include <cmath>
 
 
 #define MAXCODELEN 20       // Max length of a huffman code
-#define CODETABLELEN 600    // Maximum number of codes storable
+#define CODETABLELEN 100    // Maximum number of codes storable
 
 // CodeTable maps objects to their associated codes.
 template <typename E>
@@ -81,7 +80,7 @@ ostream& operator << (ostream& s, HuffNode<E>* z){
 
 
 // Space for the heap's array
-HuffTree<string>** TreeArray = NULL;
+HuffTree<char>** TreeArray = NULL;
 
 // Overload for the HuffTree << operator
 template <typename E>
@@ -90,13 +89,13 @@ ostream& operator << (ostream& s, HuffTree<E>* z){ return s << z->weight(); }
 // Comparator for the heap
 class minTreeComp {
 public:
-  static bool prior(HuffTree<string>* x, HuffTree<string>* y)
+  static bool prior(HuffTree<char>* x, HuffTree<char>* y)
     { return x->weight() < y->weight(); }
 };
 
 // Read the list of frequencies, make the forest, and set the
 // list of entries into the code table.
-int read_freqs(CodeTable<string>* ct, FILE* fp){ 
+int read_freqs(CodeTable<char>* ct, FILE* fp){ 
   /* Read a list of strings and frequencies from standard input,
    * building a list of Huffman coding tree nodes */
   char buff[100];
@@ -105,34 +104,25 @@ int read_freqs(CodeTable<string>* ct, FILE* fp){
   char *ptr2;
   int freq;
 
-  // Read number of chars
-  Assert(fgets(buff, 99, fp) != NULL, "Couldn't read character count");
+  Assert(fgets(buff, 99, fp) != NULL,   // Read number of chars
+           "Couldn't read character count");
   ptr = buff;
-
   Assert(isdigit(*ptr) != 0, "Must be a digit here.");
   int count = atoi(ptr);
-
-  TreeArray = new HuffTree<string>*[count];
-
-  // Read in the frequencies
-  for (int i=0; i<count; i++) { 
-    // Read the next entry
-    Assert(fgets(buff, 99, fp) != NULL, "Ran out of codes too early");
+  TreeArray = new HuffTree<char>*[count];
+  for (int i=0; i<count; i++) { // Read in the frequencies
+    Assert(fgets(buff, 99, fp) != NULL, "Ran out of codes too early");  // Read the next entry
     // process the entry, creating a new HuffTree
     for(ptr=buff; *ptr==' '; ptr++);  // Read first word
     Assert(*ptr == '"', "First char was not a quote mark.");
-
     for (ptr2=buff2,ptr++; *ptr!='"'; ptr++)
       *ptr2++ = *ptr;
     *ptr2 = '\0'; // End of string
-
     for (ptr++; *ptr==' '; ptr++);
     Assert(isdigit(*ptr) != 0, "Must be a digit here.");
-
     freq = atoi(ptr);
-    string s(buff2);
-    ct->addobject(s);
-    TreeArray[i] = new HuffTree<string>(s, freq);
+    ct->addobject(buff2[0]);
+    TreeArray[i] = new HuffTree<char>(buff2[0], freq);
   }
   return count;
 }
@@ -144,7 +134,7 @@ buildHuff(HuffTree<E>** TreeArray, int count) {
   heap<HuffTree<E>*,minTreeComp>* forest = 
     new heap<HuffTree<E>*, minTreeComp>(TreeArray, count, count); 
 
-  HuffTree<string> *temp1, *temp2, *temp3 = NULL;
+  HuffTree<char> *temp1, *temp2, *temp3 = NULL;
   while (forest->size() > 1) {
     temp1 = forest->removefirst();   // Pull first two trees  
     temp2 = forest->removefirst();   //   off the list
@@ -157,37 +147,37 @@ buildHuff(HuffTree<E>** TreeArray, int count) {
 }
 
 
-void decode(HuffTree<string>* theTree, char* code, string& msg, int& cnt) {
-  HuffNode<string>* currnode = theTree->root();
+void decode(HuffTree<char>* theTree, char* code, char& msg, int& cnt) {
+  HuffNode<char>* currnode = theTree->root();
   while (!currnode->isLeaf()) {
     cnt++;
-    if (code[cnt-1] == '0'){ currnode = ((IntlNode<string>*)currnode)->left(); }
-    else if (code[cnt-1] == '1'){ currnode = ((IntlNode<string>*)currnode)->right(); }
+    if (code[cnt-1] == '0'){ currnode = ((IntlNode<char>*)currnode)->left(); }
+    else if (code[cnt-1] == '1'){ currnode = ((IntlNode<char>*)currnode)->right(); }
     else { Assert(false, "Bad code character"); }
   }
 
-  msg = ((LeafNode<string>*)currnode)->val();
+  msg = ((LeafNode<char>*)currnode)->val();
 }
 
-void buildcode(HuffNode<string>* root, CodeTable<string>* ct, char* prefix, int level, double& total) {
+void buildcode(HuffNode<char>* root, CodeTable<char>* ct, char* prefix, int level, double& total) {
   if (root->isLeaf()) {
-    cout << ((LeafNode<string>*)root)->val() << "\t" << prefix << "\n";
-    strcpy(ct->getcode(((LeafNode<string>*)root)->val()), prefix);
+    cout << ((LeafNode<char>*)root)->val() << "\t" << prefix << "\n";
+    strcpy(ct->getcode(((LeafNode<char>*)root)->val()), prefix);
     total += level * root->weight();
   }
   else {
     prefix[level] = '0';
     prefix[level+1] = '\0';
-    buildcode(((IntlNode<string>*)root)->left(), ct, prefix, level+1, total);
+    buildcode(((IntlNode<char>*)root)->left(), ct, prefix, level+1, total);
     prefix[level] = '1';
     prefix[level+1] = '\0';
-    buildcode(((IntlNode<string>*)root)->right(), ct, prefix, level+1, total);
+    buildcode(((IntlNode<char>*)root)->right(), ct, prefix, level+1, total);
     prefix[level] = '\0';
   }
 }
 
-/*
-void do_commands(HuffTree<string>* theTree, CodeTable<string>* theTable, FILE *fp){
+
+void do_commands(HuffTree<char>* theTree, CodeTable<char>* theTable, FILE *fp){
   int currchar;
   char buff[100];
 
@@ -197,7 +187,7 @@ void do_commands(HuffTree<string>* theTree, CodeTable<string>* theTable, FILE *f
       cout << "Decode " << &buff[currchar++];
       while (buff[currchar] != '"') {
         int cnt = 0;
-        string msg;
+        char msg;
         decode(theTree, &buff[currchar], msg, cnt);
         cout << msg << endl;
         currchar += cnt;
@@ -214,7 +204,6 @@ void do_commands(HuffTree<string>* theTree, CodeTable<string>* theTable, FILE *f
     cout << "\n";
   }
 }
-*/
 
 /*int calculate_entropy(HuffTree<char>* theTree, int H){*/
   //cout << "Test: " << theTree->root()->weight() << endl;
@@ -222,15 +211,15 @@ void do_commands(HuffTree<string>* theTree, CodeTable<string>* theTable, FILE *f
 //((IntlNode<char>*)theTree->root())->right()
 //}
  
-double calculate_entropy(HuffNode<string>* root, double H, int total){
+double calculate_entropy(HuffNode<char>* root, double H, int total){
   if (root->isLeaf()){ 
     double P = root->weight()/(double)total; 
     return H - P*log2(P);
   }
 
   return H + 
-    calculate_entropy(((IntlNode<string>*)root)->right(), H, total) + 
-    calculate_entropy(((IntlNode<string>*)root)->left(), H, total);
+    calculate_entropy(((IntlNode<char>*)root)->right(), H, total) + 
+    calculate_entropy(((IntlNode<char>*)root)->left(), H, total);
 }
 
 
@@ -239,8 +228,8 @@ double calculate_entropy(HuffNode<string>* root, double H, int total){
 // Driver for testing Huffman tree code
 int main(int argc, char** argv) {
   // This will be the eventual Huffman tree
-  HuffTree<string>* theTree;
-  CodeTable<string>* theTable = new CodeTable<string>(CODETABLELEN);
+  HuffTree<char>* theTree;
+  CodeTable<char>* theTable = new CodeTable<char>(CODETABLELEN);
 
   // Working storage for the tree traversal that builds the code table
   char prefix[MAXCODELEN+1];
@@ -262,7 +251,7 @@ int main(int argc, char** argv) {
 
   // Now, build the tree.
   cout << "Build the tree\n";
-  theTree = buildHuff<string>(TreeArray, count);
+  theTree = buildHuff<char>(TreeArray, count);
 
   // Now, output the tree, which also creates the code table.
   cout << "Output the tree\n";
@@ -274,6 +263,6 @@ int main(int argc, char** argv) {
 
 
   // Finally, do the encode/decode commands to test the system.
-  //do_commands(theTree, theTable, fp);
+  do_commands(theTree, theTable, fp);
   return 0;
 }
