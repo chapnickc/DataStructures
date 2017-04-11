@@ -7,16 +7,17 @@
 
 // General tree representation for UNION/FIND
 class ParPtrTree {
-private:
-  int* array;                    // Node array
-  int size;                      // Size of node array
-  int FIND(int) const;           // Find root
-public:
-  ParPtrTree(int);                   // Constructor
-  ~ParPtrTree() { delete [] array; } // Destructor
-  void UNION(int, int);          // Merge equivalences
-  bool differ(int, int);         // True if not in same tree
+  private:
+    int* array;                    // Node array
+    int size;                      // Size of node array
+    int FIND(int) const;           // Find root
+  public:
+    ParPtrTree(int);                   // Constructor
+    ~ParPtrTree() { delete [] array; } // Destructor
+    void UNION(int, int);          // Merge equivalences
+    bool differ(int, int);         // True if not in same tree
 };
+
 ParPtrTree::ParPtrTree(int sz) { // Constructor
   size = sz;
   array = new int[sz];           // Create node array
@@ -35,11 +36,19 @@ void ParPtrTree::UNION(int a, int b) { // Merge subtrees
   int root2 = FIND(b);           // Find root of node b
   if (root1 != root2) array[root2] = root1; // Merge
 }
+
 // FIND with path compression
-int ParPtrTree::FIND(int curr) const {
+// note the const: should not be const since it is changing the tree
+// 
+// This is  a subtle bug
+// The treason this complies is the pointer to the first element is the same
+//int ParPtrTree::FIND(int curr) const {
+int ParPtrTree::FIND(int curr) {
   if (array[curr] == ROOT) return curr; // At root
+  //array[curr] = FIND(array[curr]);
   array[curr] = FIND(array[curr]);
   return array[curr];
 }
 
 #endif
+

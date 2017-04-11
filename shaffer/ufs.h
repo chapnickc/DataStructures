@@ -7,16 +7,18 @@
 
 // General tree representation for UNION/FIND
 class ParPtrTree {
-private:
-  int* array;                    // Node array
-  int size;                      // Size of node array
-  int FIND(int) const;           // Find root
-public:
-  ParPtrTree(int);                   // Constructor
-  ~ParPtrTree() { delete [] array; } // Destructor
-  void UNION(int, int);          // Merge equivalences
-  bool differ(int, int);         // True if not in same tree
+  private:
+    int* array;                    // Node array
+    int size;                      // Size of node array
+    int FIND(int) const;           // Find root
+
+  public:
+    ParPtrTree(int);                   // Constructor
+    ~ParPtrTree() { delete[] array; } // Destructor
+    void UNION(int, int);          // Merge equivalences
+    bool differ(int, int);         // True if not in same tree
 };
+
 ParPtrTree::ParPtrTree(int sz) { // Constructor
   size = sz;
   array = new int[sz];           // Create node array
@@ -35,8 +37,12 @@ void ParPtrTree::UNION(int a, int b) { // Merge subtrees
   int root2 = FIND(b);           // Find root of node b
   if (root1 != root2) array[root2] = root1; // Merge
 }
+
 int ParPtrTree::FIND(int curr) const { // Find root
-  while (array[curr] != ROOT) curr = array[curr];
-  return curr;  // At root
+  //while (array[curr] != ROOT) curr = array[curr];
+  //return curr;  // At root
+  if (array[curr] == ROOT){ return curr; }
+  return FIND(array[curr]);
 }
+
 #endif
