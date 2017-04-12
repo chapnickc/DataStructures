@@ -123,16 +123,3 @@ public:
  
 };
 #endif
-
-/*
-  // Move down list to "pos" position
-  void moveToPos(int pos) {
-    Assert ((pos>=0)&&(pos<=cnt), "Position out of range");
-    curr = head;
-    for(int i=0; i<pos; i++) curr = curr->next;
-  }
-  void append(const E& it) { // Append "it" to list
-    tail = tail->next = new Link<E>(it, NULL);
-    cnt++;
-  }
-*/ 

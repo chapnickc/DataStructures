@@ -13,24 +13,38 @@ private:
   LList<TreeNode<E>* > children;
 
 public:
-  TreeNode(const E& val) { 
-    element = val; size = 0; par = NULL;
-  }
+  TreeNode(const E& val) 
+    { element = val; size = 0; par = NULL; }
 
-  TreeNode(const E& val, TreeNode<E>* parent){
-    element = val; par = parent; size = 0;
-  }  
+  TreeNode(const E& val, TreeNode<E>* parent)
+    { element = val; par = parent; size = 0;  }  
 
   ~TreeNode(){}
 
   E value(){ return element; }
-
   void setValue(E& val){ element = val; }
 
   bool isLeaf(){ return size == 0; }
 
   TreeNode<E>* parent(){ return par; }
 
+  TreeNode<E>* leftmostChild(){ 
+    if ( !isLeaf() ){
+      children.moveToStart();
+      return children.getValue();
+    }
+    return NULL;
+  }
+
+  TreeNode<E>* rightSibling(){
+    par->children.moveToStart();
+    while ( par->children.getValue() != this ){ par->children.next(); }
+    if (par->children.currPos() < par->children.length()-1){
+      par->children.next();
+      return par->children.getValue();
+    }
+    return NULL;
+  }
 
   void insertFirst(TreeNode<E>* node){  // Insert first child
     node->par = this;
@@ -45,52 +59,24 @@ public:
     size--;
   }
 
-  TreeNode<E>* leftmostChild(){ 
-    if ( !isLeaf() ){
-      children.moveToStart();
-      return children.getValue();
-    }
-    return NULL;
-  }
-
-
-
-  TreeNode<E>* rightSibling(){
-    par->children.moveToStart();
-    while ( par->children.getValue() != this ){ par->children.next(); }
-    if (par->children.currPos() < par->children.length()-1){
-      par->children.next();
-      return par->children.getValue();
-    }
-    return NULL;
-  }
-
-
-
   void insertNext(TreeNode<E>* node){  // Insert next sibling
     par->children.moveToStart();
-    if ( par->children.length() > 0){
-      while (par->children.getValue() != this){
-        par->children.next();
-      }
-      par->children.next();
-    }
+    while (par->children.getValue() != this){ par->children.next(); }
+    par->children.next();
     node->par = par;
     par->children.insert(node);
     par->size++;
   }
 
   void removeNext(){            // Remove right sibling
-    if (par->size > 1){
-      par->children.moveToStart();
-      while (par->children.getValue() != this){
-        par->children.next();
-      }
-      par->children.next();
+    par->children.moveToStart();
+    while ( par->children.getValue() != this ){ par->children.next(); }
+    par->children.next();
+    if (par->children.getValue() != this){
       par->children.remove();
       par->size--;
     }
-  } 
+  }
 
 };
 
