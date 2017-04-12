@@ -21,13 +21,29 @@ public:
     element = val; par = parent; size = 0;
   }  
 
-  ~TreeNode() {}                     // Destructor
+  ~TreeNode(){}
 
   E value(){ return element; }
+
+  void setValue(E& val){ element = val; }
 
   bool isLeaf(){ return size == 0; }
 
   TreeNode<E>* parent(){ return par; }
+
+
+  void insertFirst(TreeNode<E>* node){  // Insert first child
+    node->par = this;
+    children.moveToStart(); 
+    children.insert(node);
+    size++;
+  } 
+
+  void removeFirst(){           // Remove first child
+    children.moveToStart();
+    children.remove();
+    size--;
+  }
 
   TreeNode<E>* leftmostChild(){ 
     if ( !isLeaf() ){
@@ -37,27 +53,19 @@ public:
     return NULL;
   }
 
+
+
   TreeNode<E>* rightSibling(){
+    par->children.moveToStart();
+    while ( par->children.getValue() != this ){ par->children.next(); }
     if (par->children.currPos() < par->children.length()-1){
-      par->children.moveToStart();
-      while (par->children.getValue() != this){
-        par->children.next();
-      }
       par->children.next();
       return par->children.getValue();
     }
-
     return NULL;
   }
 
-  void setValue(E& val){ element = val; }
 
-  void insertFirst(TreeNode<E>* node){  // Insert first child
-    node->par = this;
-    children.moveToStart(); 
-    children.insert(node);
-    size++;
-  } 
 
   void insertNext(TreeNode<E>* node){  // Insert next sibling
     par->children.moveToStart();
@@ -70,12 +78,6 @@ public:
     node->par = par;
     par->children.insert(node);
     par->size++;
-  }
-
-  void removeFirst(){           // Remove first child
-    children.moveToStart();
-    children.remove();
-    size--;
   }
 
   void removeNext(){            // Remove right sibling
