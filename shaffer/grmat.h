@@ -21,7 +21,10 @@
 class Graphm : public Graph {
 private:
   int numVertex, numEdge; // Store number of vertices, edges
-  int **matrix;           // Pointer to adjacency matrix
+
+  int **matrix;           // Pointer to adjacency matrix, 
+                          // this is how 2d matricies work 
+                          
   int *mark;              // Pointer to mark array
 public:
   Graphm(int numVert)     // Constructor
@@ -41,9 +44,11 @@ public:
     mark = new int[n];     // Initialize mark array
     for (i=0; i<numVertex; i++)
       mark[i] = UNVISITED;
-    matrix = (int**) new int*[numVertex]; // Make matrix
+
+    matrix = (int**) new int*[numVertex]; // Make matrix, numVertex rows
     for (i=0; i<numVertex; i++)
       matrix[i] = new int[numVertex];
+
     for (i=0; i< numVertex; i++) // Initialize to 0 weights
       for (int j=0; j<numVertex; j++)
         matrix[i][j] = 0;
@@ -54,16 +59,16 @@ public:
 
   // Return first neighbor of "v"
   int first(int v) {
-    for (int i=0; i<numVertex; i++)
-      if (matrix[v][i] != 0) return i;
+    for (int j=0; j<numVertex; i++)
+      if (matrix[v][j] != 0) return j;
     return numVertex;           // Return n if none
   }
 
   // Return v's next neighbor after w
   int next(int v, int w) {
-    for(int i=w+1; i<numVertex; i++)
-      if (matrix[v][i] != 0)
-        return i;
+    for(int j=w+1; j<numVertex; j++)
+      if (matrix[v][j] != 0)
+        return j;
     return numVertex;           // Return n if none
   }
 

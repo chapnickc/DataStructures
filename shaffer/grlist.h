@@ -37,7 +37,7 @@ ostream& operator << (ostream& s, Edge e)
 
 class Graphl : public Graph {
 private:
-  List<Edge>** vertex;        // List headers
+  List<Edge>** vertex;        // List headers, this is an array of pointers to a list
   int numVertex, numEdge;     // Number of vertices, edges
   int *mark;                  // Pointer to mark array
 public:
@@ -54,12 +54,14 @@ public:
     int i;
     numVertex = n;
     numEdge = 0;
-    mark = new int[n];  // Initialize mark array
+    mark = new int[n];  // Initialize mark array, one for each vertex
     for (i=0; i<numVertex; i++) mark[i] = UNVISITED;
     // Create and initialize adjacency lists
     vertex = (List<Edge>**) new List<Edge>*[numVertex];
+
+    // this is memory management
     for (i=0; i<numVertex; i++)
-      vertex[i] = new LList<Edge>();
+      vertex[i] = new LList<Edge>(); // note LList is a child of List
   }
 
   int n() { return numVertex; } // Number of vertices
@@ -85,6 +87,7 @@ public:
     }
     return n(); // No neighbor
   }
+
   // Set edge (i, j) to "weight"
   void setEdge(int i, int j, int weight) {
     Assert(weight>0, "May not set weight to 0");
@@ -112,6 +115,8 @@ public:
     }
   }
 
+  // not const since state of LList is changing
+  // this is a "side-effect" since it changes the private data
   bool isEdge(int i, int j) { // Is (i,j) an edge?
     Edge it;
     for (vertex[i]->moveToStart();
@@ -129,7 +134,7 @@ public:
       curr = vertex[i]->getValue();
       return curr.weight();
     }
-    else return 0;
+    else return 0; // weight 0 edge is non-edge
   }
 
   int getMark(int v) { return mark[v]; }

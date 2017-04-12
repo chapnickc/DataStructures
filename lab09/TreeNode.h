@@ -4,7 +4,6 @@
 #include "gentree.h"
 #include "llist.h"
 
-
 template <typename E> 
 class TreeNode: public GTNode<E> {
 private:
@@ -28,9 +27,9 @@ public:
 
   bool isLeaf(){ return size == 0; }
 
-  TreeNode* parent(){ return par; }
+  TreeNode<E>* parent(){ return par; }
 
-  TreeNode* leftmostChild(){ 
+  TreeNode<E>* leftmostChild(){ 
     if ( !isLeaf() ){
       children.moveToStart();
       return children.getValue();
@@ -38,16 +37,16 @@ public:
     return NULL;
   }
 
-  TreeNode* rightSibling(){
-    if (par->size > 1){
+  TreeNode<E>* rightSibling(){
+    if (par->children.currPos() < par->children.length()-1){
       par->children.moveToStart();
-      do {
+      while (par->children.getValue() != this){
         par->children.next();
-      } while (par->children.getValue() != this);
+      }
       par->children.next();
-      cout << "MADE IT HERE" << endl;
       return par->children.getValue();
     }
+
     return NULL;
   }
 
@@ -62,12 +61,14 @@ public:
 
   void insertNext(TreeNode<E>* node){  // Insert next sibling
     par->children.moveToStart();
-    while (par->children.getValue() != this){
+    if ( par->children.length() > 0){
+      while (par->children.getValue() != this){
+        par->children.next();
+      }
       par->children.next();
     }
-    par->children.next();
     node->par = par;
-    children.insert(node);
+    par->children.insert(node);
     par->size++;
   }
 

@@ -14,17 +14,21 @@ int main() {
   cout << "Is Leaf?: " << ptr->isLeaf() << endl;
   cout << "Print the tree with one node\n";
   tree.print();
+
   ptr->insertFirst(new TreeNode<int>(2));
   cout << "Print the tree with two nodes\n";
   tree.print();
+
   ptr = ptr->leftmostChild();
   cout << "ptr now at node " << ptr->value() << "\n";
   ptr->insertNext(new TreeNode<int>(3));
   cout << "Print the tree with three nodes\n";
   tree.print();
+
   ptr->insertNext(new TreeNode<int>(4));
   cout << "Print the tree with four nodes\n";
   tree.print();
+
   ptr = ptr->rightSibling();
   cout << "ptr now at node " << ptr->value() << "\n";
   ptr->insertFirst(new TreeNode<int>(5));

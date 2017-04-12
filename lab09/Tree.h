@@ -4,8 +4,6 @@
 #include "gentree.h"
 #include "TreeNode.h"
 
-
-
 template <typename E> 
 class Tree: public GenTree<E> {
 private:

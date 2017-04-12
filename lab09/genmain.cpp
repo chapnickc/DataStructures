@@ -54,7 +54,7 @@ public:
   GTNode* rightSibling()          // Return node's right sibling
     { return rightsib; }
 
-  void setValue(E&)             // Set node's value
+  void setValue(E& value)             // Set node's value
     { element = value; }
 
   void insertFirst(GTNode<E>* n) { // Insert as the first child
