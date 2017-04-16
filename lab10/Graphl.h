@@ -18,7 +18,7 @@
 #include "link.h"
 #include "LList.h"
 
-#include "graph.h"
+#include "Graph.h"
 
 
 // Edge class for Adjacency List graph representation
@@ -56,6 +56,7 @@ public:
     numEdge = 0;
     mark = new int[n];  // Initialize mark array, one for each vertex
     for (i=0; i<numVertex; i++) mark[i] = UNVISITED;
+
     // Create and initialize adjacency lists
     vertex = (List<Edge>**) new List<Edge>*[numVertex];
 
@@ -77,12 +78,12 @@ public:
 
   // Get v's next neighbor after w
   int next(int v, int w) {
-    Edge it;
+    Edge edge;
     if (isEdge(v, w)) {
       if ((vertex[v]->currPos()+1) < vertex[v]->length()) {
         vertex[v]->next();
-        it = vertex[v]->getValue();
-        return it.vertex();
+        edge = vertex[v]->getValue();
+        return edge.vertex();
       }
     }
     return n(); // No neighbor

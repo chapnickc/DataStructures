@@ -1,5 +1,19 @@
 #ifndef GRAPH_H
 #define GRAPH_H
+
+
+#include "json.hpp"
+#include <iostream>
+#include <iomanip>      // std::setw
+#include <fstream>
+#include <string>
+#include <vector>
+#include <typeinfo>
+
+
+
+using json = nlohmann::json;
+using namespace std;
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -57,10 +71,83 @@ class Graph {
     virtual int getMark(int v) =0;
     virtual void setMark(int v, int val) =0;
 
-/*    virtual void exportJSON(std::ostream& output)=0;*/
-    //virtual void exportXML(std::istream& input)=0;
 
-    //virtual void importJSON(std::ostream& output)=0;
-    /*virtual void importXML(std::istream& input)=0;*/
+    void import_json(istream& instream) {
+      json j;
+      instream >> j;
+      cout << j << endl;
+    }
+
+    void export_json(ostream& output) {
+      json j;
+      _build_graph(j, this);
+      output << setw(4) << j << endl;
+    }
+
+    void print_matrix(Graph* graph){
+      cout << "|V|: " << graph->n() << endl;
+      cout << "|E|: " << graph->e() << endl;
+      cout << "Adjacency Matrix is:\n";
+      for (int m = 0; m < graph->n(); m++) {
+        for (int n = 0; n < graph->n(); n++){ 
+          cout << graph->weight(m, n) << " "; 
+        } cout << "\n";
+      }
+    }
+
+
+  private:
+    void _build_nodes(json& j, Graph* g){
+      json node;
+      std::vector<json> nodes(g->n());
+      for (int i=0; i < g->n(); i++){ 
+        node = {
+          { "id", i },
+          { "type", "node type" },
+          { "label", "node label(" + std::to_string(i) + ")" },
+          { "metadata", {"user-defined", "values"} }
+        };
+        nodes[i] = node; 
+      }
+      j["nodes"] = nodes;
+    }
+
+    void _build_edges(json& j, Graph* g){
+      std::vector<json> edges(g->e());
+      int i=0; 
+      json edge;
+      for (int m = 0; m < g->n(); m++) { 
+        for (int n = 0; n < g->n(); n++){ 
+          if ( g->isEdge(m,n) ){
+            edge = {
+              { "source", m },
+              { "target", n },
+              { "directed", false },
+              { "relation", "edge relationship" },
+              { "label", "edge label" },
+              { "metadata", { "user-defined", "values"}}
+            };
+            edges[i] = edge;
+            i++;
+          }
+        }
+      }
+      j["edges"] = edges;
+    }
+
+    void _build_graph(json& j, Graph* g){
+      j["graph"] = { 
+        { "size", g->n() },
+        { "directed", false }, 
+        { "type", "graph type" }, 
+        { "label", "graph label" },
+        { "metadata", 
+          { "user-defined", "values" }
+        }
+      };
+      _build_nodes(j, g);
+      _build_edges(j, g);
+    }
+
 };
 #endif

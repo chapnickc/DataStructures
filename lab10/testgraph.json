@@ -1,0 +1,260 @@
+{
+    "edges": [
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 0,
+            "target": 1
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 1,
+            "target": 2
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 2,
+            "target": 1
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 2,
+            "target": 3
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 3,
+            "target": 4
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 4,
+            "target": 1
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 4,
+            "target": 5
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 5,
+            "target": 6
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 6,
+            "target": 1
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 6,
+            "target": 7
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 7,
+            "target": 8
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 8,
+            "target": 1
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 8,
+            "target": 9
+        },
+        {
+            "directed": false,
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 9,
+            "target": 0
+        }
+    ],
+    "graph": {
+        "directed": false,
+        "label": "graph label",
+        "metadata": [
+            "user-defined",
+            "values"
+        ],
+        "size": 10,
+        "type": "graph type"
+    },
+    "nodes": [
+        {
+            "id": 0,
+            "label": "node label(0)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 1,
+            "label": "node label(1)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 2,
+            "label": "node label(2)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 3,
+            "label": "node label(3)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 4,
+            "label": "node label(4)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 5,
+            "label": "node label(5)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 6,
+            "label": "node label(6)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 7,
+            "label": "node label(7)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 8,
+            "label": "node label(8)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 9,
+            "label": "node label(9)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        }
+    ]
+}

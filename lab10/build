@@ -1,4 +1,5 @@
 g++ graph_test.cpp \
     -o ./go \
     -std=c++11 \
-    -I./ -I./json/src -I../lib -I../shaffer
+    -I./ -I../lib -I./json/src -I../shaffer 
+
