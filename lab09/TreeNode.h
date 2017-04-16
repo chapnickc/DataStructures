@@ -1,11 +1,10 @@
 #ifndef TREENODE_H
 #define TREENODE_H
 
-#include "gentree.h"
-#include "llist.h"
+#include "GenTree.h"
+#include "LList.h"
 
-template <typename E> 
-class TreeNode: public GTNode<E> {
+template <typename E> class TreeNode: public GTNode<E> {
 private:
   E element;
   int size;

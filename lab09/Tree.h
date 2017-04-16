@@ -1,11 +1,12 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "gentree.h"
+#include "GenTree.h"
 #include "TreeNode.h"
 
 template <typename E> 
 class Tree: public GenTree<E> {
+
 private:
   TreeNode<E>* rt;
 
@@ -14,17 +15,19 @@ private:
     if (theroot->isLeaf()) cout << "Leaf: ";
     else cout << "Internal: ";
     cout << theroot->value() << "\n";
+    
     // Now process the children of "root"
     for (TreeNode<E>* temp = theroot->leftmostChild();
-         temp != NULL; temp = temp->rightSibling())
+         temp != NULL; 
+         temp = temp->rightSibling())
       printhelp(temp);
   }
 
 public:
-  Tree() { rt = NULL; }          // Constructor
+  Tree() { rt = NULL; }
 
   // AWFUL! Throw away the storage
-  ~Tree() { rt = NULL; }         // Destructor
+  ~Tree() { rt = NULL; }
 
   // AWFUL! Throw away the storage
   void clear() { rt = NULL;}       // Send all nodes to free store
@@ -41,6 +44,5 @@ public:
   void print() { printhelp(rt); }   // Print a tree
 
 };
-
 
 #endif

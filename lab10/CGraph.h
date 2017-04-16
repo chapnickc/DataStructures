@@ -1,20 +1,15 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-// From the software distribution accompanying the textbook
-// "A Practical Introduction to Data Structures and Algorithm Analysis,
-// Third Edition (C++)" by Clifford A. Shaffer.
-// Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 
-// Graph abstract class. This ADT assumes that the number
-// of vertices is fixed when the graph is created.
-class Graph {
+#include "json.hpp"
+using json = nlohmann::json;
+
+class CGraph : public Graph {
   private:
-    void operator =(const Graph&) {}     // Protect assignment
-    Graph(const Graph&) {}         // Protect copy constructor
 
   public:
-    Graph() {}          // Default constructor
-    virtual ~Graph() {} // Base destructor
+    CGraph() {}          // Default constructor
+    virtual ~CGraph() {} // Base destructor
 
     // Initialize a graph of n vertices
     virtual void Init(int n) =0;
@@ -57,10 +52,32 @@ class Graph {
     virtual int getMark(int v) =0;
     virtual void setMark(int v, int val) =0;
 
-/*    virtual void exportJSON(std::ostream& output)=0;*/
-    //virtual void exportXML(std::istream& input)=0;
 
-    //virtual void importJSON(std::ostream& output)=0;
-    /*virtual void importXML(std::istream& input)=0;*/
+    void exportJSON(ofstream& output){
+    void exportCSV(ofstream& output)=0;
+
 };
-#endif
+
+
+#include "graph.h"
+#include "json.hpp"
+
+using json = nlohmann::json;
+
+
+      json j;
+      j["graph"] = { 
+          { "directed", false }, 
+          { "type", "graph type" }, 
+          { "label", "graph label" },
+          { "metadata", { "user-defined": "values" }}
+        };
+
+      j["nodes"] = {"none"};
+      j["edges"]= {"none"};
+
+      output << std::setw(4) << j << std::endl;
+    }
+
+
+
