@@ -1,0 +1,2 @@
+OGDF_INSTALL_DIR=./ogdf
+g++ -std=c++11 -I${OGDF_INSTALL_DIR}/include -O2 ogdf_test.cpp -o odgf_test -L${OGDF_INSTALL_DIR}/src -lOGDF -lCOIN -pthread 

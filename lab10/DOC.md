@@ -10,7 +10,7 @@ $ make
 ```
 
 ```bash
-brew cask install gephi
+git clone https://github.com/ogdf/ogdf
 ```
 
 Source Code:
@@ -26,3 +26,5 @@ Source Code:
 $ g++ graph_test.cpp -std=c++11 -o ./go \
     -I./ -I./lib/ -I./json/src -I../lib -I../shaffer 
 ```
+
+
