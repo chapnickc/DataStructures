@@ -1,7 +1,6 @@
 {
     "edges": [
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -9,10 +8,10 @@
             ],
             "relation": "edge relationship",
             "source": 0,
-            "target": 1
+            "target": 1,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -20,10 +19,10 @@
             ],
             "relation": "edge relationship",
             "source": 1,
-            "target": 2
+            "target": 2,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -31,10 +30,10 @@
             ],
             "relation": "edge relationship",
             "source": 2,
-            "target": 1
+            "target": 1,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -42,10 +41,10 @@
             ],
             "relation": "edge relationship",
             "source": 2,
-            "target": 3
+            "target": 3,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -53,10 +52,10 @@
             ],
             "relation": "edge relationship",
             "source": 3,
-            "target": 4
+            "target": 4,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -64,10 +63,10 @@
             ],
             "relation": "edge relationship",
             "source": 4,
-            "target": 1
+            "target": 1,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -75,10 +74,10 @@
             ],
             "relation": "edge relationship",
             "source": 4,
-            "target": 5
+            "target": 5,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -86,10 +85,10 @@
             ],
             "relation": "edge relationship",
             "source": 5,
-            "target": 6
+            "target": 6,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -97,10 +96,10 @@
             ],
             "relation": "edge relationship",
             "source": 6,
-            "target": 1
+            "target": 1,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -108,10 +107,10 @@
             ],
             "relation": "edge relationship",
             "source": 6,
-            "target": 7
+            "target": 7,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -119,10 +118,10 @@
             ],
             "relation": "edge relationship",
             "source": 7,
-            "target": 8
+            "target": 8,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -130,10 +129,10 @@
             ],
             "relation": "edge relationship",
             "source": 8,
-            "target": 1
+            "target": 1,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -141,10 +140,10 @@
             ],
             "relation": "edge relationship",
             "source": 8,
-            "target": 9
+            "target": 9,
+            "weight": 1
         },
         {
-            "directed": false,
             "label": "edge label",
             "metadata": [
                 "user-defined",
@@ -152,7 +151,8 @@
             ],
             "relation": "edge relationship",
             "source": 9,
-            "target": 0
+            "target": 0,
+            "weight": 1
         }
     ],
     "graph": {

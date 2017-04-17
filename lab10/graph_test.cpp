@@ -19,6 +19,12 @@ int main(){
   cout << "Writing graph to testgraph.json...\n"; 
   graph->export_json(filename);
 
-  ifstream infile("./data/completesingle.json");
-  graph->import_json(infile);
+  std::cout << "\nExported Matrix:\n";
+  graph->print_matrix();
+
+  ifstream infile("./testgraph.json");
+  Graph* g = import_json(infile);
+
+  std::cout << "\nImported Matrix:\n";
+  g->print_matrix();
 }

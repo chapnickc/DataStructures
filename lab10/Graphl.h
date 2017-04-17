@@ -142,5 +142,25 @@ public:
   void setMark(int v, int val) { mark[v] = val; }
 };
 
+
+Graph* import_json(istream& instream) {
+  json j; instream >> j;
+
+  int graph_size = j["graph"]["size"];
+  Graphl* graph = new Graphl(graph_size);
+
+  for (auto& edge : j["edges"]) {
+    if ( not graph->isEdge(edge["source"], edge["target"]) ){
+      // need better weight input... maybe store as json attribute
+      graph->setEdge(edge["source"], edge["target"], edge["weight"]);
+    }
+  }
+
+  return (Graph*) graph;
+}
+
+
+
+
 #include "graphutil.cpp"
 #endif
