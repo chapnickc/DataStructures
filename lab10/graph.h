@@ -7,23 +7,22 @@
 #include <iomanip>      // std::setw
 #include <fstream>
 #include <string>
-#include <vector>
 #include <typeinfo>
+#include <vector>
 
 
 using json = nlohmann::json;
 using namespace std;
 
-// Graph abstract class
-// This ADT assumes that the number
-// of vertices is fixed when the graph is created.
+// Graph Abstract Class / ADT
+// assumes that the number of vertices is fixed when the graph is created.
 class Graph {
 
 private:
-  Graph(const Graph&) {} // Protect copy constructor
-  void operator =(const Graph&) {} // Protect assignment
+  Graph(const Graph&) {}            // Protect copy constructor
+  void operator =(const Graph&) {}  // Protect assignment
 
-  void _build_nodes(json& j, Graph* g){
+  void _json_nodes(json& j, Graph* g){
     json node;
     std::vector<json> nodes(g->n());
     for (int i=0; i < g->n(); i++){ 
@@ -38,7 +37,7 @@ private:
     j["nodes"] = nodes;
   }
 
-  void _build_edges(json& j, Graph* g){
+  void _json_edges(json& j, Graph* g){
     std::vector<json> edges(g->e());
     int i=0; 
     json edge;
@@ -60,7 +59,7 @@ private:
     j["edges"] = edges;
   }
 
-  void _build_graph(json& j, Graph* g){
+  void _json_graph(json& j, Graph* g){
     j["graph"] = { 
       { "size", g->n() },
       { "directed", false }, 
@@ -70,8 +69,8 @@ private:
         { "user-defined", "values" }
       }
     };
-    _build_nodes(j, g);
-    _build_edges(j, g);
+    _json_nodes(j, g);
+    _json_edges(j, g);
   }
 
 
@@ -133,7 +132,7 @@ public:
 
   void export_json(ostream& output) {
     json j;
-    _build_graph(j, this);
+    _json_graph(j, this);
     output << setw(4) << j << endl;
   }
 

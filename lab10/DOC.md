@@ -9,6 +9,10 @@ $ cmake CMakeLists.txt
 $ make
 ```
 
+```bash
+brew cask install gephi
+```
+
 Source Code:
  * `graph_test.cpp` demonstrates how to construct 
     graphs and serialize their data in json objects, 

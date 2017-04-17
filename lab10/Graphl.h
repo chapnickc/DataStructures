@@ -155,12 +155,8 @@ Graph* import_json(istream& instream) {
       graph->setEdge(edge["source"], edge["target"], edge["weight"]);
     }
   }
-
   return (Graph*) graph;
 }
-
-
-
 
 #include "graphutil.cpp"
 #endif
