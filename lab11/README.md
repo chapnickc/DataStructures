@@ -12,40 +12,49 @@ They might also depend on whether the graph is implemented using an
 adjacency list or adjacency matrix.
 
 Design and implement a study to compare the effects on performance for
-three variables: (i) the two graph representations (adjacency list and
-adjacency matrix); (ii) the two implementations for Dijkstra's shortest
-paths algorithm (searching the table of vertex distances or using a
-priority queue to track the distances), and (iii) sparse versus dense
-graphs. Be sure to test your implementations on a variety of graphs that
-are sufficiently large to generate meaningful times."
+three variables: 
+    * (i) the two graph representations (adjacency list and adjacency matrix); 
+
+    * (ii) the two implementations for Dijkstra's shortest paths algorithm 
+           (searching the table of vertex distances or using a priority queue to 
+           track the distances), and 
+
+    * (iii) sparse versus dense graphs. Be sure to test your implementations 
+        on a variety of graphs that are sufficiently large to generate meaningful times."
 
 Some hints/comments:
 
 (1) There are implementations of both variants of Dijkstra's algorithm,
 for both adjacency list and adjacency matrix Graphs in Shaffer's code.  
-See the files grdijkl1.cpp, grdijkl2.cpp, grdijkm1.cpp, and grdijkm2.cpp.
+See the files _grdijkl1.cpp, grdijkl2.cpp, grdijkm1.cpp, and grdijkm2.cpp._
 These programs are designed to read the custom ".gph" file format;
 you'll instead want to read some real world graphs using the import
 methods you wrote for last week's lab.
 
 (2) It's worth mentioning that you can also produce your own graphs
-programmatically, without reading them from a file.  For example, it
-might be interesting to test the run-time on a complete graph on
-n vertices for large values of n.  It's a bit silly to read such
-a graph from a file when you can produce it with a tiny bit of code
-using the methods in the Graph ADT.  Similarly, you could produce a
+programmatically, without reading them from a file.  
+For example, it might be interesting to test the run-time on 
+a complete graph on n vertices for large values of n.  
+It's a bit silly to read such a graph from a file when 
+you can produce it with a tiny bit of code using the methods 
+in the Graph ADT.  Similarly, you could produce a
 "linear" graph with n vertices in which the only edges join
 vertex i to vertex i+1, for all i.  Or, a complete binary tree of
 depth k, etc. etc.
 
-(3) This is the only lab of the semester for which you're required to
+(3) 
+This is the only lab of the semester for which you're required to
 turn something in.  What I'm expecting from each individual is a
 written report on the experiment you ran, and the results you obtained.
+
 This means you should tell me about the different graphs you tested
 (with URLs for any that you found online), and report the run-times
-for all of the different cases, probably in tabular form.  Graphing
-the run-times as a function of the size of the graph is probably a good
-idea too, if possible.  You should write a paragraph or two on any
+for all of the different cases, probably in tabular form.  
+
+Graphingthe run-times as a function of the size of the graph is probably a good
+idea too, if possible. 
+
+You should write a paragraph or two on any
 conclusions you're able to draw from your experiments.
 
 You should turn in any code that you wrote or modified along with

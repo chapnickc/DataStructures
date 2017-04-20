@@ -1,0 +1,5 @@
+g++ Graph_test.cpp \
+    -o ./go \
+    -std=c++11 \
+    -I./ -I../lib -I./json/src -I../shaffer 
+
