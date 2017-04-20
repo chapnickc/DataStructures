@@ -36,17 +36,15 @@ result = api.query("""
     """)
 
 
+plt.clf()
 for way in result.ways:
-    print("Name: %s" % way.tags.get("name", "n/a"))
-    print("  Highway: %s" % way.tags.get("highway", "n/a"))
-    print("  Nodes:")
+    print("Name: {}\t\tHighway: {}".format(way.tags.get("name", "n/a"), way.tags.get("highway", "n/a")))
     latlong = []
     for node in way.nodes:
         latlong.append((float(node.lat), float(node.lon)))
-        print("    Lat: %f, Lon: %f" % (node.lat, node.lon))
-    print(len(latlong))
-    plt.plot([c[0] for c in latlong], [c[1] for c in latlong], '-.')
-    _ = input('hit enter')
+    plt.plot([c[0] for c in latlong], [c[1] for c in latlong], 'k.')
+    plt.plot([c[0] for c in latlong], [c[1] for c in latlong], '-', label=way.tags.get("name", "n/a"))
+plt.legend()
 
 
 
