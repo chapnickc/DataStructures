@@ -4,6 +4,11 @@ To install Google Performance Tools
 brew install google-perftools
 brew install graphviz
 ```
+Pyhton config
+```
+pip install geopandas
+pip install https://github.com/jwass/geopandas_osm/zipball/master
+```
 
 To install Niels Lohmann's JSON Library
 
@@ -30,3 +35,5 @@ $ g++ graph_test.cpp -std=c++11 -o ./go \
 ```
 
 
+pip install overpass
+pip install overpy
