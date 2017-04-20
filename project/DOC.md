@@ -1,4 +1,9 @@
 
+To install Google Performance Tools
+```bash
+brew install google-perftools
+brew install graphviz
+```
 
 To install Niels Lohmann's JSON Library
 
@@ -9,9 +14,6 @@ $ cmake CMakeLists.txt
 $ make
 ```
 
-```bash
-git clone https://github.com/ogdf/ogdf
-```
 
 Source Code:
  * `graph_test.cpp` demonstrates how to construct 

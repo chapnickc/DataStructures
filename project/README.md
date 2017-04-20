@@ -1,84 +1,69 @@
+This week's lab is essentially Project 11.3 from Shaffer:
 
-For *next* week's lab (lab11), you'll be analyzing the
-efficiency of some graph algorithms. To do this effectively
-it will be useful to be able to create some (big) graphs in
-memory for testing purposes.  Instead of hard-coding these graphs
-edge-by-edge into your main program, it will be better if you
-can read the graphs from a file.
+"While the underlying implementation (whether adjacency matrix or
+adjacency list) is hidden behind the graph ADT, these two implementations
+can have an impact on the efficiency of the resulting program. For Dijkstra's
+shortest paths algorithm, two different implementations were given in
+Section 11.4.1 that provide different ways for determining the next
+closest vertex at each iteration of the algorithm. The relative costs
+of these two variants depend on how sparse or dense the graph is.
+They might also depend on whether the graph is implemented using an
+adjacency list or adjacency matrix.
 
-Fortunately, there are a number of well-established file formats
-that developers use to store graph data, and you'll be able to find
-example of (big) graphs online in several of these formats. 
-There's a good survey of formats on this page:
+Design and implement a study to compare the effects on performance for
+three variables: 
+ 1. the two graph representations (adjacency list and adjacency matrix); 
 
-https://gephi.org/users/supported-graph-formats/
+2. the two implementations for Dijkstra's shortest paths algorithm 
+       (searching the table of vertex distances or using a priority queue to 
+       track the distances), and 
 
-(this is the list of formats supported by "Gephi", a nice
-graph visualization package).
+3. Sparse vs Dense graphs. Be sure to test your implementations 
+    on a variety of graphs that are sufficiently large to generate meaningful times."
 
-Your job in this lab is to write new methods for the Graph class
-that will import *and* export graph data in *at least two*
-of these file formats.  So that's at least four methods you'll
-need to write.  I'll let you choose the formats you'd like
-to support; you should want to base your decision on the complexity
-of the format, and whether you're able to find examples of
-interesting graphs saved in these formats online, since you'll
-need them for next week.
+Some hints/comments:
 
-##
-I'd suggest a design that passes a reference to an ostream
-to the export functions, and a reference to an istream to the
-import methods.  
+1.  There are implementations of both variants of Dijkstra's algorithm,
+for both adjacency list and adjacency matrix Graphs in Shaffer's code.  
+See the files _grdijkl1.cpp, grdijkl2.cpp, grdijkm1.cpp, and grdijkm2.cpp._
+These programs are designed to read the custom ".gph" file format;
+you'll instead want to read some real world graphs using the import
+methods you wrote for last week's lab.
 
-Then, in your main, you can create an
-ofstream or ifstream attached to a file and pass that to 
-the import/export.  
+2. It's worth mentioning that you can also produce your own graphs
+programmatically, without reading them from a file.  
+For example, it might be interesting to test the run-time on 
+a complete graph on n vertices for large values of n.  
+It's a bit silly to read such a graph from a file when 
+you can produce it with a tiny bit of code using the methods 
+in the Graph ADT.  Similarly, you could produce a
+"linear" graph with n vertices in which the only edges join
+vertex i to vertex i+1, for all i.  Or, a complete binary tree of
+depth k, etc. etc.
 
-The point is that there are other kinds
-of ostreams/istreams that you might conceivably want to write
-to (cout/cin for example!) and this design allows that.
+3. This is the only lab of the semester for which you're required to
+turn something in.  What I'm expecting from each individual is a
+written report on the experiment you ran, and the results you obtained.
+\
+This means you should tell me about the different graphs you tested
+(with URLs for any that you found online), and report the run-times
+for all of the different cases, probably in tabular form.  
+\
+Graphing the run-times as a function of the size of the graph is probably a good
+idea too, if possible. 
 
-Note that export is slightly easier to write since you can simply
-make it a method of Graph.  
-Import is trickier since the number of
-vertices in the graph gets established once and for all when
-the constructor is called.  This means that the _import function
-should not be a method_; make it a standalone function, and
-create the graph within that function once you know how many
-vertices there are. You can check out graphutil.cpp in Shaffer's
-code which has a function that imports from a non-standard file
-format of his devising (see the *.gph files in ../shaffer for example).
+You should write a paragraph or two on any
+conclusions you're able to draw from your experiments.
 
-You'll find the Shaffer's abstract base class Graph in
-../shaffer/graph.h.  There are child implementations
-in grlist.h and grmat.h in case you're curious, but
-we shouldn't need those details for this lab, other than
-for testing purposes in a main program. Remember that
-these are fundamentally *directed graphs*, so you should
-have that case in mind when writing your import/export
-methods.
+You should turn in any code that you wrote or modified along with
+your report.  This will presumably include your import/export function
+from last week, any code for creating graphs programmatically as 
+in (2) above, and whatever main() programs you wrote or modified to 
+compute run times.
 
-It's important to note that Shaffer's Graph class is 
-quite stripped-down (reasonably so, for pedagogical reasons). 
-It allows us to store an integer weight on each edge, but that's
-about it; we don't even have the ability to store a label for
-each vertex.  This means that you shouldn't expect to support all
-of the "bells and whistles" of the different graph formats
-(they typically allow you to store all kinds of
-labels, colors, weights, and so on).  When importing from
-these files, you can simply ignore the stuff that isn't relevant
-(i.e. anything other than the vertex and edge information).
-Similarly, when exporting, you'll only be able to output
-a very simple file containing the vertex and edge information.
+(4) This is intended to be an individual project.  Some of you
+collaborated on the import/export functions from last week's lab
+and that's perfectly fine.  But any code specifically for this lab,
+and all experiments, must be your own work.
 
-Finally, test, test, test! You'll want to find a collection "real" 
-examples of the file formats you choose, and maybe create a few
-simple ones as well, representing some simple graphs with, say, 
-fewer than 10 vertices.  Make sure you can read these all successfully,
-and that you can, for example, do a traversal of the graph and get the
-expected result (see section 11.3). Then export the graph to another
-file using your export method, re-import that file and see if the
-results are the same (this is called "round-tripping").
-
-
-
+Due Date: 11:59PM CST Wednesday, November 30th.
