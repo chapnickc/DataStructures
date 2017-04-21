@@ -4,7 +4,11 @@ import glob
 import overpy
 import overpy.helper
 import matplotlib.style
-matplotlib.style.use('ggplot')
+import numpy as np
+# matplotlib.style.use('bmh')
+matplotlib.style.use('fivethirtyeight')
+
+
 
 
 
@@ -35,24 +39,33 @@ paths=[
     './data/dublin_ireland.imposm-geojson/dublin_ireland_roads_gen0.geojson',
     './data/dublin_ireland.imposm-geojson/dublin_ireland_roads_gen1.geojson']
 
-# data = open(paths[0]).read()
-data = open(paths[1]).read()
-
-rj = json.loads(data)
+with open(paths[1]) as f:
+    rj = json.loads(f.read())
 
 
-
-roads = list()
+s = set()
 figure = plt.figure()
+roads = all_cords = list()
 for feature in rj['features'][:3000]:
     osmid = int(feature['properties']['osm_id'])
     coords = feature['geometry']['coordinates']
     name = feature['properties']['name']
-    roads.append(Road(osmid, coords, name))
-    plt.plot([c[0] for c in coords],  [c[1] for c in coords], 'k.')
+
+    plt.plot([c[0] for c in coords],  [c[1] for c in coords], '.')
     plt.plot([c[0] for c in coords],  [c[1] for c in coords], '-')
-plt.title('Roads of Dublin, Ireland')
+    plt.title('Roads of Dublin, Ireland')
+    plt.show()
 
-plt.show()
+matplotlib.style.use('dark_background')
 
-plt.savefig('dublin.png', dpi=1000)
+
+plt.savefig('dublin538.png', dpi=1000)
+
+s.add((c[0], c[1]))
+roads.append(Road(osmid, coords, name))
+
+latlong = np.array(list(s))
+plt.plot(latlong[:,0], latlong[:,1], 'k.')
+plt.plot(latlong[:,0], latlong[:,1], '--')
+
+
