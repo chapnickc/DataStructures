@@ -83,7 +83,6 @@ public:
   virtual void Init(int n) =0;
 
   // Return: the number of vertices and edges
-  // 
   // (should make these const)
   virtual int n() =0;
   virtual int e() =0;
