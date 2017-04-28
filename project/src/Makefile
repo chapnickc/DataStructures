@@ -17,4 +17,5 @@ go: $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean:
-	echo "clean"
+	rm *.o
+

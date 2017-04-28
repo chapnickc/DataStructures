@@ -1,5 +1,6 @@
 #include "book.h"
 #include "Graphl.h"
+#include <string>
 
 int minVertex(Graph*, int*);
 
@@ -44,8 +45,18 @@ int main(int argc, char** argv) {
   }
 
   graph = createGraph<Graphl>(fid);
-  if (graph == NULL) 
-    { cout << "Unable to create graph\n"; exit(-1); }
+  if (graph == NULL) { 
+    cout << "Unable to create graph\n"; 
+    exit(-1); 
+  }
+  else {
+    string fpath = argv[1];
+    string fname = fpath.substr(0, fpath.rfind("."));
+    ofstream outfile(fname + ".json");
+    graph->export_json(outfile);
+  }
+
+
 
   int D[graph->n()];
   for (int i = 0; i < graph->n(); i++)

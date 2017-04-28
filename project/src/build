@@ -1,8 +1,0 @@
-g++ Graph_test.cpp \
-    -o ./go \
-    -I./ -I../lib -I../lib/json/src \
-    -std=c++11 \
-    -pg -O3 \
-    -DWITHGPERFTOOLS \
-    -lprofiler -ltcmalloc
-

@@ -1,0 +1,167 @@
+{
+    "edges": [
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 0,
+            "target": 1,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 0,
+            "target": 2,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 1,
+            "target": 3,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 1,
+            "target": 4,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 1,
+            "target": 5,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 2,
+            "target": 3,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 3,
+            "target": 4,
+            "weight": 1
+        },
+        {
+            "label": "edge label",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "relation": "edge relationship",
+            "source": 4,
+            "target": 6,
+            "weight": 1
+        }
+    ],
+    "graph": {
+        "directed": false,
+        "label": "graph label",
+        "metadata": [
+            "user-defined",
+            "values"
+        ],
+        "size": 7,
+        "type": "graph type"
+    },
+    "nodes": [
+        {
+            "id": 0,
+            "label": "node label(0)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 1,
+            "label": "node label(1)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 2,
+            "label": "node label(2)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 3,
+            "label": "node label(3)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 4,
+            "label": "node label(4)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 5,
+            "label": "node label(5)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        },
+        {
+            "id": 6,
+            "label": "node label(6)",
+            "metadata": [
+                "user-defined",
+                "values"
+            ],
+            "type": "node type"
+        }
+    ]
+}
