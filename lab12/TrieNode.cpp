@@ -7,7 +7,7 @@ using namespace std;
 
 int getIndex(char c) {
   int ans=(int) (c-'A');
-  if (ans>=32) ans-=32;
+  if (ans >= 32) ans -= 32;
   if (ans < 0 || ans >= ALPHABET_SIZE-1)
     ans=ALPHABET_SIZE-2;
   return ans;
@@ -49,33 +49,40 @@ int TrieNode::totalSize() const {
 
 // return the length of the longest prefix of s that appears 
 // in the trie starting at this node
+// (ie.  brtox would return 2)
+// (ie.  cel would return 3)
+// if the len of the string is equal to the result
+// of this method, then this string is a prefix in the language
 int TrieNode::longestPrefix(const char* s) const {
   if (strlen(s)==0) {
     return 0;
   }
   else {
-    int index=getIndex(s[0]);
-    if (fol[index]==0) {
+    int index = getIndex(s[0]);
+    if (fol[index] == 0) {
       return 0;
     }
     else {
-      return 1+fol[index]->longestPrefix(s+1);
+      return 1 + fol[index]->longestPrefix(s+1);
     }
   }
 }
 
 void TrieNode::insert(const char* s, int v) {
   if (strlen(s)==0) {
+    // is the edge corresponding to '$' (ie. ix = 27)
+    // if it's null, then add a new node
     if (fol[ALPHABET_SIZE-1]==0) {
       fol[ALPHABET_SIZE-1] = new TrieNode(v);
     }
     else {
+      // update the freq
       fol[ALPHABET_SIZE-1]->val = v;
     }
   }
   else {
     int index=getIndex(s[0]);
-    if (fol[index]==0) {
+    if (fol[index] == 0) {
       fol[index] = new TrieNode();
     }
     fol[index]->insert(s+1,v);

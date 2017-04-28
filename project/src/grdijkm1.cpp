@@ -7,56 +7,47 @@
 // Version 1: Use a simple scan of the distance matrix to find the next
 // closest node.
 // Use any of the files in this directory with a .gph extension.
-// This version is for the Adjancency List representation
+// This version is for the Adjancency Matrix representation
 
 #include "book.h"
 
-#include "grlist.h"
+#include "grmat.h"
 
 int minVertex(Graph*, int*);
 
 // Compute shortest path distances from "s".
 // Return these distances in "D".
-void Dijkstra(Graph* graph, int* D, int s) {
+void Dijkstra(Graph* G, int* D, int s) {
   int i, v, w;
-
-  for (i=0; i < graph->n(); i++) {      // Process the vertices
-    vertexix = minVertex(graph, D);
-
-    if (D[vertexix] == INFINITY) return; // Unreachable vertices
-
-    graph->setMark(vertexix, VISITED);
-
-    for (w = graph->first(vertexix); w < graph->n(); w = graph->next(vertexix,w))
-      if (D[w] > (D[vertexix] + graph->weight(vertexix, w)))
-        { D[w] = D[vertexix] + graph->weight(vertexix, w); }
+  for (i=0; i<G->n(); i++) {      // Process the vertices
+    v = minVertex(G, D);
+    if (D[v] == INFINITY) return; // Unreachable vertices
+    G->setMark(v, VISITED);
+    for (w=G->first(v); w<G->n(); w = G->next(v,w))
+      if (D[w] > (D[v] + G->weight(v, w)))
+        D[w] = D[v] + G->weight(v, w);
   }
 }
 
-// return the vertex with the minimum cost
-int minVertex(Graph* graph, int* D) { 
+int minVertex(Graph* G, int* D) { // Find min cost vertex
   int i, v = -1;
   // Initialize v to some unvisited vertex
-  for (i = 0; i < graph->n(); i++){
-    if (graph->getMark(i) == UNVISITED){ 
-      v = i; break; 
-    }
-  }
-
-  for (i++; i<graph->n(); i++)  // Now find smallest D value
-    if ((graph->getMark(i) == UNVISITED) && (D[i] < D[v]))
+  for (i=0; i<G->n(); i++)
+    if (G->getMark(i) == UNVISITED) { v = i; break; }
+  for (i++; i<G->n(); i++)  // Now find smallest D value
+    if ((G->getMark(i) == UNVISITED) && (D[i] < D[v]))
       v = i;
   return v;
 }
 
 // Test Dijkstra's algorithm:
-// Version for Adjancency List representation
+// Version for Adjancency Matrix representation
 int main(int argc, char** argv) {
   Graph* G;
   FILE *fid;
 
   if (argc != 2) {
-    cout << "Usage: grdijkl1 <file>\n";
+    cout << "Usage: grdijk1m <file>\n";
     exit(-1);
   }
 
@@ -65,7 +56,7 @@ int main(int argc, char** argv) {
     exit(-1);
   }
 
-  G = createGraph<Graphl>(fid);
+  G = createGraph<Graphm>(fid);
   if (G == NULL) {
     cout << "Unable to create graph\n";
     exit(-1);
@@ -77,7 +68,6 @@ int main(int argc, char** argv) {
   D[0] = 0;
 
   Dijkstra(G, D, 0);
-
   for(int k=0; k<G->n(); k++)
     cout << D[k] << " ";
   cout << endl;

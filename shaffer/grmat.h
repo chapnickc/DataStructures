@@ -59,7 +59,7 @@ public:
 
   // Return first neighbor of "v"
   int first(int v) {
-    for (int j=0; j<numVertex; i++)
+    for (int j=0; j<numVertex; j++)
       if (matrix[v][j] != 0) return j;
     return numVertex;           // Return n if none
   }

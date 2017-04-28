@@ -25,7 +25,7 @@ Some hints/comments:
 
 1.  There are implementations of both variants of Dijkstra's algorithm,
 for both adjacency list and adjacency matrix Graphs in Shaffer's code.  
-See the files _grdijkl1.cpp, grdijkl2.cpp, grdijkm1.cpp, and grdijkm2.cpp._
+See the files __grdijkl1.cpp, grdijkl2.cpp, grdijkm1.cpp, and grdijkm2.cpp.__
 These programs are designed to read the custom ".gph" file format;
 you'll instead want to read some real world graphs using the import
 methods you wrote for last week's lab.

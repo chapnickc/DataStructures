@@ -39,21 +39,22 @@ Graph* createGraph(FILE* fid) {
   int i;
   int v1, v2, dist;
 
-  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get number of vertices
-{ cout << "Unable to read number of vertices\n";
+  if (getl(buffer, LINELEN, fid) == NULL){ // Unable to get number of vertices
+    cout << "Unable to read number of vertices\n";
     return NULL;
-}
+  }
 
   Graph* G = new GType(atoi(buffer));
 
-  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get graph type
-{ cout << "Unable to read graph type\n";
+  if (getl(buffer, LINELEN, fid) == NULL){ // Unable to get graph type
+    cout << "Unable to read graph type\n";
     return NULL ;
-}
+  }
+
   if (buffer[0] == 'U')
-    undirected = true;
+    { undirected = true; }
   else if (buffer[0] == 'D')
-    undirected = false;
+    { undirected = false; }
   else {
     cout << "Bad graph type: |" << buffer << "|\n";
     return NULL;
@@ -71,10 +72,13 @@ Graph* createGraph(FILE* fid) {
       while (buffer[i] == ' ') i++;
       dist = atoi(&buffer[i]);
     }
+
     else dist = 1;
+
     G->setEdge(v1, v2, dist);
-    if (undirected) // Put in edge in other direction
-      G->setEdge(v2, v1, dist);
+    // Put in edge in other direction
+    if (undirected){ G->setEdge(v2, v1, dist); }
   }
+
   return G;
 }

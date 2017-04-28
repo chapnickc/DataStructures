@@ -19,59 +19,27 @@ class Road(Graph):
 
     def _link_nodes(self):
         coords = self._json['geometry']['coordinates']
-        unique_coords = set()
         for i in range(len(coords)):
-            v = coords[i] # (lat, lon)
-            node_ix = None
-            try:
-                node_ix = list(unique_coords).index(v)
-                print(f'Updating node: {i}')
-                node = nodes[node_ix]
-            except ValueError as e:
-                print('Creating new node')
-                unique_coords.add(tuple(v))
-                node = Node(self._osmid + i * 0.1, v)
-
+            node_id = self._osmid + i*0.1
+            v = coords[i]
+            node = Node(node_id,  v)
             if (i - 1) >= 0:
                 w = coords[i-1]
-                d = self._euclid_dist(v, w)
-                edge = Edge(node.osmid, self._osmid + 0.1*(i-1), d, self.oneway)
-                self.add_edges(edge)
-
+                dest = self._osmid + (i - 1) * 0.1
+                self._add_edge(node, node_id, dest, v, w)
             if (i + 1) < len(coords):
                 w = coords[i+1]
-                d = self._euclid_dist(v, w)
-                edge = Edge(node.osmid, self._osmid + (i+1) * 0.1, d, self.oneway)
-                self.add_edges(edge)
+                dest = self._osmid + (i + 1) * 0.1
+                self._add_edge(node, node_id, dest, v, w)
+            self.add_nodes(node)
 
-            if node_ix:
-                self._nodes[node_ix] = node
-            else:
-                self.add_nodes(node)
-
-
-    def _road_graph(self, coordinates:list):
-        nodes = []
-        coordinates = self._json['geometry']['coordinates']
-        osmid=self._osmid
-        for i in range(len(coordinates)):
-            edges = []
-            vlat, vlon = coordinates[i]
-            if (i-1) >= 0:
-                wlat, wlon = coordinates[i-1]
-                dist = sqrt( (wlat - vlat)**2 + (wlat-vlon)**2 )
-                edge = Edge(i, i-1, dist, self.oneway)
-                edges.append(edge)
-            if (i+1) < len(coordinates):
-                wlat, wlon = coordinates[i+1]
-                dist = sqrt( (wlat - vlat)**2 + (wlat-vlon)**2 )
-                edge = Edge(i, i+1, dist, self.oneway)
-                edges.append(edge)
-            node = Node(osmid+i*0.1, vlat, vlon, edges)
-            nodes.append(node)
-
-        graph = Graph(nodes)
-        return graph
+    def _add_edge(self, node, src, dest, v, w):
+        dist = self._euclid_dist(v, w)
+        if not node.find_edge(dest, node.osmid):
+            edge = Edge(src, dest, dist, self.oneway)
+            node.add_edges(edge)
+            return True
+        return False
 
 
     @property
@@ -93,6 +61,9 @@ class Road(Graph):
     def __repr__(self):
         return f'OSMID: {self._osmid}\tNodes: {self._length}'
 
+    def __iter__(self):
+        for node in self._nodes:
+            yield node
 
 if __name__ == '__main__':
 

@@ -10,7 +10,7 @@ class ParPtrTree {
   private:
     int* array;                    // Node array
     int size;                      // Size of node array
-    int FIND(int) const;           // Find root
+    int FIND(int curr) const;           // Find root
   public:
     ParPtrTree(int);                   // Constructor
     ~ParPtrTree() { delete [] array; } // Destructor
@@ -43,7 +43,7 @@ void ParPtrTree::UNION(int a, int b) { // Merge subtrees
 // This is  a subtle bug
 // The treason this complies is the pointer to the first element is the same
 //int ParPtrTree::FIND(int curr) const {
-int ParPtrTree::FIND(int curr) {
+int ParPtrTree::FIND(int curr) const {
   if (array[curr] == ROOT) return curr; // At root
   //array[curr] = FIND(array[curr]);
   array[curr] = FIND(array[curr]);
