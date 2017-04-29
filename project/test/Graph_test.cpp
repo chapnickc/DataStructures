@@ -10,7 +10,7 @@ using namespace std::chrono;      // nanoseconds, system_clock, seconds
 
 Graph* _basic_graph(int nvert, int repeat){
   Graph* graph = new Graphl(nvert);
-  for (int i = 0; i < nvert;i++){
+  for (int i = 0; i < nvert; i++){
     graph->setEdge(i, (i + 1) % nvert, 1);
     if (i % 2 == 0)
       { graph->setEdge(i,  1, 1); }
@@ -46,10 +46,13 @@ int main(){
   graphs[3]->print_matrix();
 
   ifstream infile("./testgraph.json");
-  Graph* g = import_json(infile);
+  Graph g;
+  json j; infile >> j; j >> g;
+
+  //Graph* g = import_json(infile);
 
   std::cout << "\nImported Matrix:\n";
-  g->print_matrix();
+  g.print_matrix();
   return 0;
 
 }

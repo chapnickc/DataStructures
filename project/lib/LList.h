@@ -11,11 +11,25 @@
 #ifndef LLIST_H
 #define LLIST_H
 
-#include "book.h"
-#include "link.h"
-#include "list.h"
-//#include <iostream>
-//using namespace std;
+//#include "book.h"
+#include "Link.h"
+#include "List.h"
+#include <string>
+#include <iostream>
+
+using namespace std;
+const int defaultSize = 10; // Default size
+
+// Assert: If "val" is false, print a message and terminate
+// the program
+void Assert(bool val, string s) {
+  if (!val) { // Assertion failed -- close the program
+    cout << "Assertion Failed: " << s << endl;
+    exit(-1);
+  }
+}
+
+
 
 template <typename E> class LList: public List<E> {
 private:

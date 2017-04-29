@@ -8,8 +8,8 @@ using namespace std;
 int getIndex(char c) {
   int ans=(int) (c-'A');
   if (ans >= 32) ans -= 32;
-  if (ans < 0 || ans >= ALPHABET_SIZE-1)
-    ans=ALPHABET_SIZE-2;
+  if (ans < 0 || ans >= ALPHABET_SIZE - 1)
+    ans = ALPHABET_SIZE - 2;
   return ans;
 }
 
@@ -54,7 +54,7 @@ int TrieNode::totalSize() const {
 // if the len of the string is equal to the result
 // of this method, then this string is a prefix in the language
 int TrieNode::longestPrefix(const char* s) const {
-  if (strlen(s)==0) {
+  if (strlen(s) == 0) {
     return 0;
   }
   else {
@@ -63,7 +63,7 @@ int TrieNode::longestPrefix(const char* s) const {
       return 0;
     }
     else {
-      return 1 + fol[index]->longestPrefix(s+1);
+      return 1 + fol[index]->longestPrefix(s + 1);
     }
   }
 }

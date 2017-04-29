@@ -9,6 +9,9 @@ using namespace std;
 bool findSubstring(const char* big, const char* small) {
   Trie t;
   int biglen = strlen(big);
+  // in practice this is not what you would do 
+  // since we have Theta(M + N)
+  // might pass the prebuilt suffix tree/trie  as an arg
   for (int i=0; i < biglen; i++) {
     t.insert(big+i,i);
   }

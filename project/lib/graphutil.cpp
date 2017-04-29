@@ -51,10 +51,8 @@ Graph* createGraph(FILE* fid) {
     return NULL ;
   }
 
-  if (buffer[0] == 'U')
-    { undirected = true; }
-  else if (buffer[0] == 'D')
-    { undirected = false; }
+  if (buffer[0] == 'U'){ undirected = true; }
+  else if (buffer[0] == 'D'){ undirected = false; }
   else {
     cout << "Bad graph type: |" << buffer << "|\n";
     return NULL;

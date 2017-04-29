@@ -10,17 +10,20 @@
 #include <typeinfo>
 #include <vector>
 
-
 using json = nlohmann::json;
 using namespace std;
 
-// Graph Abstract Class / ADT
-// assumes that the number of vertices is fixed when the graph is created.
+// Graph Abstract Class (ADT)
+//  Note: assumes that the number of vertices is fixed when the graph is created.
 class Graph {
 
 private:
-  Graph(const Graph&) {}            // Protect copy constructor
-  void operator =(const Graph&) {}  // Protect assignment
+
+  Graph(const Graph&){}            // Protect copy constructor
+  void operator =(const Graph&){}  // Protect assignment
+
+  // Initialize a graph of n vertices
+  virtual void _init(int n) = 0;
 
   void _json_nodes(json& j, Graph* g){
     json node;
@@ -42,7 +45,7 @@ private:
     int i=0; 
     json edge;
     for (int m = 0; m < g->n(); m++) { 
-      for (int n = 0; n < g->n(); n++){ 
+      for (int n = 0; n < g->n(); n++){
         if ( g->isEdge(m,n) ){
           edge = {
             { "source", m },
@@ -74,33 +77,48 @@ private:
   }
 
 
-public:
-  Graph(){}
-  Graph(int n){}
-  ~Graph(){}
+  template <typename GraphT> 
+  Graph* _import_json(json& j){
+    int graph_size = j["graph"]["size"];
+    Graph* graph = new GraphT(graph_size);
+    for (auto& edge : j["edges"]) 
+      if ( not graph->isEdge(edge["source"], edge["target"]) )
+        graph->setEdge(edge["source"], edge["target"], edge["weight"]);
+    return graph;
+  }
 
-  // Initialize a graph of n vertices
-  virtual void Init(int n) =0;
+public:
+
+  Graph(json& j){ 
+    Graph* G = _import_json(j);
+    _init(G->n()):
+    for (int i = 0; i < n(); i++) {
+      for (int j = 0; j < n(); j++){ 
+        if ( not graph->isEdge(edge["source"], edge["target"]) ){
+          graph->setEdge(edge["source"], edge["target"], edge["weight"]);
+        }
+      }
+    }
+
+
+  }
+  Graph(int n){}
+
+  ~Graph(){}
 
   // Return: the number of vertices and edges
   // (should make these const)
-  virtual int n() =0;
-  virtual int e() =0;
+  virtual int n() = 0;
+  virtual int e() = 0;
 
-  // Return v's first neighbor
+  // return v's first neighbor
   virtual int first(int v) =0;
 
- // Return v's next neighbor
- // returns next vertex of v after w
+ // returns next neighboring vertex of v after w 
   virtual int next(int v, int w) =0;
 
-  // Set the weight for an edge
-  // i, j: The vertices
-  // wgt: Edge weight
+  // v1, v2: the edge indicies, wgt: Edge weight
   virtual void setEdge(int v1, int v2, int wght) =0;
-
-  // Delete an edge
-  // i, j: The vertices
   virtual void delEdge(int v1, int v2) =0;
 
   // Determine if an edge is in the graph
@@ -109,14 +127,15 @@ public:
   // ....could devirtualize
   virtual bool isEdge(int i, int j) =0;
 
-  // Return: The weight of edge i,j, or zero
   // i, j: The vertices
+  // Return: The weight of edge i,j, or zero
   virtual int weight(int v1, int v2) =0;
 
-  // Get and Set the mark value for a vertex
-  // v: The vertex,  val: The value to set
+  // v: The vertex index
+  // val: The value to set
   virtual int getMark(int v) =0;
   virtual void setMark(int v, int val) =0;
+
 
   void print_matrix(){
     cout << "|V|: " << n() << "\t";
@@ -129,6 +148,8 @@ public:
     }
   }
 
+  //virtual void import_json(istream& instream) =0;
+
   void export_json(ostream& output) {
     json j;
     _json_graph(j, this);
@@ -137,7 +158,5 @@ public:
 
 };
 
-
-Graph* import_json(istream& instream);
 
 #endif

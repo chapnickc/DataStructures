@@ -1,5 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
+
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
@@ -65,7 +66,7 @@ template <typename E> class List { // List ADT
     // Remove and return the current element.
     virtual E remove() = 0;     
 
-  // Clear contents from the list, to make it empty.
+    // Clear contents from the list, to make it empty.
     virtual void clear() = 0;
   
     // Append an element at the end of the list.
@@ -74,7 +75,7 @@ template <typename E> class List { // List ADT
       insert(item);
     }
 
-        // pos: the position to go to in the list
+    // pos: the position to go to in the list
     void moveToPos(int pos){
       moveToStart();
       for(int i = 0; i < pos; i++){
@@ -93,20 +94,5 @@ template <typename E> class List { // List ADT
       return false;
     }
 };
-
-
-/*void next() {
-// probably not a good idea
-// to virtualize currPos() and moveToPos()
-if (curr < length()){
-moveToPos(currPos() + 1);
-}
-else {
-return;
-}
-};
-*/
-
-
 
 #endif
