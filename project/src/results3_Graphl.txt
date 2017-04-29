@@ -1,0 +1,20 @@
+
+Building graph 0                Elapsed Time: 0.000118
+Building graph 1                Elapsed Time: 8e-06
+Building graph 2                Elapsed Time: 4.9e-05
+Building graph 3                Elapsed Time: 0.000382
+Building graph 4                Elapsed Time: 0.004333
+Building graph 5                Elapsed Time: 0.054354
+Building graph 6                Elapsed Time: 0.619635
+Building graph 7                Elapsed Time: 8.98708
+Building graph 8                Elapsed Time: 134.44
+
+|V|: 2                  |E|: 2          Elapsed Time: 5e-06
+|V|: 4                  |E|: 12         Elapsed Time: 7e-06
+|V|: 8                  |E|: 56         Elapsed Time: 3.5e-05
+|V|: 16                 |E|: 240        Elapsed Time: 0.000292
+|V|: 32                 |E|: 992        Elapsed Time: 0.003159
+|V|: 64                 |E|: 4032       Elapsed Time: 0.030065
+|V|: 128                |E|: 16256      Elapsed Time: 0.421964
+|V|: 256                |E|: 65280      Elapsed Time: 5.99937
+|V|: 512                |E|: 261632     Elapsed Time: 89.988

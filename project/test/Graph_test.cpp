@@ -29,12 +29,25 @@ Graph* _basic_graph(int nvert){
   return graph;
 }
 
+Graph* _handshake_graph(int nvert){
+  Graph* graph = new Graphl(nvert);
+  for (int i=0; i < nvert; i++){
+    for (int j=0; j < nvert; i++){
+      if (not graph->isEdge(i, j)){
+        graph->setEdge(i, j, 1);
+      }
+  }
+  return graph;
+}
+
+
+
 
 int main(){
 
   Graph* graphs[4];
-  for (int i=0; i<4; i++){
-    graphs[i] = _basic_graph(10^(i+1));
+  for (int i=0; i<5; i++){
+    graphs[i] = _handshake_graph(10^(i+1));
     sleep_until(system_clock::now() + seconds(1));
   }
 

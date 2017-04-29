@@ -76,32 +76,9 @@ private:
     _json_edges(j, g);
   }
 
-
-  template <typename GraphT> 
-  Graph* _import_json(json& j){
-    int graph_size = j["graph"]["size"];
-    Graph* graph = new GraphT(graph_size);
-    for (auto& edge : j["edges"]) 
-      if ( not graph->isEdge(edge["source"], edge["target"]) )
-        graph->setEdge(edge["source"], edge["target"], edge["weight"]);
-    return graph;
-  }
-
 public:
 
-  Graph(json& j){ 
-    Graph* G = _import_json(j);
-    _init(G->n()):
-    for (int i = 0; i < n(); i++) {
-      for (int j = 0; j < n(); j++){ 
-        if ( not graph->isEdge(edge["source"], edge["target"]) ){
-          graph->setEdge(edge["source"], edge["target"], edge["weight"]);
-        }
-      }
-    }
-
-
-  }
+  Graph(){}
   Graph(int n){}
 
   ~Graph(){}
@@ -143,7 +120,7 @@ public:
     cout << "Adjacency Matrix is:\n";
     for (int i = 0; i < n(); i++) {
       for (int j = 0; j < n(); j++){ 
-        cout << weight(i, j) << " "; 
+        cout << isEdge(i, j) << " "; 
       } cout << "\n";
     }
   }
@@ -157,6 +134,24 @@ public:
   }
 
 };
+
+template <typename GraphT>
+GraphT* import_graph(string filename){ 
+  ifstream infile(filename);
+  json j; 
+  infile >> j; 
+
+  int graph_size = j["graph"]["size"];
+  GraphT* graph = new GraphT(graph_size);
+
+  for (auto& edge : j["edges"]) {
+    if ( not graph->isEdge(edge["source"], edge["target"]) ){
+      graph->setEdge(edge["source"], edge["target"], edge["weight"]);
+    }
+  }
+
+  return graph;
+}
 
 
 #endif

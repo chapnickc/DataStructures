@@ -2,7 +2,7 @@
 %{{{ Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[scale=0.85]{geometry}
+\usepackage[scale=0.84]{geometry}
 \usepackage[fleqn]{amsmath} 
 \usepackage{amsthm,amssymb}
 \usepackage{graphicx}
@@ -12,7 +12,9 @@
 \usepackage{url}
 \usepackage{caption}
 \usepackage{lipsum}
-
+\usepackage{multirow}
+\usepackage{array}
+\renewcommand{\arraystretch}{1.5}
 \def\thesectiondis{\thesection.} 
 \def\thesubsectiondis{\Alph{subsection}.} 
 %}}}
@@ -30,22 +32,73 @@
     \vspace*{\fill}
 \end{titlepage}
 %}}}
-
 \section{Introduction}
-\lipsum[1]
+
+$|V|$ will be used to denote the number of vertices in the graph, and 
+$|E|$ will be used to denote the number of edges.
+
+
+
+\section{Implementations}
+
+For the linear (naive) implmentation of \texttt{minVertex}, the average runtime is 
+$$\Theta(|V|^2)$$
+which can be though of as $\Theta(|V|)$ for |V| vertices.
+The runtime for the worst case is $\Theta(|V|^2 + |E|)$, 
+where the $|E|$ term arises from the fact that we visit each edge once.
+
+With the binary heap data structure is used in the \texttt{minVertex} function, 
+the distances are stored in a min-heap.
+The runtime is 
+$$\Theta ( (|V| + |E|) \cdot \log|E| )$$
+
+This can be broken down into two components. 
+The $|V|\log|E|$ term comes from the fact that for every vertex, 
+we must call the \texttt{minVertex} function.
+The $|E|\log|E|$ term is the cost of adding an element to the 
+heap for every edge (worst case).
+
+
+To understand the asymptotic performance of this algorithm, 
+we need to consider a few cases.
+If $|E|$ is bounded above by $|V|$, (ie. $|E| \in O(|V|)$), 
+then the linear implementation is $\Theta(|V|^2)$, 
+and the heap implementation is $O(|V| \log |V|)$.
+
+
 
 \section{Results}
-\lipsum[1]
-\subsection{Decision Tree}
-\lipsum[1]
-\subsection{Model Assessment}
-\lipsum[1]
+
+In this context, the density graph is defined as \_\_\_. 
+
+%\begin{figure*}[hb!]
+    %\caption{Nodes of Dublin}
+    %\centering
+    %\includegraphics[width=0.75\textwidth]{scatter.png}
+%\end{figure*}
+
+\lipsum[1-2]
+
+\begin{table}[!ht]
+    \caption{Runtimes}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & DENSITY & LINEAR & HEAP \\ \hline
+        \multirow{3}{*}{Adjacency List} 
+        & $|E| = |V|/2$ & 0.0 & 0.0 \\ [0.5ex]\cline{2-4}
+        & $|E| = |V|$ & 0.0 & 0.0 \\ \cline{2-4}
+        & $|E| = |V|^2$ & 0.0 & 0.0 \\ \hline
+        \multirow{3}{*}{Adjacency Matrix}
+        & $|E| = |V|/2$ & 0.0 & 0.0 \\ \cline{2-4}
+        & $|E| = |V|$ & 0.0 & 0.0 \\ \cline{2-4}
+        & $|E| = |V|^2$ & 0.0 & 0.0 \\ \hline
+    \end{tabular}
+\end{table}
 
 \section{Conclusion}
-\lipsum[1]
-
+\lipsum[1-2]
 %{{{    Bibliography
-% list all references used including books, websites, and technical papers
 \nocite{*}
 \bibliographystyle{IEEEtran}
 \bibliography{references.bib}
