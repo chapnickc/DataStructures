@@ -138,23 +138,5 @@ public:
 
 };
 
-template <typename GraphT>
-GraphT* import_graph(string filename){ 
-  ifstream infile(filename);
-  json j; 
-  infile >> j; 
-
-  int graph_size = j["graph"]["size"];
-  GraphT* graph = new GraphT(graph_size);
-
-  for (auto& edge : j["edges"]) {
-    if ( not graph->isEdge(edge["source"], edge["target"]) ){
-      graph->setEdge(edge["source"], edge["target"], edge["weight"]);
-    }
-  }
-
-  return graph;
-}
-
 
 #endif

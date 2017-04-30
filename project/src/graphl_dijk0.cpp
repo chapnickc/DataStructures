@@ -1,6 +1,6 @@
 
-#include "graph_utils.cpp" 
 #include "GraphL.h"
+#include "graph_utils.cpp" 
 
 #include <stdlib.h>  
 #include <cmath>
@@ -20,6 +20,10 @@ int main(int argc, char** argv){
   double runtime;
   clock_t start;
 
+  GraphL* graph = import_graph<GraphL>("../data/bkdijk.json");
+  dijkstra_test(graph, linear_dijkstra);
+
+
   for (int i=0; i < N; i++){ 
     start = clock(); 
     graphs[i] = complete_graph<GraphL>(pow(2, i+1));
@@ -30,6 +34,7 @@ int main(int argc, char** argv){
   }
 
   test_graph_array(graphs, linear_dijkstra);
+
 
   return 0;
 }

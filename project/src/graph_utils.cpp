@@ -1,6 +1,7 @@
 #ifndef _GRAPH_UTILS_
 #define _GRAPH_UTILS_
 
+#include "json.hpp"
 #include "Graph.h"
 #include "GraphL.h"
 #include "GraphM.h"
@@ -8,6 +9,25 @@
 
 #include <cmath>
 #include <vector>
+
+template <typename GraphT>
+GraphT* import_graph(string filename){ 
+  ifstream infile(filename);
+  json j; 
+  infile >> j; 
+
+  int graph_size = j["graph"]["size"];
+  GraphT* graph = new GraphT(graph_size);
+
+  for (auto& edge : j["edges"]) {
+    if ( not graph->isEdge(edge["source"], edge["target"]) ){
+      graph->setEdge(edge["source"], edge["target"], edge["weight"]);
+    }
+  }
+
+  return graph;
+}
+
 
 
 template <typename GraphT>
@@ -65,26 +85,30 @@ void linear_dijkstra(Graph* graph, int* D, int s) {
 
 
 template <typename GraphT, typename Dijkstra>
-void test_graph_array(std::vector<GraphT*> graphs, Dijkstra dijkstra){
-  GraphT* graph;
+void dijkstra_test(GraphT* graph, Dijkstra dijkstra){
   double runtime;
   clock_t start;
 
-  for (int n=0; n < graphs.size(); n++){
-    graph = graphs[n];
+  int D[graph->n()];
+  for (int i = 0; i < graph->n(); i++){ 
+    D[i] = INFINITY; 
+  }
+  D[0] = 0;
+  
+  start = clock();
+  dijkstra(graph, D, 0);
+  cout << "("<< graph->n() << "," << graph->e() <<")";
+  runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+  cout << "\tDijk-runtime: "<< runtime <<'\n';
+}
 
-    int D[graph->n()];
-    for (int i = 0; i < graph->n(); i++){ 
-      D[i] = INFINITY; 
-    }
-    D[0] = 0;
-    
-    start = clock();
-    dijkstra(graph, D, 0);
 
-    cout << "("<< graph->n() << "," << graph->e() <<")";
-    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
-    cout << "\tDijk-runtime: "<< runtime <<'\n';
+template <typename GraphT, typename Dijkstra>
+void test_graph_array(std::vector<GraphT*> graphs, Dijkstra dijkstra){
+  GraphT* graph;
+    for (int n=0; n < graphs.size(); n++){
+      graph = graphs[n];
+      dijkstra_test(graph, dijkstra);
   }
 }
 
