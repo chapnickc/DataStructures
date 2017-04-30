@@ -1,6 +1,9 @@
 #ifndef LINK_H
 #define LINK_H
-#define NULL 0
+
+#ifndef NULL
+  #define NULL 0
+#endif
 // From the software distribution accompanying the textbook
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.

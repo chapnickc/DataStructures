@@ -7,7 +7,9 @@
 
 // Include this file to access Graph representation implemented using an
 // Adjacency Matrix.
-
+ 
+#include "Graph.h"
+#include "utils.h"
 #include <stdio.h>
 #include <ctype.h>
 
@@ -15,10 +17,11 @@
 #define UNVISITED 0
 #define VISITED 1
 
-#include "graph.h"
+
+
 
 // Implementation for the adjacency matrix representation
-class Graphm : public Graph {
+class GraphM : public Graph {
 
   private:
     // Store number of vertices, edges
@@ -29,11 +32,11 @@ class Graphm : public Graph {
     int* mark;              
 
   public:
-    Graphm(int numVert){ 
+    GraphM(int numVert){ 
       _init(numVert); 
     }
 
-    ~Graphm() {
+    ~GraphM() {
       delete[] mark; 
       for (int i=0; i < numVertex; i++){
         delete[] matrix[i];
@@ -119,9 +122,6 @@ class Graphm : public Graph {
     //}
   //}
   /*return (Graph*) graph;*/
-}
+//}
 
-
-
-#include "graphutil.cpp"
 #endif

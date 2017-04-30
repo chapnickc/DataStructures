@@ -4,13 +4,15 @@
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
  
 // Graph representation using Adjacency List
-#ifndef GRLIST_H
-#define GRLIST_H
+#ifndef GRAPHL_H
+#define GRAPHL_H
 
+#include "utils.h"
 #include "LList.h"
 #include "Graph.h"
 #include <stdio.h>
 #include <ctype.h>
+
 
 #define UNVISITED 0
 #define VISITED 1
@@ -33,17 +35,17 @@ ostream& operator << (ostream& s, Edge e){
   return s << "(" << e.vertex() << ", " << e.weight() << ")"; 
 }
 
-class Graphl : public Graph {
+class GraphL : public Graph {
   private:
     int numVertex, numEdge;     // Number of vertices, edges
     int *mark;                  // Pointer to mark array
     List<Edge>** vertex;        // List headers, this is an array of pointers to a list
 
   public:
-    Graphl(){ };
-    Graphl(int numVert){ _init(numVert); }
+    GraphL(){ };
+    GraphL(int numVert){ _init(numVert); }
 
-    ~Graphl() {       // Destructor
+    ~GraphL() {       // Destructor
       delete [] mark; // Return dynamically allocated memory
       for (int i=0; i<numVertex; i++) delete vertex[i];
       delete [] vertex;
@@ -137,28 +139,13 @@ class Graphl : public Graph {
       else return 0; // weight 0 edge is non-edge
     }
 
-    int getMark(int v) { return mark[v]; }
-    void setMark(int v, int val) { mark[v] = val; }
+    int getMark(int v){ 
+      return mark[v]; 
+    }
 
-    void import_json(istream& instream) {
-      json j; 
-      instream >> j;
-
-      delete [] mark; // Return dynamically allocated memory
-      for (int i=0; i<numVertex; i++) delete vertex[i];
-      delete [] vertex;
-
-      int graph_size = j["graph"]["size"];
-      _init(graph_size);
-
-      for (auto& edge : j["edges"]) {
-        if ( not isEdge(edge["source"], edge["target"]) ){
-          // need better weight input... maybe store as json attribute
-          setEdge(edge["source"], edge["target"], edge["weight"]);
-        }
-      }
+    void setMark(int v, int val){ 
+      mark[v] = val; 
     }
 };
 
-#include "graphutil.cpp"
 #endif

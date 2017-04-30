@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include "json.hpp"
+#include "utils.h"
 
 #include <iostream>
 #include <iomanip>      // std::setw
@@ -12,6 +13,8 @@
 
 using json = nlohmann::json;
 using namespace std;
+
+
 
 // Graph Abstract Class (ADT)
 //  Note: assumes that the number of vertices is fixed when the graph is created.

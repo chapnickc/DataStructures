@@ -2,26 +2,32 @@ INCLUDE= -I./ \
 		 -I../lib \
 		 -I../lib/json/src 
 
-
-TARGET=graphl_dijk2.cpp 
-OBJ = graphl_dijk2.o 
+DEPS=graph_utils.o
 
 CXX= g++ 
 CXXFLAGS= -std=c++11 -Wall -Wno-unused-variable -o run
 
-all: run
+all: dijk0 dijk1 dijk2 dijk3
 
-dijk3: graphl_dijk3.o
+dijk0: graphl_dijk0.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-run: $(OBJ)
+dijk1: graphl_dijk1.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+dijk2: graphm_dijk2.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+dijk3: graphm_dijk3.o
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+run:
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c -o $@ $<
 
 
-
 clean:
-	rm *.o
+	rm ./dijk*
 
