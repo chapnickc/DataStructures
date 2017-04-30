@@ -1,14 +1,16 @@
 #ifndef _GRAPH_UTILS_
 #define _GRAPH_UTILS_
 
-#include "json.hpp"
 #include "Graph.h"
 #include "GraphL.h"
 #include "GraphM.h"
 #include "heap.h"
 
+#include "json.hpp"
 #include <cmath>
 #include <vector>
+
+using namespace std;
 
 template <typename GraphT>
 GraphT* import_graph(string filename){ 
@@ -35,13 +37,30 @@ GraphT* complete_graph(int nvert){
   GraphT* graph = new GraphT(nvert);
   for (int i=0; i < nvert; i++){
     for (int j=0; j < nvert; j++){
-      if ( (i != j) && (not graph->isEdge(i, j)) ){
+      if ( not graph->isEdge(i, j) && not graph->isEdge(j, i) ){
         graph->setEdge(i, j, rand() % 20 + 1);
       }
     }
   }
   return graph;
 }
+
+
+template <typename GraphT>
+void complete_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
+  double runtime;
+  clock_t start;
+
+  for (int i=0; i < graphs.size(); i++){ 
+    start = clock(); 
+    graphs[i] = complete_graph<GraphT>(pow(2, i+1));
+    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+    logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
+    logfile <<" complete_graph(N): "<< runtime <<'\n';
+  }
+}
+
+
 
 
 int linear_minVertex(Graph* graph, int* D){
@@ -85,7 +104,7 @@ void linear_dijkstra(Graph* graph, int* D, int s) {
 
 
 template <typename GraphT, typename Dijkstra>
-void dijkstra_test(GraphT* graph, Dijkstra dijkstra){
+void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
   double runtime;
   clock_t start;
 
@@ -97,18 +116,19 @@ void dijkstra_test(GraphT* graph, Dijkstra dijkstra){
   
   start = clock();
   dijkstra(graph, D, 0);
-  cout << "("<< graph->n() << "," << graph->e() <<")";
+  output << "("<< graph->n() << "," << graph->e() <<")";
   runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
-  cout << "\tDijk-runtime: "<< runtime <<'\n';
+  output << "\tdijkstra(N): "<< runtime <<'\n';
 }
 
 
+
 template <typename GraphT, typename Dijkstra>
-void test_graph_array(std::vector<GraphT*> graphs, Dijkstra dijkstra){
+void test_graph_vector(std::vector<GraphT*> graphs, Dijkstra dijkstra, ostream& output){
   GraphT* graph;
     for (int n=0; n < graphs.size(); n++){
       graph = graphs[n];
-      dijkstra_test(graph, dijkstra);
+      dijkstra_test(graph, dijkstra, output);
   }
 }
 
@@ -175,43 +195,5 @@ void heap_dijkstra(Graph* graph, int* D, int s) {
   }
 }
 
-
-
-
-
-
-
-/*
-int main(int argc, char** argv) {
-
-  FILE *fid;
-  Graph* graph;
-
-  if (argc != 2) { 
-    cout << "Usage: grdijkl1 <file>\n"; 
-    exit(-1); 
-  }
-
-  if ((fid = fopen(argv[1], "rt")) == NULL) { 
-    cout << "Unable to open file |" << argv[1] << "|\n";
-    exit(-1);
-  }
-
-  if (graph == NULL) { 
-    cout << "Unable to create graph\n"; 
-    exit(-1); 
-  }
-  else {
-    string fpath = argv[1];
-    string fname = fpath.substr(0, fpath.rfind("."));
-    ofstream outfile(fname + ".json");
-    graph->export_json(outfile);
-  }
-
-
-
-    return 0;
-}
-*/
 
 #endif
