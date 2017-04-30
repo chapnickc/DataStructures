@@ -7,7 +7,7 @@ DEPS=graph_utils.o
 CXX= g++ 
 CXXFLAGS= -std=c++11 -Wall -Wno-unused-variable -o run
 
-all: dijk0 dijk1 dijk2 dijk3
+all: $(DEPS) dijk0 dijk1 dijk2 dijk3
 
 dijk0: graphl_dijk0.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
@@ -27,7 +27,7 @@ run:
 %.o: %.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) $(INCLUDE) -c -o $@ $<
 
-
 clean:
+	rm *.o
 	rm ./dijk*
 

@@ -2,9 +2,8 @@
 #define _GRAPH_UTILS_
 
 #include "Graph.h"
-
-#include "GraphM.h"
 #include "GraphL.h"
+#include "GraphM.h"
 #include "heap.h"
 
 #include <cmath>

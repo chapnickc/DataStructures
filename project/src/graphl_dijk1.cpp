@@ -1,5 +1,5 @@
 #include "GraphL.h"
-#include "heap.h"
+#include "graph_utils.cpp" 
 
 #include <chrono>
 #include <cmath>
@@ -11,30 +11,25 @@
 
 using namespace std;
 
-
-
-
-
-// Test Dijkstra's algorithm:
 // Version for Adjancency List representation
 int main(){
   srand(2100);
 
-  int N = 9;
-  Graph* graphs[N];
-
   std::clock_t start;
-  double duration;
+  double runtime;
 
+  int N = 9;
+  std::vector<GraphL*> graphs(N);
+  
   for (int i=0; i < N; i++){
-    start = std::clock();
+    start = clock();
     cout << "Building graph " << i;
-    graphs[i] = handshake_graph<GraphL>(pow(2, i+1));
-    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    std::cout<<"\t\tElapsed Time: "<< duration <<'\n';
+    graphs[i] = complete_graph<GraphL>(pow(2, i+1));
+    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+    cout<<"\t\tElapsed Time: "<< runtime <<'\n';
   }
 
-  test_graph_array(graphs);
+  test_graph_array(graphs, heap_dijkstra);
 
   return 0;
 }

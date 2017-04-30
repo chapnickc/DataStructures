@@ -1,5 +1,6 @@
-#include "GraphL.h"
+
 #include "graph_utils.cpp" 
+#include "GraphL.h"
 
 #include <stdlib.h>  
 #include <cmath>
