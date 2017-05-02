@@ -3,7 +3,8 @@ import sys
 import numpy as np
 from IPython.display import display
 
-sys.argv.append('./dijk0.log')
+sys.argv.append('./dijk2.log')
+TT = 'ML'
 
 try:
     with open(sys.argv[1]) as f:
@@ -13,21 +14,21 @@ except IndexError as e:
 
 
 results = {};
-results['LL'] = {};
+results[TT] = {};
 func_names = []
 for line in lines:
         G, func_name, runtime = line.split()
         fkey = func_name.strip(':()N')
         if fkey not in func_names:
             func_names.append(fkey)
-            results['LL'][fkey] = {}
-            results['LL'][fkey]['V'] = np.array([])
-            results['LL'][fkey]['E'] = np.array([])
-            results['LL'][fkey]['T'] = np.array([])
+            results[TT][fkey] = {}
+            results[TT][fkey]['V'] = np.array([])
+            results[TT][fkey]['E'] = np.array([])
+            results[TT][fkey]['T'] = np.array([])
         v, e = [int(x) for x in G.strip('()').split(',')]
-        results['LL'][fkey]['V'] = np.append(results['LL'][fkey]['V'], v)
-        results['LL'][fkey]['E'] = np.append(results['LL'][fkey]['E'], e)
-        results['LL'][fkey]['T'] = np.append(results['LL'][fkey]['T'], float(runtime))
+        results[TT][fkey]['V'] = np.append(results[TT][fkey]['V'], v)
+        results[TT][fkey]['E'] = np.append(results[TT][fkey]['E'], e)
+        results[TT][fkey]['T'] = np.append(results[TT][fkey]['T'], float(runtime))
 
 results[TT].keys()
 

@@ -2,11 +2,11 @@
 #include "GraphL.h"
 #include "graph_utils.cpp" 
 
-#include <stdlib.h>  
-#include <stdio.h>  
 #include <cmath>
 #include <ctime>
 #include <fstream>
+#include <stdlib.h>  
+#include <stdio.h>  
 #include <vector>
 
 using namespace std;
@@ -20,10 +20,11 @@ int main(int argc, char** argv){
   clock_t start;
   ofstream logfile("dijk0.log");
 
-  int N = 9;
+  int N = 12;
   std::vector<GraphL*> graphs(N);
-  
+  cout << "Building Graphs\n";
   complete_graphs<GraphL>(graphs, logfile);
+  cout << "Testing Graphs\n";
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
   return 0;

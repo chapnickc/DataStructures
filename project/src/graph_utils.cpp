@@ -8,7 +8,10 @@
 
 #include "json.hpp"
 #include <cmath>
+#include <iostream>
+#include <fstream>
 #include <vector>
+
 
 using namespace std;
 
@@ -53,6 +56,7 @@ void complete_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
 
   for (int i=0; i < graphs.size(); i++){ 
     start = clock(); 
+    cout << "Building graph with " << pow(2,i+1) << " nodes...\n";
     graphs[i] = complete_graph<GraphT>(pow(2, i+1));
     runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
     logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
@@ -120,7 +124,6 @@ void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
   runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
   output << "\tdijkstra(N): "<< runtime <<'\n';
 }
-
 
 
 template <typename GraphT, typename Dijkstra>

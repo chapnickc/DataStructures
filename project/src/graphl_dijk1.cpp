@@ -5,6 +5,7 @@
 #include <ctime>
 #include <stdlib.h>  
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int main(){
   clock_t start;
   ofstream logfile("dijk1.log");
 
-  int N = 9;
+  int N = 12;
   std::vector<GraphL*> graphs(N);
   
   complete_graphs<GraphL>(graphs, logfile);
@@ -24,10 +25,4 @@ int main(){
 
   return 0;
 }
-
-
-
-
-
-
 
