@@ -6,6 +6,8 @@
 #include <stdlib.h>  
 #include <string>
 #include <fstream>
+#include <vector>
+
 
 using namespace std;
 
@@ -17,7 +19,7 @@ int main(){
   clock_t start;
   ofstream logfile("dijk1.log");
 
-  int N = 12;
+  int N = 6;
   std::vector<GraphL*> graphs(N);
   
   complete_graphs<GraphL>(graphs, logfile);

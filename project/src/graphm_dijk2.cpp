@@ -5,6 +5,8 @@
 #include <ctime>
 #include <stdlib.h>  
 #include <string>
+#include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -16,11 +18,10 @@ int main(){
   clock_t start;
   ofstream logfile("dijk2.log");
 
-  int N = 12;
+  int N = 6;
   std::vector<GraphM*> graphs(N);
 
   complete_graphs<GraphM>(graphs, logfile);
-
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
   return 0;

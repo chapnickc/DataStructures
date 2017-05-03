@@ -1,5 +1,6 @@
 
 #include "GraphL.h"
+#include "GraphM.h"
 #include "graph_utils.cpp" 
 
 #include <cmath>
@@ -16,20 +17,21 @@ using namespace std;
 int main(int argc, char** argv){
   srand(2100);  // for reproducibility
 
+  //GraphL* graph = import_graph<GraphL>("../data/bkdijk.json");
+  //dijkstra_test(graph, linear_dijkstra);
+
   double runtime;
   clock_t start;
   ofstream logfile("dijk0.log");
 
-  int N = 12;
+  int N = 6;
   std::vector<GraphL*> graphs(N);
-  cout << "Building Graphs\n";
+
   complete_graphs<GraphL>(graphs, logfile);
-  cout << "Testing Graphs\n";
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
   return 0;
-}
 
-//GraphL* graph = import_graph<GraphL>("../data/bkdijk.json");
-//dijkstra_test(graph, linear_dijkstra);
+
+}
 

@@ -4,9 +4,10 @@
 #include "Graph.h"
 #include "GraphL.h"
 #include "GraphM.h"
-#include "heap.h"
 
+#include "heap.h"
 #include "json.hpp"
+
 #include <cmath>
 #include <iostream>
 #include <fstream>
@@ -65,6 +66,37 @@ void complete_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
 }
 
 
+template <typename GraphT, typename Dijkstra>
+void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
+  double runtime;
+  clock_t start;
+
+  int D[graph->n()];
+  for (int i = 0; i < graph->n(); i++){ 
+    D[i] = INFINITY; 
+  }
+  D[0] = 0;
+  
+  start = clock();
+  dijkstra(graph, D, 0);
+  output << "("<< graph->n() << "," << graph->e() <<")";
+  runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+  output << "\tdijkstra(N): "<< runtime <<'\n';
+}
+
+
+template <typename GraphT, typename Dijkstra>
+void test_graph_vector(std::vector<GraphT*> graphs, Dijkstra dijkstra, ostream& output){
+  GraphT* graph;
+    for (int n=0; n < graphs.size(); n++){
+      graph = graphs[n];
+      dijkstra_test(graph, dijkstra, output);
+  }
+}
+
+
+
+
 
 
 int linear_minVertex(Graph* graph, int* D){
@@ -107,34 +139,6 @@ void linear_dijkstra(Graph* graph, int* D, int s) {
 }
 
 
-template <typename GraphT, typename Dijkstra>
-void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
-  double runtime;
-  clock_t start;
-
-  int D[graph->n()];
-  for (int i = 0; i < graph->n(); i++){ 
-    D[i] = INFINITY; 
-  }
-  D[0] = 0;
-  
-  start = clock();
-  dijkstra(graph, D, 0);
-  output << "("<< graph->n() << "," << graph->e() <<")";
-  runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
-  output << "\tdijkstra(N): "<< runtime <<'\n';
-}
-
-
-template <typename GraphT, typename Dijkstra>
-void test_graph_vector(std::vector<GraphT*> graphs, Dijkstra dijkstra, ostream& output){
-  GraphT* graph;
-    for (int n=0; n < graphs.size(); n++){
-      graph = graphs[n];
-      dijkstra_test(graph, dijkstra, output);
-  }
-}
-
 
 // Simple class to represent objects to be stored in the priority queue
 // Store a vertex and its best known distance
@@ -166,21 +170,19 @@ void heap_dijkstra(Graph* graph, int* D, int s) {
   int i, v, w;            
 
   DijkElem element;
-  DijkElem E[graph->e()];     // Heap array with lots of space
-
   element.distance = 0; 
   element.vertex = s;
 
+  DijkElem E[graph->e()];     // Heap array with lots of space
   E[0] = element;            // Initialize heap array
 
   heap<DijkElem, DDComp> H(E, 1, graph->e()); // Create heap
   for (i=0; i < graph->n(); i++) {         // Now, get distances
-    do {
-      if (H.size() == 0) return; // Nothing to remove
+    while (graph->getMark(v) == VISITED){
+      if (H.size() == 0){ return; } // Nothing to remove
       element = H.removefirst();
       v = element.vertex;
     } 
-    while (graph->getMark(v) == VISITED);
 
     graph->setMark(v, VISITED);
 

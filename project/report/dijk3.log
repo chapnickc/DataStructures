@@ -1,0 +1,14 @@
+(2,3) complete_graph(N): 1.4e-05
+(4,10) complete_graph(N): 7e-06
+(8,36) complete_graph(N): 9e-06
+(16,136) complete_graph(N): 1.9e-05
+(32,528) complete_graph(N): 4.4e-05
+(64,2080) complete_graph(N): 0.000196
+(128,8256) complete_graph(N): 0.000692
+(2,3)	dijkstra(N): 3e-06
+(4,10)	dijkstra(N): 1e-06
+(8,36)	dijkstra(N): 2e-06
+(16,136)	dijkstra(N): 1.2e-05
+(32,528)	dijkstra(N): 3.5e-05
+(64,2080)	dijkstra(N): 0.000114
+(128,8256)	dijkstra(N): 0.000361
