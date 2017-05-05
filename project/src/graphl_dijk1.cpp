@@ -19,7 +19,7 @@ int main(){
   clock_t start;
   ofstream logfile("dijk1.log");
 
-  int N = 6;
+  int N = 9;
   std::vector<GraphL*> graphs(N);
   
   complete_graphs<GraphL>(graphs, logfile);
