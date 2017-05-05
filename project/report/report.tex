@@ -2,7 +2,7 @@
 %{{{ Packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[scale=0.84]{geometry}
+\usepackage[scale=0.85]{geometry}
 \usepackage[fleqn]{amsmath} 
 \usepackage{amsthm,amssymb}
 \usepackage{graphicx}
@@ -42,18 +42,14 @@
 \end{titlepage}
 %}}}
 \section{Introduction}
+%This is a question about the global structure of the graph.
 
 Dijkstra's algorithm addresses the problem of 
-the minimum distance from a source vertex, $v$, to every 
-other vertex in the graph. 
-
-%This is a question about the global 
-%structure of the graph.
-
-Dijkstra's algorithm requires a subroutine which returns 
+the finding the minimum distance from a source vertex, $v$, 
+to every other vertex in a graph.
+This requires a subroutine which returns 
 the index of the univisted vertex which is closest to the source vertex.
 For this analysis, we will refer to this subroutine as \texttt{minVertex}.
-
 The pseudocode is outlined as follows:
 \begin{lstlisting}
 D := array of best known distances from v
@@ -68,8 +64,6 @@ while (there exist unvisited verticies):
 
 
 
-
-
 A trivial implementation of \texttt{minVertex} can be achieved by linearly 
 searching through the array of best known distances, and returning the 
 index of the unvisited vertex with the smallest value. 
@@ -78,22 +72,15 @@ The time complexity of this implementation is described by:
 $$\Theta(|V|^2 + |E|)$$
 
 where the $|E|$ term arises from the fact that we visit each edge once.
-
-\subsection{Comparison}
-%In this context, the density graph is defined as \_\_\_. 
-
-From this we can see that if $|E| \in |V|$, 
+From this we can see that if $|E| \in O(|V|))$, 
 then the upper bound for the run time is $O(|V|^2)$.
 
+The use of a binary min-heap in \texttt{minVertex} yields a 
+lower time complexity on average relative to the linear implementation.
+In this case, the time complexity can be described as:
 
-The use of a binary-heap in \texttt{minVertex} yields a 
-lower time complexity on average relative to the linear implementation
+$$\Theta ( (|V| + |E|) \log|E| )$$
 
-
-%For intuition, this can be which can be though of 
-%as $\Theta(|V|)$ for |V| vertices.
-
-%the distances are stored in a -heap.
 
 This can be broken down into two components. 
 The $|V|\log|E|$ term comes from the fact that for every vertex, 
@@ -101,77 +88,90 @@ we must call the \texttt{minVertex} function.
 The $|E|\log|E|$ term is the cost of adding an element to the 
 heap for every edge (worst case).
 
-The total runtime is 
-$$\Theta ( (|V| + |E|) \cdot \log|E| )$$
-
 
 To understand the asymptotic performance of this algorithm, 
 we need to consider a few cases.
 If $|E|$ is bounded above by $|V|$, (ie. $|E| \in O(|V|)$), 
-then the linear implementation is $\Theta(|V|^2)$, 
-and the heap implementation is $O(|V| \log |V|)$.
+then the graph is considered to be sparse. In this case,
+the time complexity of the linear implementation reduces to 
+$\Theta(|V|^2)$, and that for the heap implementation becomes $O(|V| \log |V|)$.
+Next, if $|E|$ is bounded above by $|V|^2$, the the graph is considered to be dense.
+Here, the time complexities for the linear and heap implementations of \texttt{minVertex}
+become $\Theta(|V|^2)$ and $\Theta(|V|^2 \log|V|)$, respectively.
 
 
+%In this context, the density graph is defined as \_\_\_. 
+%the distances are stored in a -heap.
+
+\newpage
 
 \section{Results}
+In this experiment we compare the effects on performance for
+three variables: 
+\begin{itemize}
+    \item Adjacency list and adjacency matrix graph representations
 
-An analysis of each implmentation was tested for 
-three cases, namely: 
+    \item The two implementations of Dijkstra's  algorithm 
 
-%$$
-%\begin{cases}
-    %|E| = |V| - 1\\
-    %|E| = |V|  \\
-    %|E| = |V|(|V| - 1)/2
-%\end{cases}
-%$$
+    \item Graph density
+\end{itemize}
 
 
+The runtimes for each case are shown graphically in figure \ref{fig:runtimePlots}.
+These plots show how the performance changes as a function of the number of inputs 
+for graphs of varying density. 
+Figure 1-a shows the algorithm performance for complete graphs 
+of varying size.
+Figure 1-b shows the performance for more dense graphs which are 
+complete binary trees of varying depth. Lastly, figure 1-c 
+shows the results for a sparse, "linear" graph, in which 
+each vertex is adjacent to its immediate neighbor.
 
 
-\begin{figure}[ht!]
+
+\begin{figure*}[ht!]
     \centering
     \caption{\label{fig:runtimePlots} Runtime for Dijkstra's Algorithm}
     \subfloat[]{\includegraphics[width=\columnwidth]{./figure0.png}}
-
     \subfloat[]{\includegraphics[width=\columnwidth]{./figure1.png}}
 
     \subfloat[]{\includegraphics[width=\columnwidth]{./figure2.png}}
-\end{figure}
+\end{figure*}
 
 
-\begin{table}[!ht]
-    \caption{Runtimes}
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-        \hline
-        & DENSITY & LINEAR & HEAP \\ \hline
-        \multirow{3}{*}{Adjacency List} 
-        & Linear Graph & 0.0 & 0.0 \\ [0.5ex]\cline{2-4}
-        & Complete Binary Tree & 0.0 & 0.0 \\ \cline{2-4}
-        & Complete Graph & 0.0 & 0.0 \\ \hline
-        \multirow{3}{*}{Adjacency Matrix}
-        & & 0.0 & 0.0 \\ \cline{2-4}
-        & & 0.0 & 0.0 \\ \cline{2-4}
-        & & 0.0 & 0.0 \\ \hline
-    \end{tabular}
-\end{table}
-
-
-%\begin{figure*}[hb!]
-    %\caption{Nodes of Dublin}
+%\begin{table}[!ht]
+    %\caption{Runtimes}
     %\centering
-    %\includegraphics[width=0.75\textwidth]{scatter.png}
-%\end{figure*}
-
-
-
+    %\begin{tabular}{|c|c|c|c|}
+        %\hline
+        %& DENSITY & LINEAR & HEAP \\ \hline
+        %\multirow{3}{*}{Adjacency List} 
+        %& Linear Graph & 0.0 & 0.0 \\ [0.5ex]\cline{2-4}
+        %& Complete Binary Tree & 0.0 & 0.0 \\ \cline{2-4}
+        %& Complete Graph & 0.0 & 0.0 \\ \hline
+        %\multirow{3}{*}{Adjacency Matrix}
+        %& & 0.0 & 0.0 \\ \cline{2-4}
+        %& & 0.0 & 0.0 \\ \cline{2-4}
+        %& & 0.0 & 0.0 \\ \hline
+    %\end{tabular}
+%\end{table}
 
 
 \section{Conclusion}
-If  E is sufficiently smaller compared to V (as in E << V² / logV), then using heap becomes more efficient.
+Overall, our experimental results are consistent with our expectations.
+For a complete graph of $N$ verticies, it seems regarding performance, 
+the choice of graph representation takes precedent over the \texttt{minVertex} implementation.
+For a complete binary tree, it seems that the heap implementation of 
+\texttt{minVertex} yields higher performance, independent of 
+the graph representation.
+For a sparse graph, we see that the use of a heap in the 
+\texttt{minVertex} function yields significantly higher peformance over 
+the linear implementation. 
 
-\lipsum[1-2]
+Thus, we can concluded that if $|E|$ is sufficiently smaller compared to 
+$|V|$, then using a heap in \texttt{minVertex} becomes more efficient. 
+Likewise, for very dense graphs, the use of linear \texttt{minVertex} 
+yields significant improvements.
 
 %{{{    Bibliography
 \nocite{*}
@@ -179,3 +179,4 @@ If  E is sufficiently smaller compared to V (as in E << V² / logV), then using 
 \bibliography{references.bib}
 %}}}
 \end{document}
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  4 MAY 2017 23:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  5 MAY 2017 08:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -698,7 +698,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 31.
 
--- Lines per column: 55 (approximate, difference = 7.77187pt).
+-- Lines per column: 56 (approximate, difference = 3.72934pt).
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -707,15 +707,15 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(49.14473pt, 516.00554pt, 49.14473pt)
-* v-part:(T,H,B)=(50.87924pt, 667.77187pt, 76.31888pt)
+* h-part:(L,W,R)=(46.07025pt, 522.1545pt, 46.07025pt)
+* v-part:(T,H,B)=(47.69626pt, 675.72934pt, 71.54439pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=516.00554pt
-* \textheight=667.77187pt
-* \oddsidemargin=-23.12526pt
-* \evensidemargin=-23.12526pt
-* \topmargin=-54.73274pt
+* \textwidth=522.1545pt
+* \textheight=675.72934pt
+* \oddsidemargin=-26.19974pt
+* \evensidemargin=-26.19974pt
+* \topmargin=-57.91573pt
 * \headheight=12.0pt
 * \headsep=21.342pt
 * \topskip=12.0pt
@@ -788,65 +788,53 @@ Package caption Info: End \AtBeginDocument code.
 
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 47.
+LaTeX Font Info:    Try loading font information for U+msa on input line 48.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 47.
+LaTeX Font Info:    Try loading font information for U+msb on input line 48.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 55.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 52.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) <./figure0.png, id=10, 650.43pt x 433.62pt>
+)
+Underfull \hbox (badness 1484) in paragraph at lines 85--90
+[]\T1/ptm/m/n/10 This can be bro-ken down into two com-po-nents. The
+ []
+
+<./figure0.png, id=10, 650.43pt x 433.62pt>
 File: ./figure0.png Graphic file (type png)
  <use ./figure0.png>
 Package pdftex.def Info: ./figure0.png used on input line 135.
-(pdftex.def)             Requested size: 252.00276pt x 167.99954pt.
+(pdftex.def)             Requested size: 255.07724pt x 170.05066pt.
  <./figure1.png, id=12, 650.43pt x 433.62pt>
 File: ./figure1.png Graphic file (type png)
  <use ./figure1.png>
-Package pdftex.def Info: ./figure1.png used on input line 137.
-(pdftex.def)             Requested size: 252.00276pt x 167.99954pt.
+Package pdftex.def Info: ./figure1.png used on input line 136.
+(pdftex.def)             Requested size: 255.07724pt x 170.05066pt.
  <./figure2.png, id=13, 650.43pt x 433.62pt>
 File: ./figure2.png Graphic file (type png)
  <use ./figure2.png>
-Package pdftex.def Info: ./figure2.png used on input line 139.
-(pdftex.def)             Requested size: 252.00276pt x 167.99954pt.
+Package pdftex.def Info: ./figure2.png used on input line 138.
+(pdftex.def)             Requested size: 255.07724pt x 170.05066pt.
+ (./build/report.bbl) [1
 
-
-./report.tex:172: Package inputenc Error: Unicode char ² (U+B2)
-(inputenc)                not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.172 ...tly smaller compared to V (as in E << V²
-                                                   / logV), then using heap ...
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[1
-
- <./figure0.png> <./figure1.png> <./figure2.png>] (./build/report.bbl) [2
-
-] (./build/report.aux) ) 
+] [2 <./figure0.png> <./figure1.png> <./figure2.png>] (./build/report.aux) ) 
 Here is how much of TeX's memory you used:
- 7876 strings out of 493014
- 114042 string characters out of 6133351
- 316414 words of memory out of 5000000
- 11266 multiletter control sequences out of 15000+600000
- 110854 words of font info for 127 fonts, out of 8000000 for 9000
+ 7853 strings out of 493014
+ 113820 string characters out of 6133351
+ 311413 words of memory out of 5000000
+ 11251 multiletter control sequences out of 15000+600000
+ 106618 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,11n,58p,236b,1100s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on ./build/report.pdf (3 pages, 426575 bytes).
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on ./build/report.pdf (3 pages, 431559 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 44 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
