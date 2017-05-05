@@ -34,6 +34,12 @@ private:
 
 public:
   heap(E* h, int num, int max){ Heap = h;  n = num;  maxsize = max;  buildHeap(); }
+  ~heap(){
+    while (n != 0){
+      removefirst();
+    }
+  }
+  
   int size() const { return n; }
   bool isLeaf(int pos) const { return (pos >= n/2) && (pos < n); } 
   int leftchild(int pos) const { return 2*pos + 1; }

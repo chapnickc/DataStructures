@@ -11,7 +11,7 @@
 
 using namespace std;
 
-// Version for Adjancency List representation
+// Adjancency List and Heap minVertex
 int main(){
   srand(2100);
 
@@ -24,6 +24,13 @@ int main(){
   
   complete_graphs<GraphL>(graphs, logfile);
   test_graph_vector(graphs, heap_dijkstra, logfile);
+
+  complete_bintrees<GraphL>(graphs, logfile);
+  test_graph_vector(graphs, heap_dijkstra, logfile);
+
+  linear_graphs<GraphL>(graphs, logfile);
+  test_graph_vector(graphs, heap_dijkstra, logfile);
+
 
   return 0;
 }

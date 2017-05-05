@@ -36,6 +36,38 @@ GraphT* import_graph(string filename){
 
 
 
+
+template <typename GraphT>
+GraphT* linear_graph(int nvert){
+  GraphT* graph = new GraphT(nvert);
+  for (int i=0; i < nvert-1; i++){
+    if ( not graph->isEdge(i, i+1) ){
+      graph->setEdge(i, i+1, rand() % 20 + 1);
+    }
+  }
+  return graph;
+}
+
+
+template <typename GraphT>
+void linear_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
+  double runtime;
+  clock_t start;
+
+  for (int i=0; i < graphs.size(); i++){ 
+    start = clock(); 
+    cout << "Building graph with " << pow(2,i+1) << " nodes...\n";
+    graphs[i] = linear_graph<GraphT>(pow(2, i+1));
+    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+    logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
+    logfile <<" complete_graph(N): "<< runtime <<'\n';
+  }
+}
+
+
+
+
+
 template <typename GraphT>
 GraphT* complete_graph(int nvert){
   GraphT* graph = new GraphT(nvert);
@@ -65,36 +97,6 @@ void complete_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
   }
 }
 
-
-
-
-
-template <typename GraphT>
-GraphT* linear_graph(int nvert){
-  GraphT* graph = new GraphT(nvert);
-  for (int i=0; i < nvert-1; i++){
-    if ( not graph->isEdge(i, i+1) ){
-      graph->setEdge(i, i+1, rand() % 20 + 1);
-    }
-  }
-  return graph;
-}
-
-
-template <typename GraphT>
-void linear_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
-  double runtime;
-  clock_t start;
-
-  for (int i=0; i < graphs.size(); i++){ 
-    start = clock(); 
-    cout << "Building graph with " << pow(2,i+1) << " nodes...\n";
-    graphs[i] = linear_graph<GraphT>(pow(2, i+1));
-    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
-    logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
-    logfile <<" complete_graph(N): "<< runtime <<'\n';
-  }
-}
 
 
 
@@ -156,16 +158,13 @@ void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
 
 
 template <typename GraphT, typename Dijkstra>
-void test_graph_vector(std::vector<GraphT*> graphs, Dijkstra dijkstra, ostream& output){
+void test_graph_vector(std::vector<GraphT*> graphs, Dijkstra dijkstra, ostream& logfile){
   GraphT* graph;
     for (int n=0; n < graphs.size(); n++){
       graph = graphs[n];
-      dijkstra_test(graph, dijkstra, output);
+      dijkstra_test(graph, dijkstra, logfile);
   }
 }
-
-
-
 
 
 
@@ -247,6 +246,7 @@ void heap_dijkstra(Graph* graph, int* D, int s) {
   E[0] = element;            // Initialize heap array
 
   heap<DijkElem, DDComp> H(E, 1, graph->e()); // Create heap
+
   for (i=0; i < graph->n(); i++) {         // Now, get distances
     while (graph->getMark(v) == VISITED){
       if (H.size() == 0){ return; } // Nothing to remove
@@ -268,6 +268,7 @@ void heap_dijkstra(Graph* graph, int* D, int s) {
         H.insert(element);   // Insert new distance in heap
       }
   }
+
 }
 
 

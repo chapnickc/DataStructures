@@ -24,6 +24,13 @@ int main(){
   complete_graphs<GraphM>(graphs, logfile);
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
+  complete_bintrees<GraphM>(graphs, logfile);
+  test_graph_vector(graphs, linear_dijkstra, logfile);
+
+  linear_graphs<GraphM>(graphs, logfile);
+  test_graph_vector(graphs, linear_dijkstra, logfile);
+
+
   return 0;
 }
 

@@ -30,15 +30,15 @@ int main(int argc, char** argv){
   complete_graphs<GraphL>(graphs, logfile);
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
+  complete_bintrees<GraphL>(graphs, logfile);
+  test_graph_vector(graphs, linear_dijkstra, logfile);
+
   linear_graphs<GraphL>(graphs, logfile);
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
-  GraphL* graph = complete_bintree<GraphL>(11);
-  //graph->print_matrix();
 
 
   return 0;
-
 
 }
 

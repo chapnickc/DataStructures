@@ -22,7 +22,14 @@ int main(){
   int N = 6;
   std::vector<GraphM*> graphs(N);
   
+
   complete_graphs<GraphM>(graphs, logfile);
+  test_graph_vector(graphs, heap_dijkstra, logfile);
+
+  complete_bintrees<GraphM>(graphs, logfile);
+  test_graph_vector(graphs, heap_dijkstra, logfile);
+
+  linear_graphs<GraphM>(graphs, logfile);
   test_graph_vector(graphs, heap_dijkstra, logfile);
 
   return 0;
