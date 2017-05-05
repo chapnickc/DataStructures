@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex build/report"] 1493657332 "build/report.aux" "build/report.bbl" "build/report" 1493657513
+["bibtex build/report"] 1493954156 "build/report.aux" "build/report.bbl" "build/report" 1493954460
   "/usr/local/texlive/2016/texmf-dist/bibtex/bst/IEEEtran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "build/report.aux" 1493657513 671 294709d7b67d35d244319aebb0ef4a64 ""
+  "build/report.aux" 1493954419 1137 d1bf0f0d3ee0c154b6d3d44693e34cc8 ""
   "build/report.bcf" 0 -1 0 ""
   "references.bib" 1493480201 169 29e62294b36a18fca56ee5997106a91f ""
   (generated)
   "build/report.blg"
   "build/report.bbl"
-["pdflatex"] 1493657512 "report.tex" "./build/report.pdf" "report" 1493657513
-  "./build/report.aux" 1493657513 671 294709d7b67d35d244319aebb0ef4a64 ""
+["pdflatex"] 1493954460 "report.tex" "./build/report.pdf" "report" 1493954460
+  "./build/report.aux" 1493954419 1137 d1bf0f0d3ee0c154b6d3d44693e34cc8 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -120,12 +120,15 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1466665712 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1463979169 3873397 413fbfbbedb8e719ddc392043a7add02 ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "build/report.aux" 1493657513 671 294709d7b67d35d244319aebb0ef4a64 ""
-  "build/report.bbl" 1493657332 1048 e92adfa29227fb154ba79fb1e2dde551 "bibtex build/report"
-  "report.tex" 1493657440 3284 fb3eeec0be8b82e00832f3cfc6341693 ""
+  "build/report.aux" 1493954419 1137 d1bf0f0d3ee0c154b6d3d44693e34cc8 ""
+  "build/report.bbl" 1493954156 1048 e92adfa29227fb154ba79fb1e2dde551 "bibtex build/report"
+  "figure0.png" 1493954450 105557 86e157c2a8f5e23b2a09b870826928d3 ""
+  "figure1.png" 1493954451 126555 ac0be8e1e6512a0fe04384013b168ca6 ""
+  "figure2.png" 1493954452 116318 39fde73b09f1a00543954c3ff8eb03a8 ""
+  "report.tex" 1493954119 3820 e16a967f5f4a69108c7d0a2231b39f5e ""
   (generated)
-  "./build/report.pdf"
-  "build/report.log"
-  "build/report.pdf"
-  "build/report.aux"
   "./build/report.log"
+  "build/report.log"
+  "build/report.aux"
+  "build/report.pdf"
+  "./build/report.pdf"

@@ -2,8 +2,11 @@
 import sys
 import numpy as np
 import glob
-import matplotlib.style
-style.use('ggplot')
+import matplotlib
+
+style.available
+matplotlib.style.use('fivethirtyeight')
+matplotlib.rcParams.update({'font.size': 12})
 
 flist = glob.glob('./dijk?.log')
 
@@ -32,7 +35,6 @@ values = {}
 for test in results.values():
     i += 1
     values[i] = {}
-    plt.figure()
     for ix, data in test.items():
         values[i][ix] = {}
         v = np.array([])
@@ -49,73 +51,18 @@ for test in results.values():
         values[i][ix]['t'] = t
 
 
-
-
-        plt.plot(v, np.log2(t), label=labels[ix])
-        plt.xlabel(r'$\log(N)$')
-        plt.ylabel(r'$\log($runtime$)$')
-
 titles = ['Complete Graph', 'Complete Binary Tree', 'Linear Graph']
 labels = ['List/Linear', 'List/Heap', 'Matrix/Linear', 'Matrix/Heap']
 for i in range(len(values[0])):
-    plt.figure()
+    plt.figure(figsize=(9,6))
     for ix in values:
         plt.plot(values[ix][i]['v'], np.log2(values[ix][i]['t']), label=labels[ix])
         plt.xlabel(r'$N$')
         plt.ylabel(r'$\log($runtime$)$')
     plt.legend()
+    plt.tight_layout(pad=3, w_pad=1.0, h_pad=1.0)
     plt.title(titles[i])
-    plt.savefig(f'figure{i}.png', dpi=300)
+    plt.savefig(f'figure{i}.png', dpi=200)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-results = {}
-names = ['LL', 'LH', 'ML', 'MH']
-for i in range(len(raw_data)):
-    results[i] = {}
-    func_names = []
-    for line in raw_data[i]:
-            G, func_name, runtime = line.split()
-            fkey = func_name.strip(':()N')
-            if fkey not in func_names:
-                func_names.append(fkey)
-                results[i][fkey] = {}
-                results[i][fkey]['V'] = np.array([])
-                results[i][fkey]['E'] = np.array([])
-                results[i][fkey]['T'] = np.array([])
-
-            v, e = [int(x) for x in G.strip('()').split(',')]
-            results[i][fkey]['V'] = np.append(results[i][fkey]['V'], v)
-            results[i][fkey]['E'] = np.append(results[i][fkey]['E'], e)
-            results[i][fkey]['T'] = np.append(results[i][fkey]['T'], float(runtime))
-
-
-fkey = 'dijkstra'
-labels = ['List/Linear', 'List/Heap', 'Matrix/Linear', 'Matrix/Heap']
-for i in range(len(results)):
-    v = results[i][fkey]['V']
-    e = results[i][fkey]['E']
-    t = results[i][fkey]['T']
-    plt.plot(np.log2(v), np.log2(t), label=labels[i])
-    plt.xlabel(r'$\log(N)$')
-    plt.ylabel(r'$\log($runtime$)$')
-plt.legend()
 

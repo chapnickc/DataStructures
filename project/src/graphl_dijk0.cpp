@@ -37,7 +37,6 @@ int main(int argc, char** argv){
   test_graph_vector(graphs, linear_dijkstra, logfile);
 
 
-
   return 0;
 
 }
