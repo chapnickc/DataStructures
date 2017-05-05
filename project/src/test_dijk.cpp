@@ -14,18 +14,18 @@ using namespace std;
 // Test Dijkstra's algorithm
 
 int main(int argc, char** argv){
-  srand(2100);  // for reproducibility
+  srand(2100); 
 
-  int N = 10;
+  int N = 9;
   double runtime;
   clock_t start;
   ofstream logfile;
 
   // Adjacency List and Linear minVertex
   logfile.open("dijk0.log");
-  std::vector<GraphL*> graphLs(N);
+  std::vector<GraphL*> graphs(N);
 
-  complete_graphs<GraphL>(graphLs, logfile);
+  complete_graphs<GraphL>(graphs, logfile);
   test_graph_vector(graphs, linear_dijkstra, logfile);
   logfile.close();
 

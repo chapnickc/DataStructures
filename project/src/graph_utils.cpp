@@ -73,7 +73,7 @@ template <typename GraphT>
 GraphT* linear_graph(int nvert){
   GraphT* graph = new GraphT(nvert);
   for (int i=0; i < nvert-1; i++){
-    if ( not graph->isEdge(i, i+1){
+    if ( not graph->isEdge(i, i+1) ){
       graph->setEdge(i, i+1, rand() % 20 + 1);
     }
   }
@@ -95,6 +95,44 @@ void linear_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
     logfile <<" complete_graph(N): "<< runtime <<'\n';
   }
 }
+
+
+
+template <typename GraphT>
+GraphT* complete_bintree(int nvert){
+  GraphT* graph = new GraphT(nvert);
+  for (int i=0; i < nvert; i++){
+    for (int k=2*i+1; k <= 2*i+2; k++){
+      if ( not graph->isEdge(i, k) &&  k < nvert){
+        graph->setEdge(i, k, rand() % 20 + 1);
+      }
+    }
+  }
+
+
+  return graph;
+}
+
+
+template <typename GraphT>
+void complete_bintrees(std::vector<GraphT*>& graphs, ostream& logfile){
+  double runtime;
+  clock_t start;
+
+  for (int i=0; i < graphs.size(); i++){ 
+    start = clock(); 
+    cout << "Building graph with " << pow(2,i+1) << " nodes...\n";
+    graphs[i] = complete_bintree<GraphT>(pow(2, i+1));
+    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+    logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
+    logfile <<" complete_graph(N): "<< runtime <<'\n';
+  }
+}
+
+
+
+
+
 
 
 
