@@ -14,9 +14,18 @@
 \usepackage{lipsum}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{courier}
 \renewcommand{\arraystretch}{1.5}
 \def\thesectiondis{\thesection.} 
 \def\thesubsectiondis{\Alph{subsection}.} 
+\lstset{language=C++,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green},
+    morecomment=[l][\color{magenta}]{\#}
+}
 %}}}
 %{{{ Title
 \begin{document}
@@ -34,17 +43,37 @@
 %}}}
 \section{Introduction}
 
-Dijkstra's algorithm addresses the problem of finding the shortest
-path from a 
+Dijkstra's algorithm addresses the problem of 
+the minimum distance from a source vertex, $v$, to every 
+other vertex in the graph. 
 
-\subsection{Algorithm Complexity}
+%This is a question about the global 
+%structure of the graph.
 
-$|V| :=$ the number of vertices in the graph,  
+Dijkstra's algorithm requires a subroutine which returns 
+the index of the univisted vertex which is closest to the source vertex.
+For this analysis, we will refer to this subroutine as \texttt{minVertex}.
 
-$|E| :=$ the number of edges in G
+The pseudocode is outlined as follows:
+\begin{lstlisting}
+D := array of best known distances from v
+     to every other vertex
+while (there exist unvisited verticies):
+    call minVertex, returns a vertex v.
+    mark v as visited.
+    for each neighbor, w, of v:
+        if D[w] > D[v] + weight(v, w):
+            D[w] = D[v] + weight(v, w)
+\end{lstlisting}
 
-For the linear implmentation of \texttt{minVertex}, the run time (for the worst case) 
-is described by:
+
+
+
+
+A trivial implementation of \texttt{minVertex} can be achieved by linearly 
+searching through the array of best known distances, and returning the 
+index of the unvisited vertex with the smallest value. 
+The time complexity of this implementation is described by:
 
 $$\Theta(|V|^2 + |E|)$$
 
@@ -89,13 +118,13 @@ and the heap implementation is $O(|V| \log |V|)$.
 An analysis of each implmentation was tested for 
 three cases, namely: 
 
-$$
-\begin{cases}
-    |E| = |V| - 1\\
-    |E| = |V|  \\
-    |E| = |V|(|V| - 1)/2
-\end{cases}
-$$
+%$$
+%\begin{cases}
+    %|E| = |V| - 1\\
+    %|E| = |V|  \\
+    %|E| = |V|(|V| - 1)/2
+%\end{cases}
+%$$
 
 
 
@@ -118,13 +147,13 @@ $$
         \hline
         & DENSITY & LINEAR & HEAP \\ \hline
         \multirow{3}{*}{Adjacency List} 
-        & $|E| \in |V|/2$ & 0.0 & 0.0 \\ [0.5ex]\cline{2-4}
-        & $|E| \in |V|$ & 0.0 & 0.0 \\ \cline{2-4}
-        & $|E| \in |V|^2$ & 0.0 & 0.0 \\ \hline
+        & Linear Graph & 0.0 & 0.0 \\ [0.5ex]\cline{2-4}
+        & Complete Binary Tree & 0.0 & 0.0 \\ \cline{2-4}
+        & Complete Graph & 0.0 & 0.0 \\ \hline
         \multirow{3}{*}{Adjacency Matrix}
-        & $|E| \in |V|/2$ & 0.0 & 0.0 \\ \cline{2-4}
-        & $|E| \in |V|$ & 0.0 & 0.0 \\ \cline{2-4}
-        & $|E| \in |V|^2$ & 0.0 & 0.0 \\ \hline
+        & & 0.0 & 0.0 \\ \cline{2-4}
+        & & 0.0 & 0.0 \\ \cline{2-4}
+        & & 0.0 & 0.0 \\ \hline
     \end{tabular}
 \end{table}
 
