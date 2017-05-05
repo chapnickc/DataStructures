@@ -66,6 +66,38 @@ void complete_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
 }
 
 
+
+
+
+template <typename GraphT>
+GraphT* linear_graph(int nvert){
+  GraphT* graph = new GraphT(nvert);
+  for (int i=0; i < nvert-1; i++){
+    if ( not graph->isEdge(i, i+1){
+      graph->setEdge(i, i+1, rand() % 20 + 1);
+    }
+  }
+  return graph;
+}
+
+
+template <typename GraphT>
+void linear_graphs(std::vector<GraphT*>& graphs, ostream& logfile){
+  double runtime;
+  clock_t start;
+
+  for (int i=0; i < graphs.size(); i++){ 
+    start = clock(); 
+    cout << "Building graph with " << pow(2,i+1) << " nodes...\n";
+    graphs[i] = linear_graph<GraphT>(pow(2, i+1));
+    runtime = (clock() - start) / (double) CLOCKS_PER_SEC;
+    logfile << "("<< graphs[i]->n() << "," << graphs[i]->e() <<")";
+    logfile <<" complete_graph(N): "<< runtime <<'\n';
+  }
+}
+
+
+
 template <typename GraphT, typename Dijkstra>
 void dijkstra_test(GraphT* graph, Dijkstra dijkstra, ostream& output){
   double runtime;

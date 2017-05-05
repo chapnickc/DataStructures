@@ -16,16 +16,16 @@ using namespace std;
 int main(int argc, char** argv){
   srand(2100);  // for reproducibility
 
-  int N = 7;
+  int N = 10;
   double runtime;
   clock_t start;
   ofstream logfile;
 
   // Adjacency List and Linear minVertex
   logfile.open("dijk0.log");
-  std::vector<GraphL*> graphs(N);
+  std::vector<GraphL*> graphLs(N);
 
-  complete_graphs<GraphL>(graphs, logfile);
+  complete_graphs<GraphL>(graphLs, logfile);
   test_graph_vector(graphs, linear_dijkstra, logfile);
   logfile.close();
 
