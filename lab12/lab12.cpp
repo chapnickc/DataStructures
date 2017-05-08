@@ -4,6 +4,10 @@
 #include <string>
 using namespace std;
 
+/* from hell's heart I stab at thee; 
+ * for hate's sake I spit my last breath at thee. 
+ */
+
 int main(){
   Trie trie;
   ifstream file;
@@ -51,10 +55,6 @@ int main(){
   cout << longest << endl;
   cout << save << endl;
 
-
-  //trie.insert(mobydick[i], 1);
-  //cout << trie.totalSize() << endl;
-  //cout << startrek.c_str() << endl;
 
   return 0;
 }
