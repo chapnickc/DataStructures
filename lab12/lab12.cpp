@@ -42,19 +42,19 @@ int main(){
 
   int longest = 0;
   int result;
-  string save;
+  string::iterator save;
   end = startrek.end();
   for (it = startrek.begin(); it < end; ++it){
     substring.assign(it, end);
     result = trie.longestPrefix(substring.c_str());
     if (result > longest) {
-      longest =  result;
-      save = substring;
+      longest = result;
+      save = it;
     }
   }
   cout << longest << endl;
-  cout << save << endl;
-
+  substring.assign(save, save+65);
+  cout << substring << endl;
 
   return 0;
 }
