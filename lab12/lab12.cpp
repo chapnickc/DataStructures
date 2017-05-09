@@ -53,7 +53,7 @@ int main(){
     }
   }
   cout << longest << endl;
-  substring.assign(save, save+65);
+  substring.assign(save, save+longest);
   cout << substring << endl;
 
   return 0;
