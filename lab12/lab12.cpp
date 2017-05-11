@@ -29,11 +29,10 @@ int main(){
   file.close();
 
 
-
+  string substring;
   string::iterator it;
   string::iterator end;
   end = mobydick.end();
-  string substring;
 
   for (it = mobydick.begin(); it < mobydick.end(); ++it){
     substring.assign(it, end);
