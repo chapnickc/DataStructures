@@ -53,8 +53,10 @@ void print_tree(BinNode<E>* root) {
 template <typename E>
 void print_tree_by_level(BinNode<E>* root) {
   LQueue<BinNode<E>* > nodeQueue;
-  nodeQueue.enqueue(root);
   BinNode<E>* current;
+
+  nodeQueue.enqueue(root);
+
   do {
     current = nodeQueue.dequeue();
     if (current != NULL){
@@ -69,7 +71,9 @@ void print_tree_by_level(BinNode<E>* root) {
 template <typename E>
 E getMaxValue(BinNode<E>* root){
   if (root->isLeaf()) { return root->element(); }
-  E maxval = getMaxValue(root->left()) > getMaxValue(root->right()) ? getMaxValue(root->left()) : getMaxValue(root->right());
+  E maxval = getMaxValue(root->left()) > getMaxValue(root->right()) ? 
+             getMaxValue(root->left()) : getMaxValue(root->right());
+
   return root->element() > maxval ? root->element() : maxval;
 }
 
@@ -112,8 +116,6 @@ int main()
   cout << "Max value is: " <<maxval << endl;
 
 }
-
-
 
 /*
 template <typename E>

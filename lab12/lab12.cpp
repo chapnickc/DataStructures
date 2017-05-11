@@ -8,42 +8,39 @@ using namespace std;
  * for hate's sake I spit my last breath at thee. 
  */
 
-int main(){
-  Trie trie;
-  ifstream file;
-  file.open("./mobydick.txt");
+string read_book(istream& file){
   string word;
-  string mobydick("");
-  string startrek("");
-
-  while (file >> word){
-    mobydick += word;
+  string book("");
+  while (file >> word){ 
+    book += " " + word; 
   }
-  file.close();
+  return book;
+}
 
 
-  file.open("./startrek.txt");
-  while (file >> word){
-    startrek += word;
-  }
-  file.close();
-
-
+void build_suffix_tree(Trie& trie, string& s){
   string substring;
-  string::iterator it;
-  string::iterator end;
-  end = mobydick.end();
-
-  for (it = mobydick.begin(); it < mobydick.end(); ++it){
+  string::iterator it, end;
+  end = s.end();
+  for (it = s.begin(); it < s.end(); ++it){
     substring.assign(it, end);
     trie.insert(substring.c_str(), 1);
   }
+}
 
-  int longest = 0;
+
+string find_longest_substring(string& s1, string& s2){
+  Trie trie;
+  build_suffix_tree(trie, s1);
+
   int result;
-  string::iterator save;
-  end = startrek.end();
-  for (it = startrek.begin(); it < end; ++it){
+  int longest = 0;
+  
+  string substring;
+  string::iterator it, end, save;
+  end = s2.end();
+
+  for (it = s2.begin(); it < end; ++it){
     substring.assign(it, end);
     result = trie.longestPrefix(substring.c_str());
     if (result > longest) {
@@ -51,8 +48,26 @@ int main(){
       save = it;
     }
   }
-  cout << longest << endl;
+
   substring.assign(save, save+longest);
+  return substring;
+}
+
+
+
+int main(){
+  
+  ifstream file;
+
+  file.open("./mobydick.txt");
+  string mobydick = read_book(file);
+  file.close();
+
+  file.open("./startrek.txt");
+  string startrek = read_book(file);
+  file.close();
+
+  string substring = find_longest_substring(mobydick, startrek);
   cout << substring << endl;
 
   return 0;
